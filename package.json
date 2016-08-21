@@ -1,0 +1,42 @@
+{
+  "name": "rollup-plugin-relink",
+  "version": "0.1.0",
+  "description": "The Rollup Relink Plugin copies static assets as required from your JavaScript code to the destination folder and adjusts the references in there to point to the new location.",
+  "keywords": [
+    "npm",
+    "publish",
+    "library"
+  ],
+  "engines": {
+    "node": "~6.3.0"
+  },
+  "author": "Sebastian Werner",
+  "license": "MIT",
+  "main": "lib/index.js",
+  "scripts": {
+    "lint": "eslint --quiet src/ test/ || true",
+    "nsp": "nsp check --output summary",
+    "release": "release-it --github.release --npm.publish --non-interactive",
+    "release:minor": "release-it --github.release --npm.publish --non-interactive --increment minor",
+    "release:major": "release-it --github.release --npm.publish --non-interactive --increment major",
+    "test": "npm run prepublish",
+    "prepublish": "prepublish-lib"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/sebastian-software/rollup-plugin-relink.git"
+  },
+  "dependencies": {
+    "async": "^2.0.1",
+    "denodeify": "^1.2.1",
+    "fs-extra": "^0.30.0",
+    "loader-utils": "^0.2.15",
+    "postcss": "^5.1.2",
+    "postcss-scss": "^0.1.9",
+    "postcss-smart-import": "^0.2.5",
+    "sugarss": "^0.1.5"
+  },
+  "devDependencies": {
+    "s15e-javascript": "^0.2.3"
+  }
+}
