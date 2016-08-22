@@ -35,17 +35,24 @@ function fileExists(name)
 }
 
 test(t => {
-  var output = `${outputFolder}${shortid()}.js`
-  return run("./fixtures/plain.js", output).then(() => Promise.all([
-    fileExists(output).then((exists) => t.true(exists))
+  var outputFile = `${outputFolder}${shortid()}.js`
+  return run("./fixtures/plain.js", outputFile).then(() => Promise.all([
+    fileExists(outputFile).then((exists) => t.true(exists)),
+    rm(outputFile)
   ]))
 })
 
 test(t => {
-  var output = `${outputFolder}${shortid()}.js`
-  return run("./fixtures/assets.js", output).then(() => Promise.all([
-    fileExists(output).then((exists) => t.true(exists)),
-    fileExists(`${outputFolder}image-l1JhGTH9.png`).then((exists) => t.true(exists)),
-    fileExists(`${outputFolder}font-VrPi9W49.woff`).then((exists) => t.true(exists))
+  var outputFile = `${outputFolder}${shortid()}.js`
+  var imageFile = `${outputFolder}image-l1JhGTH9.png`
+  var fontFile = `${outputFolder}font-VrPi9W49.woff`
+
+  return run("./fixtures/assets.js", outputFile).then(() => Promise.all([
+    fileExists(outputFile).then((exists) => t.true(exists)),
+    fileExists(imageFile).then((exists) => t.true(exists)),
+    fileExists(fontFile).then((exists) => t.true(exists)),
+    rm(outputFile),
+    rm(imageFile),
+    rm(fontFile)
   ]))
 })
