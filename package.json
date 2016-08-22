@@ -22,7 +22,7 @@
     "release:minor": "release-it --github.release --npm.publish --non-interactive --increment minor",
     "release:major": "release-it --github.release --npm.publish --non-interactive --increment major",
     "test": "npm run prepublish",
-    "prepublish": "in-publish && prepublish-lib"
+    "prepublish": "in-publish && prepublish-lib || true"
   },
   "repository": {
     "type": "git",
