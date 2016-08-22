@@ -10,13 +10,18 @@ import relinkPlugin from "../src"
 const stat = denodeify(fs.stat)
 const rm = denodeify(rimraf)
 
+const outputFolder = "./output/"
+
 process.chdir(__dirname)
 
 function run(entry, output) 
 {
+  var plugin = relinkPlugin({ outputFolder })
+  
   return rollup({
     entry,
-    plugins: [ relinkPlugin({ output }) ]
+    external: plugin.isExternal,
+    plugins: [ plugin ]
   })
   .then(bundle => bundle.write({
     dest: output
@@ -30,8 +35,15 @@ function fileExists(name)
 }
 
 test(t => {
-  var output = `./output/${shortid()}.js`
+  var output = `${outputFolder}${shortid()}.js`
   return run("./fixtures/plain.js", output).then(() => Promise.all([
+    fileExists(output).then((exists) => t.true(exists))
+  ]))
+})
+
+test(t => {
+  var output = `./output/${shortid()}.js`
+  return run("./fixtures/assets.js", output).then(() => Promise.all([
     fileExists(output).then((exists) => t.true(exists))
   ]))
 })

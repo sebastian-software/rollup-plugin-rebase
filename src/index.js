@@ -63,7 +63,7 @@ const defaultExclude =
 
 export default function relink(options = {})
 {
-  const { limit, include, exclude = defaultExclude } = options
+  const { limit, include, exclude = defaultExclude, outputFolder } = options
   const filter = createFilter(include, exclude)
 
   return {
