@@ -2,6 +2,11 @@
 
 The Rollup Relink Plugin copies static assets as required from your JavaScript code to the destination folder and adjusts the references in there to point to the new location.
 
+The plugin is meant as a tool for preparing a library for being published. In this it differs
+from plugins like [Rollup URL Plugin](https://github.com/Swatinem/rollup-plugin-url) as it is designed
+for usage in *libraries* and not for *applications*. The output of this plugin can be used by 
+tools like Webpacks [File Loader](https://github.com/webpack/file-loader), [URL Loader](https://github.com/webpack/url-loader) or the mentioned [Rollup URL Plugin](https://github.com/Swatinem/rollup-plugin-url)
+
 [deps-img]: https://david-dm.org/sebastian-software/rollup-plugin-relink.svg
 [npm]: https://www.npmjs.com/package/rollup-plugin-relink
 [npm-downloads-img]: https://img.shields.io/npm/dm/rollup-plugin-relink.svg
@@ -31,19 +36,19 @@ Rollup Relink comes with a binary which can be called from within your `scripts`
 in the `package.json` file.
 
 ```js
-import Relink from "rollup-plugin-relink"
+import relinkPlugin from "rollup-plugin-relink"
 
 const outputFolder = "./lib";
-const relink = Relink(outputFolder)
+const relink = relinkPlugin({ outputFolder })
 
 rollup({
   entry: entry,
   ...
-  external: fileMapper.isExternal,
+  external: relink.isExternal,
   ...
   plugins: [
     ...
-    fileMapper
+    relink
   ]
 }).then((bundle) =>
   bundle.write({
