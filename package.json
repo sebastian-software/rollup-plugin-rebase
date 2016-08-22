@@ -36,6 +36,7 @@
     "postcss": "^5.1.2",
     "postcss-scss": "^0.1.9",
     "postcss-smart-import": "^0.2.5",
+    "rollup-pluginutils": "^1.5.1",
     "sugarss": "^0.1.5"
   },
   "devDependencies": {

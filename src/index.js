@@ -4,6 +4,7 @@ import crypto from "crypto"
 import denodeify from "denodeify"
 import fse from "fs-extra"
 import { getHashDigest } from "loader-utils"
+import { createFilter } from "rollup-pluginutils"
 
 import postcss from "postcss"
 import postcssSmartImport from "postcss-smart-import"
@@ -12,12 +13,6 @@ import postcssParserScss from "postcss-scss"
 
 var copyAsync = denodeify(fse.copy)
 var writeAsync = denodeify(fse.outputFile)
-
-function isAssetFile(id)
-{
-  var fileExt = path.extname(id).slice(1)
-  return !(fileExt === "" || (/^(json|jsx|js|es|es5|es6)$/).exec(fileExt))
-}
 
 const styleExtensions =
 {
@@ -55,9 +50,22 @@ const digestLength = 8
 
 const externalIds = {}
 
+const defaultExclude = 
+[
+  "**/*.json",
+  "**/*.jsx",
+  "**/*.js",
+  "**/*.es",
+  "**/*.es5",
+  "**/*.es6",
+  "**/*.vue"
+]
 
-export default function(outputFolder)
+export default function relink(options = {})
 {
+  const { limit, include, exclude = defaultExclude } = options
+  const filter = createFilter(include, exclude)
+
   return {
     name: "file-loader",
 
@@ -83,7 +91,7 @@ export default function(outputFolder)
 
     load: function(id)
     {
-      if (!isAssetFile(id))
+      if (!filter(id))
         return null
 
       const input = fs.createReadStream(id)
