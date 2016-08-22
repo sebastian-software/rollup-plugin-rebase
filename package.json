@@ -21,12 +21,27 @@
     "release": "release-it --github.release --npm.publish --non-interactive",
     "release:minor": "release-it --github.release --npm.publish --non-interactive --increment minor",
     "release:major": "release-it --github.release --npm.publish --non-interactive --increment major",
-    "test": "npm run prepublish",
+    "test": "npm run prepublish && ava",
     "prepublish": "prepublish-lib"
   },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/sebastian-software/rollup-plugin-relink.git"
+  },
+  "ava": {
+    "require": [
+      "babel-core/register"
+    ]
+  },
+  "babel": {
+    "presets": [
+      "es2015",
+      "stage-2"
+    ],
+    "plugins": [
+      "espower",
+      "transform-runtime"
+    ]
   },
   "dependencies": {
     "async": "^2.0.1",
@@ -40,6 +55,7 @@
     "sugarss": "^0.1.5"
   },
   "devDependencies": {
+    "ava": "^0.16.0",
     "prepublish-lib": "^0.2.5",
     "s15e-javascript": "^0.2.3"
   }
