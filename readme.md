@@ -5,7 +5,9 @@ The Rollup Relink Plugin copies static assets as required from your JavaScript c
 The plugin is meant as a tool for preparing a library for being published. In this it differs
 from plugins like [Rollup URL Plugin](https://github.com/Swatinem/rollup-plugin-url) as it is designed
 for usage in *libraries* and not for *applications*. The output of this plugin can be used by 
-tools like Webpacks [File Loader](https://github.com/webpack/file-loader), [URL Loader](https://github.com/webpack/url-loader) or the mentioned [Rollup URL Plugin](https://github.com/Swatinem/rollup-plugin-url)
+tools like Webpacks [File Loader](https://github.com/webpack/file-loader), 
+[URL Loader](https://github.com/webpack/url-loader) or the already mentioned 
+[Rollup URL Plugin](https://github.com/Swatinem/rollup-plugin-url).
 
 [deps-img]: https://david-dm.org/sebastian-software/rollup-plugin-relink.svg
 [npm]: https://www.npmjs.com/package/rollup-plugin-relink
@@ -50,7 +52,8 @@ rollup({
     ...
     relink
   ]
-}).then((bundle) =>
+})
+.then((bundle) =>
   bundle.write({
     ...
     dest: `${outputFolder}/index.js`
