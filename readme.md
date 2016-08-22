@@ -18,6 +18,16 @@ tools like Webpacks [File Loader](https://github.com/webpack/file-loader),
 [travis]: https://travis-ci.org/sebastian-software/rollup-plugin-relink
 [appveyor]: https://ci.appveyor.com/project/swernerx/rollup-plugin-relink/branch/master
 
+## Features
+
+- Copies over asset files references from JavaScript into the given output folder.
+- Adjust asset references in the output JavaScript files to map to the relative new location.
+- Transforms CSS files to inline all includes from `@import` via [PostCSS Smart Import](https://github.com/sebastian-software/postcss-smart-import) into the origin files.
+- Renames all assets based on their hash (SHA256 + Base62) so that conflicts are automatically eliminated while producing a flat zero depth output structure.
+- Supports *normal* CSS, but also [SugarSS](https://github.com/postcss/sugarss) and [SCSS](https://github.com/postcss/postcss-scss) via the standard PostCSS parser plugins.
+- Processes all files which do not match this extension list: `.json`, `.jsx`, `.js`, `.es`, `.es5`, `.es6`, `.vue`.
+
+
 
 ## Links
 
