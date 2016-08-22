@@ -29,6 +29,9 @@
     "url": "git+https://github.com/sebastian-software/rollup-plugin-relink.git"
   },
   "ava": {
+    "files": [
+      "test/*.js"
+    ],    
     "require": [
       "babel-core/register"
     ]
@@ -57,6 +60,7 @@
   "devDependencies": {
     "ava": "^0.16.0",
     "prepublish-lib": "^0.2.5",
+    "rollup": "^0.34.10",
     "s15e-javascript": "^0.2.3"
   }
 }
