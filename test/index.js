@@ -3,24 +3,23 @@ import rimraf from "rimraf"
 import { rollup } from "rollup"
 import denodeify from "denodeify"
 import test from "ava"
+import shortid from "shortid"
 
 import relinkPlugin from "../src"
 
-const dest = "output/output.js"
-const outputFolder = "./src"
-
 const stat = denodeify(fs.stat)
+const rm = denodeify(rimraf)
 
 process.chdir(__dirname)
 
-function run(entry) 
+function run(entry, output) 
 {
   return rollup({
     entry,
-    plugins: [ relinkPlugin({ outputFolder }) ]
+    plugins: [ relinkPlugin({ output }) ]
   })
   .then(bundle => bundle.write({
-    dest
+    dest: output
   }))
 }
 
@@ -31,7 +30,8 @@ function fileExists(name)
 }
 
 test(t => {
-  return run("./fixtures/plain.js").then(() => Promise.all([
-    fileExists("./output/output.js").then((exists) => t.true(exists))
+  var output = `./output/${shortid()}.js`
+  return run("./fixtures/plain.js", output).then(() => Promise.all([
+    fileExists(output).then((exists) => t.true(exists))
   ]))
 })

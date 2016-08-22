@@ -31,7 +31,7 @@
   "ava": {
     "files": [
       "test/*.js"
-    ],    
+    ],
     "require": [
       "babel-core/register"
     ]
@@ -61,6 +61,7 @@
     "ava": "^0.16.0",
     "prepublish-lib": "^0.2.5",
     "rollup": "^0.34.10",
-    "s15e-javascript": "^0.2.3"
+    "s15e-javascript": "^0.2.3",
+    "shortid": "^2.2.6"
   }
 }
