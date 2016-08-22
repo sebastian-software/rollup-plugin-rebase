@@ -17,7 +17,7 @@ process.chdir(__dirname)
 function run(entry, output) 
 {
   var plugin = relinkPlugin({ outputFolder })
-  
+
   return rollup({
     entry,
     external: plugin.isExternal,
@@ -42,8 +42,10 @@ test(t => {
 })
 
 test(t => {
-  var output = `./output/${shortid()}.js`
+  var output = `${outputFolder}${shortid()}.js`
   return run("./fixtures/assets.js", output).then(() => Promise.all([
-    fileExists(output).then((exists) => t.true(exists))
+    fileExists(output).then((exists) => t.true(exists)),
+    fileExists(`${outputFolder}image-l1JhGTH9.png`).then((exists) => t.true(exists)),
+    fileExists(`${outputFolder}font-VrPi9W49.woff`).then((exists) => t.true(exists))
   ]))
 })
