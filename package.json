@@ -52,15 +52,15 @@
     "fs-extra": "^0.30.0",
     "loader-utils": "^0.2.15",
     "postcss": "^5.1.2",
-    "postcss-scss": "^0.1.9",
-    "postcss-smart-import": "^0.2.5",
-    "rollup-pluginutils": "^1.5.1",
+    "postcss-scss": "^0.2.1",
+    "postcss-smart-import": "^0.2.7",
+    "rollup-pluginutils": "^1.5.2",
     "sugarss": "^0.1.5"
   },
   "devDependencies": {
     "ava": "^0.16.0",
-    "prepublish-lib": "^0.2.5",
-    "rollup": "^0.34.10",
+    "prepublish-lib": "^0.3.0",
+    "rollup": "^0.34.11",
     "s15e-javascript": "^0.2.3",
     "shortid": "^2.2.6"
   }
