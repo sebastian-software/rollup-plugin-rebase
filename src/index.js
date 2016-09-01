@@ -50,7 +50,7 @@ const digestLength = 8
 
 const externalIds = {}
 
-const defaultExclude = 
+const defaultExclude =
 [
   "**/*.json",
   "**/*.jsx",
@@ -67,7 +67,7 @@ export default function relink(options = {})
   const filter = createFilter(include, exclude)
 
   return {
-    name: "file-loader",
+    name: "rollup-plugin-relink",
 
     isExternal: function(id)
     {
