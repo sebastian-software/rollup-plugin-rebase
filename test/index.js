@@ -14,9 +14,9 @@ const outputFolder = "./output/"
 
 process.chdir(__dirname)
 
-function run(entry, output) 
+function run(entry, output)
 {
-  var plugin = relinkPlugin({ outputFolder })
+  var plugin = relinkPlugin({ outputFolder, verbose: true })
 
   return rollup({
     entry,
@@ -28,7 +28,7 @@ function run(entry, output)
   }))
 }
 
-function fileExists(name) 
+function fileExists(name)
 {
   return stat(name)
     .then(stat => true, err => false)

@@ -66,7 +66,7 @@ const defaultExclude =
 
 export default function relink(options = {})
 {
-  const { limit, include, exclude = defaultExclude, outputFolder } = options
+  const { limit, include, exclude = defaultExclude, outputFolder, verbose } = options
   const filter = createFilter(include, exclude)
 
   return {
@@ -112,13 +112,16 @@ export default function relink(options = {})
           var destExt = fileExt in styleExtensions ? ".css" : fileExt
           var destId = path.basename(id, fileExt) + "-" + fileHash + destExt
 
-          var fileDest = path.join(outputFolder, destId)
+          var fileDest = path.resolve(outputFolder, destId)
 
           externalIds["./" + destId] = true
 
           if (fileExt in styleExtensions)
           {
-            return processStyle(fileContent, fileSource, fileDest).then(function()
+            if (verbose)
+              console.log(`Processing ${fileSource} => ${fileDest}...`)
+
+            return processStyle(fileContent, fileSource, fileDest).then(() =>
             {
               resolve({
                 code: `import _${fileHash} from "./${destId}"; export default _${fileHash};`,
@@ -128,7 +131,10 @@ export default function relink(options = {})
           }
           else
           {
-            return copyAsync(fileSource, fileDest).then(function()
+            if (verbose)
+              console.log(`Copying ${fileSource} => ${fileDest}...`)
+
+            return copyAsync(fileSource, fileDest).then(() =>
             {
               resolve({
                 code: `import _${fileHash} from "./${destId}"; export default _${fileHash};`,
