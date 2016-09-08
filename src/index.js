@@ -53,11 +53,14 @@ const externalIds = {}
 const defaultExclude =
 [
   "**/*.json",
-  "**/*.jsx",
   "**/*.js",
+  "**/*.jsx",
+  "**/*.ts",
+  "**/*.tsx",
   "**/*.es",
   "**/*.es5",
   "**/*.es6",
+  "**/*.es7",
   "**/*.vue"
 ]
 
