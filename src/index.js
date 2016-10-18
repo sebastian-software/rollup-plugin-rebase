@@ -66,7 +66,7 @@ const defaultExclude =
 
 export default function relink(options = {})
 {
-  const { limit, include, exclude = defaultExclude, outputFolder, verbose } = options
+  const { limit, include, exclude = defaultExclude, entry, outputFolder, verbose } = options
   const filter = createFilter(include, exclude)
 
   return {
@@ -114,7 +114,15 @@ export default function relink(options = {})
 
           var fileDest = path.resolve(outputFolder, destId)
 
+          // Mark new file location as external to prevent further processing.
           externalIds["./" + destId] = true
+
+          var entryFolder = path.dirname(path.resolve(entry))
+          var relativeToRoot = path.relative(path.dirname(fileSource), entryFolder)
+
+          // Adjust destId so that it points to the root folder - from any
+          // depth we detected inside the original project structure.
+          var importId = (relativeToRoot ? relativeToRoot + "/" : "./") + destId
 
           if (fileExt in styleExtensions)
           {
@@ -124,7 +132,7 @@ export default function relink(options = {})
             return processStyle(fileContent, fileSource, fileDest).then(() =>
             {
               resolve({
-                code: `import _${fileHash} from "./${destId}"; export default _${fileHash};`,
+                code: `import _${fileHash} from "${importId}"; export default _${fileHash};`,
                 map: { mappings: "" }
               })
             })
@@ -137,7 +145,7 @@ export default function relink(options = {})
             return copyAsync(fileSource, fileDest).then(() =>
             {
               resolve({
-                code: `import _${fileHash} from "./${destId}"; export default _${fileHash};`,
+                code: `import _${fileHash} from "${importId}"; export default _${fileHash};`,
                 map: { mappings: "" }
               })
             })
