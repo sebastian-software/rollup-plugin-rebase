@@ -8,6 +8,7 @@ import { createFilter } from "rollup-pluginutils"
 
 import postcss from "postcss"
 import postcssSmartImport from "postcss-smart-import"
+import postcssSimpleUrl from "postcss-simple-url"
 import postcssParserSugarss from "sugarss"
 import postcssParserScss from "postcss-scss"
 
@@ -22,7 +23,8 @@ const styleExtensions =
 }
 
 const postcssPlugins = [
-  postcssSmartImport()
+  postcssSmartImport(),
+  postcssSimpleUrl()
 ]
 
 function processStyle(code, id, dest)
