@@ -1,6 +1,6 @@
 {
   "name": "rollup-plugin-relink",
-  "version": "0.2.0",
+  "version": "0.2.1",
   "description": "The Rollup Relink Plugin copies static assets as required from your JavaScript code to the destination folder and adjusts the references in there to point to the new location.",
   "keywords": [
     "rollup-plugin",
