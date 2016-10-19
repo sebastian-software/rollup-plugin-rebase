@@ -120,7 +120,7 @@ export default function relink(options = {})
           externalIds["./" + destId] = true
 
           var entryFolder = path.dirname(path.resolve(entry))
-          var relativeToRoot = path.relative(path.dirname(fileSource), entryFolder)
+          var relativeToRoot = path.relative(path.dirname(fileSource), entryFolder).replace(/\\/g, "/")
 
           // Adjust destId so that it points to the root folder - from any
           // depth we detected inside the original project structure.
