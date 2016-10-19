@@ -124,7 +124,13 @@ export default function relink(options = {})
 
           // Adjust destId so that it points to the root folder - from any
           // depth we detected inside the original project structure.
-          var importId = (relativeToRoot ? relativeToRoot + "/" : "./") + destId
+          if (relativeToRoot.charAt(0) === ".") {
+            var importId = relativeToRoot + "/" + destId;
+          } else if (relativeToRoot === "") {
+            var importId = "./" + destId;
+          } else {
+            var importId = "./" + relativeToRoot + "/" + destId;
+          }
 
           if (fileExt in styleExtensions)
           {
