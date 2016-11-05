@@ -1747,7 +1747,7 @@ eslint-plugin-node@^3.0.3:
     resolve "^1.1.7"
     semver "5.3.0"
 
-eslint-plugin-promise@^3.3.0:
+eslint-plugin-promise@^3.3.1:
   version "3.3.1"
   resolved "https://registry.yarnpkg.com/eslint-plugin-promise/-/eslint-plugin-promise-3.3.1.tgz#c1e980cf7c3cac3300731450fb31d2bb843eb226"
 
@@ -4273,9 +4273,9 @@ rx-lite@^3.1.2:
   version "3.1.2"
   resolved "https://registry.yarnpkg.com/rx-lite/-/rx-lite-3.1.2.tgz#19ce502ca572665f3b647b10939f97fd1615f102"
 
-s15e-javascript@^0.4.1:
-  version "0.4.1"
-  resolved "https://registry.yarnpkg.com/s15e-javascript/-/s15e-javascript-0.4.1.tgz#2da5baa5dd3639635137f4f747e53390ba5f121f"
+s15e-javascript@^0.4.2:
+  version "0.4.2"
+  resolved "https://registry.yarnpkg.com/s15e-javascript/-/s15e-javascript-0.4.2.tgz#65bbda004fce1dd0e050a052b6455aab38dca5cf"
   dependencies:
     eslint "^3.9.1"
     eslint-find-rules "^1.14.3"
@@ -4288,7 +4288,7 @@ s15e-javascript@^0.4.1:
     eslint-plugin-lodash "^2.1.7"
     eslint-plugin-no-use-extend-native "^0.3.12"
     eslint-plugin-node "^3.0.3"
-    eslint-plugin-promise "^3.3.0"
+    eslint-plugin-promise "^3.3.1"
     eslint-plugin-react "^6.5.0"
     eslint-plugin-unicorn "^1.0.0"
     gulp "^3.9.1"
