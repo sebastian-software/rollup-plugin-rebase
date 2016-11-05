@@ -8,7 +8,7 @@
     "assets"
   ],
   "engines": {
-    "node": ">= 6.0.0"
+    "node": ">=4.0.0"
   },
   "author": "Sebastian Werner",
   "license": "MIT",
