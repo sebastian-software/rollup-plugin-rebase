@@ -1,6 +1,6 @@
+/* eslint-disable filenames/match-exported */
 import fs from "fs"
 import path from "path"
-import crypto from "crypto"
 import denodeify from "denodeify"
 import fse from "fs-extra"
 import { getHashDigest } from "loader-utils"
@@ -15,8 +15,7 @@ import postcssParserScss from "postcss-scss"
 var copyAsync = denodeify(fse.copy)
 var writeAsync = denodeify(fse.outputFile)
 
-const styleExtensions =
-{
+const styleExtensions = {
   ".css": null,
   ".sss": postcssParserSugarss,
   ".scss": postcssParserScss
@@ -52,8 +51,7 @@ const digestLength = 8
 
 const externalIds = {}
 
-const defaultExclude =
-[
+const defaultExclude = [
   "**/*.json",
   "**/*.js",
   "**/*.jsx",
@@ -68,7 +66,7 @@ const defaultExclude =
 
 export default function relink(options = {})
 {
-  const { limit, include, exclude = defaultExclude, entry, outputFolder, verbose } = options
+  const { include, exclude = defaultExclude, entry, outputFolder, verbose } = options
   const filter = createFilter(include, exclude)
 
   return {
@@ -100,7 +98,6 @@ export default function relink(options = {})
         return null
 
       const input = fs.createReadStream(id)
-      const hash = crypto.createHash("sha256")
 
       return new Promise((resolve, reject) =>
       {

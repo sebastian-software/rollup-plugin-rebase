@@ -4273,9 +4273,9 @@ rx-lite@^3.1.2:
   version "3.1.2"
   resolved "https://registry.yarnpkg.com/rx-lite/-/rx-lite-3.1.2.tgz#19ce502ca572665f3b647b10939f97fd1615f102"
 
-s15e-javascript@^0.4.2:
-  version "0.4.2"
-  resolved "https://registry.yarnpkg.com/s15e-javascript/-/s15e-javascript-0.4.2.tgz#65bbda004fce1dd0e050a052b6455aab38dca5cf"
+s15e-javascript@^0.4.3:
+  version "0.4.3"
+  resolved "https://registry.yarnpkg.com/s15e-javascript/-/s15e-javascript-0.4.3.tgz#fbf73fe5393ec37a9b215fb8e168010b863b4d91"
   dependencies:
     eslint "^3.9.1"
     eslint-find-rules "^1.14.3"
