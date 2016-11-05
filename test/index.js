@@ -24,9 +24,9 @@ function run(entry, output)
     external: plugin.isExternal,
     plugins: [ plugin ]
   })
-  .then((bundle) => bundle.write({
-    dest: output
-  }))
+    .then((bundle) => bundle.write({
+      dest: output
+    }))
 }
 
 function fileExists(name)
