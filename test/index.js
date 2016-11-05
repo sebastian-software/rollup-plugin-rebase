@@ -24,7 +24,7 @@ function run(entry, output)
     external: plugin.isExternal,
     plugins: [ plugin ]
   })
-  .then(bundle => bundle.write({
+  .then((bundle) => bundle.write({
     dest: output
   }))
 }
@@ -32,10 +32,10 @@ function run(entry, output)
 function fileExists(name)
 {
   return stat(name)
-    .then(stat => true, err => false)
+    .then((stat) => true, (err) => false)
 }
 
-test(t => {
+test((t) => {
   var outputFile = `${outputFolder}${shortid()}.js`
   return run("./fixtures/plain.js", outputFile).then(() => Promise.all([
     fileExists(outputFile).then((exists) => t.true(exists)),
@@ -43,7 +43,7 @@ test(t => {
   ]))
 })
 
-test(t => {
+test((t) => {
   var outputFile = `${outputFolder}${shortid()}.js`
   var imageFile = `${outputFolder}image-l1JhGTH9.png`
   var fontFile = `${outputFolder}font-VrPi9W49.woff`
@@ -51,8 +51,8 @@ test(t => {
 
   return run("./fixtures/assets.js", outputFile).then(() => Promise.all([
     fileExists(outputFile).then((exists) => t.true(exists)),
-    readFile(outputFile, "utf-8").then(function(content) {
-var expectedContent = `import _VrPi9W49 from './font-VrPi9W49.woff';
+    readFile(outputFile, "utf-8").then((content) => {
+      var expectedContent = `import _VrPi9W49 from './font-VrPi9W49.woff';
 import _l1JhGTH9 from './image-l1JhGTH9.png';
 import _hk4Yl7Ly from './blank-hk4Yl7Ly.gif';
 
@@ -72,7 +72,7 @@ export default assets;
   ]))
 })
 
-test(t => {
+test((t) => {
   var outputFile = `${outputFolder}${shortid()}.js`
   var imageFile = `${outputFolder}image-l1JhGTH9.png`
   var fontFile = `${outputFolder}font-VrPi9W49.woff`
@@ -80,8 +80,8 @@ test(t => {
 
   return run("./fixtures/deep/assets-outside.js", outputFile).then(() => Promise.all([
     fileExists(outputFile).then((exists) => t.true(exists)),
-    readFile(outputFile, "utf-8").then(function(content) {
-var expectedContent = `import _VrPi9W49 from './font-VrPi9W49.woff';
+    readFile(outputFile, "utf-8").then((content) => {
+      var expectedContent = `import _VrPi9W49 from './font-VrPi9W49.woff';
 import _l1JhGTH9 from './image-l1JhGTH9.png';
 import _hk4Yl7Ly from './blank-hk4Yl7Ly.gif';
 
@@ -101,7 +101,7 @@ export default assetsOutside;
   ]))
 })
 
-test(t => {
+test((t) => {
   var outputFile = `${outputFolder}${shortid()}.js`
   var fontFile = `${outputFolder}font-VrPi9W49.woff`
   var svgFile = `${outputFolder}cappuccino-YauiPPOt.svg`
@@ -109,8 +109,8 @@ test(t => {
 
   return run("./fixtures/deep/assets-mixed.js", outputFile).then(() => Promise.all([
     fileExists(outputFile).then((exists) => t.true(exists)),
-    readFile(outputFile, "utf-8").then(function(content) {
-var expectedContent = `import _VrPi9W49 from './font-VrPi9W49.woff';
+    readFile(outputFile, "utf-8").then((content) => {
+      var expectedContent = `import _VrPi9W49 from './font-VrPi9W49.woff';
 import _YauiPPOt from './cappuccino-YauiPPOt.svg';
 import _hk4Yl7Ly from './blank-hk4Yl7Ly.gif';
 

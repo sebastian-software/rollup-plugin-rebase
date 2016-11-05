@@ -38,9 +38,9 @@ function processStyle(code, id, dest)
       parser: parser,
       extensions: [ ".css", ".sss", ".scss" ]
     })
-    .then((result) => {
-      return writeAsync(dest, result)
-    })
+    .then((result) =>
+       writeAsync(dest, result)
+    )
     .catch((err) => {
       console.error(err)
     })
@@ -125,11 +125,11 @@ export default function relink(options = {})
           // Adjust destId so that it points to the root folder - from any
           // depth we detected inside the original project structure.
           if (relativeToRoot.charAt(0) === ".") {
-            var importId = relativeToRoot + "/" + destId;
+            var importId = relativeToRoot + "/" + destId
           } else if (relativeToRoot === "") {
-            var importId = "./" + destId;
+            var importId = "./" + destId
           } else {
-            var importId = "./" + relativeToRoot + "/" + destId;
+            var importId = "./" + relativeToRoot + "/" + destId
           }
 
           if (fileExt in styleExtensions)
