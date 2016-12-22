@@ -1,20 +1,20 @@
-# Rollup Relink <br/>[![Sponsored by][sponsor-img]][sponsor] [![Version][npm-version-img]][npm] [![Downloads][npm-downloads-img]][npm] [![Build Status Unix][travis-img]][travis] [![Build Status Windows][appveyor-img]][appveyor] [![Dependencies][deps-img]][deps]
+# Rollup rebase <br/>[![Sponsored by][sponsor-img]][sponsor] [![Version][npm-version-img]][npm] [![Downloads][npm-downloads-img]][npm] [![Build Status Unix][travis-img]][travis] [![Build Status Windows][appveyor-img]][appveyor] [![Dependencies][deps-img]][deps]
 
-The Rollup Relink Plugin copies static assets as required from your JavaScript code to the destination folder and adjusts the references in there to point to the new location.
+The Rollup rebase Plugin copies static assets as required from your JavaScript code to the destination folder and adjusts the references in there to point to the new location.
 
 The plugin is meant as a tool for preparing a library for being published. In this it differs from plugins like [Rollup URL Plugin](https://github.com/Swatinem/rollup-plugin-url) as it is designed for usage in *libraries* and not for *applications*. The output of this plugin can be used by tools like Webpacks [File Loader](https://github.com/webpack/file-loader), [URL Loader](https://github.com/webpack/url-loader) or the already mentioned [Rollup URL Plugin](https://github.com/Swatinem/rollup-plugin-url).
 
 [sponsor-img]: https://img.shields.io/badge/Sponsored%20by-Sebastian%20Software-692446.svg
 [sponsor]: https://www.sebastian-software.de
-[deps]: https://david-dm.org/sebastian-software/rollup-plugin-relink
-[deps-img]: https://david-dm.org/sebastian-software/rollup-plugin-relink.svg
-[npm]: https://www.npmjs.com/package/rollup-plugin-relink
-[npm-downloads-img]: https://img.shields.io/npm/dm/rollup-plugin-relink.svg
-[npm-version-img]: https://img.shields.io/npm/v/rollup-plugin-relink.svg
-[travis-img]: https://img.shields.io/travis/sebastian-software/rollup-plugin-relink/master.svg?branch=master&label=unix%20build
-[appveyor-img]: https://img.shields.io/appveyor/ci/swernerx/rollup-plugin-relink/master.svg?label=windows%20build
-[travis]: https://travis-ci.org/sebastian-software/rollup-plugin-relink
-[appveyor]: https://ci.appveyor.com/project/swernerx/rollup-plugin-relink/branch/master
+[deps]: https://david-dm.org/sebastian-software/rollup-plugin-rebase
+[deps-img]: https://david-dm.org/sebastian-software/rollup-plugin-rebase.svg
+[npm]: https://www.npmjs.com/package/rollup-plugin-rebase
+[npm-downloads-img]: https://img.shields.io/npm/dm/rollup-plugin-rebase.svg
+[npm-version-img]: https://img.shields.io/npm/v/rollup-plugin-rebase.svg
+[travis-img]: https://img.shields.io/travis/sebastian-software/rollup-plugin-rebase/master.svg?branch=master&label=unix%20build
+[appveyor-img]: https://img.shields.io/appveyor/ci/swernerx/rollup-plugin-rebase/master.svg?label=windows%20build
+[travis]: https://travis-ci.org/sebastian-software/rollup-plugin-rebase
+[appveyor]: https://ci.appveyor.com/project/swernerx/rollup-plugin-rebase/branch/master
 
 ## Features
 
@@ -29,36 +29,36 @@ The plugin is meant as a tool for preparing a library for being published. In th
 
 ## Links
 
-- [GitHub](https://github.com/sebastian-software/rollup-plugin-relink)
-- [NPM](https://www.npmjs.com/package/rollup-plugin-relink)
+- [GitHub](https://github.com/sebastian-software/rollup-plugin-rebase)
+- [NPM](https://www.npmjs.com/package/rollup-plugin-rebase)
 
 
 ## Installation
 
 ```console
-$ npm install --save-dev rollup-plugin-relink
+$ npm install --save-dev rollup-plugin-rebase
 ```
 
 
 ## Usage
 
-Rollup Relink comes with a binary which can be called from within your `scripts` section
+Rollup rebase comes with a binary which can be called from within your `scripts` section
 in the `package.json` file.
 
 ```js
-import relinkPlugin from "rollup-plugin-relink"
+import rebasePlugin from "rollup-plugin-rebase"
 
 const outputFolder = "./lib";
-const relink = relinkPlugin({ outputFolder })
+const rebase = rebasePlugin({ outputFolder })
 
 rollup({
   entry: entry,
   ...
-  external: relink.isExternal,
+  external: rebase.isExternal,
   ...
   plugins: [
     ...
-    relink
+    rebase
   ]
 })
 .then((bundle) =>

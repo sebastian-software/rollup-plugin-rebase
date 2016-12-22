@@ -64,13 +64,13 @@ const defaultExclude = [
   "**/*.vue"
 ]
 
-export default function relink(options = {})
+export default function rebase(options = {})
 {
   const { include, exclude = defaultExclude, entry, outputFolder, verbose } = options
   const filter = createFilter(include, exclude)
 
   return {
-    name: "rollup-plugin-relink",
+    name: "rollup-plugin-rebase",
 
     isExternal: function(id)
     {

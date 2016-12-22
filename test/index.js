@@ -5,7 +5,7 @@ import denodeify from "denodeify"
 import test from "ava"
 import shortid from "shortid"
 
-import relinkPlugin from "../src"
+import rebasePlugin from "../src"
 
 const stat = denodeify(fs.stat)
 const rm = denodeify(rimraf)
@@ -17,7 +17,7 @@ process.chdir(__dirname)
 
 function run(entry, output)
 {
-  var plugin = relinkPlugin({ outputFolder, entry, verbose: true })
+  var plugin = rebasePlugin({ outputFolder, entry, verbose: true })
 
   return rollup({
     entry,
