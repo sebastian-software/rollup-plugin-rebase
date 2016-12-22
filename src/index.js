@@ -2,7 +2,7 @@
 import fs from "fs"
 import path from "path"
 import denodeify from "denodeify"
-import fse from "fs-extra"
+import fs from "fs-extra"
 import { getHashDigest } from "loader-utils"
 import { createFilter } from "rollup-pluginutils"
 
@@ -12,8 +12,8 @@ import postcssSimpleUrl from "postcss-simple-url"
 import postcssParserSugarss from "sugarss"
 import postcssParserScss from "postcss-scss"
 
-var copyAsync = denodeify(fse.copy)
-var writeAsync = denodeify(fse.outputFile)
+var copyAsync = denodeify(fs.copy)
+var writeAsync = denodeify(fs.outputFile)
 
 const styleExtensions = {
   ".css": null,
