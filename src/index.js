@@ -1,5 +1,4 @@
 /* eslint-disable filenames/match-exported */
-import fs from "fs"
 import path from "path"
 import denodeify from "denodeify"
 import fs from "fs-extra"
