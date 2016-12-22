@@ -52,14 +52,7 @@ test((t) => {
   return run("./fixtures/assets.js", outputFile).then(() => Promise.all([
     fileExists(outputFile).then((exists) => t.true(exists)),
     readFile(outputFile, "utf-8").then((content) => {
-      var expectedContent = `import _VrPi9W49 from './font-VrPi9W49.woff';
-import _l1JhGTH9 from './image-l1JhGTH9.png';
-import _hk4Yl7Ly from './blank-hk4Yl7Ly.gif';
-
-var assets = _VrPi9W49 + "|" + _l1JhGTH9 + "|" + _hk4Yl7Ly;
-
-export default assets;
-`
+      var expectedContent = "import _VrPi9W49 from './font-VrPi9W49.woff';\nimport _l1JhGTH9 from './image-l1JhGTH9.png';\nimport _hk4Yl7Ly from './blank-hk4Yl7Ly.gif';\n\nvar assets = `${_VrPi9W49}|${_l1JhGTH9}|${_hk4Yl7Ly}`;\n\nexport default assets;\n"
       t.is(content, expectedContent)
     }),
     fileExists(imageFile).then((exists) => t.true(exists)),
@@ -81,14 +74,7 @@ test((t) => {
   return run("./fixtures/deep/assets-outside.js", outputFile).then(() => Promise.all([
     fileExists(outputFile).then((exists) => t.true(exists)),
     readFile(outputFile, "utf-8").then((content) => {
-      var expectedContent = `import _VrPi9W49 from './font-VrPi9W49.woff';
-import _l1JhGTH9 from './image-l1JhGTH9.png';
-import _hk4Yl7Ly from './blank-hk4Yl7Ly.gif';
-
-var assetsOutside = _VrPi9W49 + "|" + _l1JhGTH9 + "|" + _hk4Yl7Ly;
-
-export default assetsOutside;
-`
+      var expectedContent = "import _VrPi9W49 from './font-VrPi9W49.woff';\nimport _l1JhGTH9 from './image-l1JhGTH9.png';\nimport _hk4Yl7Ly from './blank-hk4Yl7Ly.gif';\n\n/* eslint-disable filenames/match-regex */\nvar assetsOutside = `${_VrPi9W49}|${_l1JhGTH9}|${_hk4Yl7Ly}`;\n\nexport default assetsOutside;\n"
       t.is(content, expectedContent)
     }),
     fileExists(imageFile).then((exists) => t.true(exists)),
@@ -110,14 +96,7 @@ test((t) => {
   return run("./fixtures/deep/assets-mixed.js", outputFile).then(() => Promise.all([
     fileExists(outputFile).then((exists) => t.true(exists)),
     readFile(outputFile, "utf-8").then((content) => {
-      var expectedContent = `import _VrPi9W49 from './font-VrPi9W49.woff';
-import _YauiPPOt from './cappuccino-YauiPPOt.svg';
-import _hk4Yl7Ly from './blank-hk4Yl7Ly.gif';
-
-var assetsMixed = _VrPi9W49 + "|" + json + "|" + _YauiPPOt;
-
-export default assetsMixed;
-`
+      var expectedContent = "import _VrPi9W49 from './font-VrPi9W49.woff';\nimport _YauiPPOt from './cappuccino-YauiPPOt.svg';\nimport _hk4Yl7Ly from './blank-hk4Yl7Ly.gif';\n\n/* eslint-disable filenames/match-regex */\nvar assetsMixed = `${_VrPi9W49}|${_YauiPPOt}|${_hk4Yl7Ly}`;\n\nexport default assetsMixed;\n"
       t.is(content, expectedContent)
     }),
     fileExists(fontFile).then((exists) => t.true(exists)),
