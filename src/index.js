@@ -34,7 +34,7 @@ function processStyle(code, id, dest)
     {
       from: id,
       to: dest,
-      parser: parser,
+      parser,
       extensions: [ ".css", ".sss", ".scss" ]
     })
     .then((result) =>
@@ -68,13 +68,13 @@ export default function rebase(options = {})
   return {
     name: "rollup-plugin-rebase",
 
-    isExternal: function(id)
+    isExternal(id)
     {
-      var baseName = "./" + path.basename(id)
+      var baseName = `./${path.basename(id)}`
       return baseName in externalIds
     },
 
-    resolveId: function(importee)
+    resolveId(importee)
     {
       if (importee in externalIds)
       {
@@ -88,7 +88,7 @@ export default function rebase(options = {})
       return null
     },
 
-    load: function(id)
+    load(id)
     {
       if (!filter(id))
         return null
@@ -105,12 +105,12 @@ export default function rebase(options = {})
           var fileHash = getHashDigest(fileContent, hashType, digestType, digestLength)
 
           var destExt = fileExt in styleExtensions ? ".css" : fileExt
-          var destId = path.basename(id, fileExt) + "-" + fileHash + destExt
+          var destId = `${path.basename(id, fileExt)}-${fileHash}${destExt}`
 
           var fileDest = path.resolve(outputFolder, destId)
 
           // Mark new file location as external to prevent further processing.
-          externalIds["./" + destId] = true
+          externalIds[`./${destId}`] = true
 
           var entryFolder = path.dirname(path.resolve(entry))
           var relativeToRoot = path.relative(path.dirname(fileSource), entryFolder).replace(/\\/g, "/")
@@ -118,11 +118,11 @@ export default function rebase(options = {})
           // Adjust destId so that it points to the root folder - from any
           // depth we detected inside the original project structure.
           if (relativeToRoot.charAt(0) === ".") {
-            var importId = relativeToRoot + "/" + destId
+            var importId = `${relativeToRoot}/${destId}`
           } else if (relativeToRoot === "") {
-            var importId = "./" + destId
+            var importId = `./${destId}`
           } else {
-            var importId = "./" + relativeToRoot + "/" + destId
+            var importId = `./${relativeToRoot}/${destId}`
           }
 
           if (fileExt in styleExtensions)
