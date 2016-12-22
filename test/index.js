@@ -1,5 +1,4 @@
-import fs from "fs"
-import rimraf from "rimraf"
+import fs from "fs-extra"
 import { rollup } from "rollup"
 import denodeify from "denodeify"
 import test from "ava"
@@ -8,7 +7,7 @@ import shortid from "shortid"
 import rebasePlugin from "../src"
 
 const stat = denodeify(fs.stat)
-const rm = denodeify(rimraf)
+const rimraf = denodeify(fs.remove)
 const readFile = denodeify(fs.readFile)
 
 const outputFolder = "./output/"
@@ -39,7 +38,7 @@ test((t) => {
   var outputFile = `${outputFolder}${shortid()}.js`
   return run("./fixtures/plain.js", outputFile).then(() => Promise.all([
     fileExists(outputFile).then((exists) => t.true(exists)),
-    rm(outputFile)
+    rimraf(outputFile)
   ]))
 })
 
@@ -58,10 +57,10 @@ test((t) => {
     fileExists(imageFile).then((exists) => t.true(exists)),
     fileExists(fontFile).then((exists) => t.true(exists)),
     fileExists(deepFile).then((exists) => t.true(exists)),
-    rm(outputFile),
-    rm(imageFile),
-    rm(fontFile),
-    rm(deepFile)
+    rimraf(outputFile),
+    rimraf(imageFile),
+    rimraf(fontFile),
+    rimraf(deepFile)
   ]))
 })
 
@@ -80,10 +79,10 @@ test((t) => {
     fileExists(imageFile).then((exists) => t.true(exists)),
     fileExists(fontFile).then((exists) => t.true(exists)),
     fileExists(deepFile).then((exists) => t.true(exists)),
-    rm(outputFile),
-    rm(imageFile),
-    rm(fontFile),
-    rm(deepFile)
+    rimraf(outputFile),
+    rimraf(imageFile),
+    rimraf(fontFile),
+    rimraf(deepFile)
   ]))
 })
 
@@ -102,9 +101,9 @@ test((t) => {
     fileExists(fontFile).then((exists) => t.true(exists)),
     fileExists(svgFile).then((exists) => t.true(exists)),
     fileExists(deepFile).then((exists) => t.true(exists)),
-    rm(outputFile),
-    rm(fontFile),
-    rm(svgFile),
-    rm(deepFile)
+    rimraf(outputFile),
+    rimraf(fontFile),
+    rimraf(svgFile),
+    rimraf(deepFile)
   ]))
 })
