@@ -1,6 +1,6 @@
-# Rollup rebase <br/>[![Sponsored by][sponsor-img]][sponsor] [![Version][npm-version-img]][npm] [![Downloads][npm-downloads-img]][npm] [![Build Status Unix][travis-img]][travis] [![Build Status Windows][appveyor-img]][appveyor] [![Dependencies][deps-img]][deps]
+# Rollup Rebase <br/>[![Sponsored by][sponsor-img]][sponsor] [![Version][npm-version-img]][npm] [![Downloads][npm-downloads-img]][npm] [![Build Status Unix][travis-img]][travis] [![Build Status Windows][appveyor-img]][appveyor] [![Dependencies][deps-img]][deps]
 
-The Rollup rebase Plugin copies static assets as required from your JavaScript code to the destination folder and adjusts the references in there to point to the new location.
+The Rollup Rebase Plugin copies static assets as required from your JavaScript code to the destination folder and adjusts the references in there to point to the new location.
 
 The plugin is meant as a tool for preparing a library for being published. In this it differs from plugins like [Rollup URL Plugin](https://github.com/Swatinem/rollup-plugin-url) as it is designed for usage in *libraries* and not for *applications*. The output of this plugin can be used by tools like Webpacks [File Loader](https://github.com/webpack/file-loader), [URL Loader](https://github.com/webpack/url-loader) or the already mentioned [Rollup URL Plugin](https://github.com/Swatinem/rollup-plugin-url).
 
@@ -23,7 +23,7 @@ The plugin is meant as a tool for preparing a library for being published. In th
 - Transforms CSS files to inline all includes from `@import` via [PostCSS Smart Import](https://github.com/sebastian-software/postcss-smart-import) into the origin files.
 - Renames all assets based on their hash (SHA256 + Base62) so that conflicts are automatically eliminated while producing a flat zero depth output structure.
 - Supports *normal* CSS, but also [SugarSS](https://github.com/postcss/sugarss) and [SCSS](https://github.com/postcss/postcss-scss) via the standard PostCSS parser plugins.
-- Processes all files which do not match this extension list: `.json`, `.jsx`, `.js`, `.es`, `.es5`, `.es6`, `.vue`.
+- Processes all files which do not match this extension list: `.json`, `.jsx`, `.js`, `.tsx`, `.ts`, `.vue`.
 
 
 
