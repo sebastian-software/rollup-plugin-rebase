@@ -89,8 +89,9 @@ export default function rebase(options = {})
 
     load(id)
     {
-      if (!filter(id))
+      if (!filter(id)) {
         return null
+      }
 
       const input = fs.createReadStream(id)
 
@@ -126,8 +127,9 @@ export default function rebase(options = {})
 
           if (fileExt in styleExtensions)
           {
-            if (verbose)
+            if (verbose) {
               console.log(`Processing ${fileSource} => ${fileDest}...`)
+            }
 
             return processStyle(fileContent, fileSource, fileDest).then(() =>
             {
@@ -139,8 +141,9 @@ export default function rebase(options = {})
           }
           else
           {
-            if (verbose)
+            if (verbose) {
               console.log(`Copying ${fileSource} => ${fileDest}...`)
+            }
 
             return copyAsync(fileSource, fileDest).then(() =>
             {
