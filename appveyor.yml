@@ -19,7 +19,6 @@ deploy: off
 
 install:
   - ps: Install-Product node $env:nodejs_version $env:platform
-  - yarn self-update
   - yarn install
 
 test_script:
