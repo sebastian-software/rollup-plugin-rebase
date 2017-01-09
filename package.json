@@ -51,7 +51,7 @@
     "loader-utils": "^0.2.16",
     "postcss": "^5.2.9",
     "postcss-scss": "^0.4.0",
-    "postcss-simple-url": "^0.1.5",
+    "postcss-simple-url": "^0.1.6",
     "postcss-smart-import": "^0.6.7",
     "rollup-pluginutils": "^2.0.1",
     "sugarss": "^0.2.0"
