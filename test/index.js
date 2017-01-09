@@ -24,6 +24,7 @@ function run(entry, output)
     plugins: [ plugin ]
   })
     .then((bundle) => bundle.write({
+      format: "es",
       dest: output
     }))
 }
