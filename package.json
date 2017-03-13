@@ -1,6 +1,6 @@
 {
   "name": "rollup-plugin-rebase",
-  "version": "0.4.10",
+  "version": "0.4.11",
   "description": "The Rollup Rebase Plugin copies static assets as required from your JavaScript code to the destination folder and adjusts the references in there to point to the new location.",
   "keywords": [
     "rollup-plugin",
