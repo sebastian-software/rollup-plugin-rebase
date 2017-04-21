@@ -51,6 +51,7 @@
     "fs-extra": "^2.1.2",
     "loader-utils": "^1.1.0",
     "postcss": "^5.2.17",
+    "postcss-sass": "^0.1.0",
     "postcss-scss": "^0.4.1",
     "postcss-simple-url": "^0.1.6",
     "postcss-smart-import": "^0.6.11",

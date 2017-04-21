@@ -10,6 +10,7 @@ import postcssSmartImport from "postcss-smart-import"
 import postcssSimpleUrl from "postcss-simple-url"
 import postcssParserSugarss from "sugarss"
 import postcssParserScss from "postcss-scss"
+import postcssParserSass from "postcss-sass"
 
 var copyAsync = denodeify(fs.copy)
 var writeAsync = denodeify(fs.outputFile)
@@ -17,7 +18,8 @@ var writeAsync = denodeify(fs.outputFile)
 const styleExtensions = {
   ".css": null,
   ".sss": postcssParserSugarss,
-  ".scss": postcssParserScss
+  ".scss": postcssParserScss,
+  ".sass": postcssParserSass
 }
 
 const postcssPlugins = [
