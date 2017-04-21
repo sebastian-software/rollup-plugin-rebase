@@ -1,9 +1,5 @@
 extends:
-  ./node_modules/s15e-javascript/.eslintrc.yml
-
-env:
-  es6: true
-  node: true
+  ./node_modules/readable-code/.eslintrc.yml
 
 rules:
   no-console:

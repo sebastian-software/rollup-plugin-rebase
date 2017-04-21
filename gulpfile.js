@@ -1,2 +1,2 @@
 /* eslint-disable import/no-commonjs */
-require("s15e-javascript/gulpfile.js")
+require("readable-code")
