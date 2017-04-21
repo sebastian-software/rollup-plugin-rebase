@@ -15,11 +15,11 @@ import postcssSass from "postcss-sass"
 var copyAsync = denodeify(fs.copy)
 var writeAsync = denodeify(fs.outputFile)
 
-const styleExtensions = {
+const styleParser = {
   ".css": null,
-  ".sss": { parser: postcssSugarSS },
-  ".scss": { syntax: postcssScss },
-  ".sass": { syntax: postcssSass }
+  ".sss": postcssSugarSS,
+  ".scss": postcssScss,
+  ".sass": postcssSass
 }
 
 const postcssPlugins = [
@@ -29,14 +29,16 @@ const postcssPlugins = [
 
 function processStyle(code, id, dest)
 {
-  var styleConfig = styleExtensions[path.extname(id)]
+  var parser = styleParser[path.extname(id)]
   return postcss(postcssPlugins)
-    .process(code,
+    .process(code.toString(),
     {
       from: id,
       to: dest,
       extensions: [ ".css", ".sss", ".scss", ".sass" ],
-      ...styleConfig
+
+      // Always uses parser... even for scss as we like to offer "normal" CSS in deployed files.
+      parser
     })
     .then((result) =>
        writeAsync(dest, result)
@@ -106,7 +108,7 @@ export default function rebase(options = {})
           var fileExt = path.extname(id)
           var fileHash = getHashDigest(fileContent, hashType, digestType, digestLength)
 
-          var destExt = fileExt in styleExtensions ? ".css" : fileExt
+          var destExt = fileExt in styleParser ? ".css" : fileExt
           var destId = `${path.basename(id, fileExt)}-${fileHash}${destExt}`
 
           var fileDest = path.resolve(outputFolder, destId)
@@ -128,7 +130,7 @@ export default function rebase(options = {})
             importId = `./${relativeToRoot}/${destId}`
           }
 
-          if (fileExt in styleExtensions)
+          if (fileExt in styleParser)
           {
             if (verbose) {
               console.log(`Processing ${fileSource} => ${fileDest}...`)
