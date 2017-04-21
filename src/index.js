@@ -68,9 +68,7 @@ export default function rebase(options = {})
 
   return {
     name: "rollup-plugin-rebase",
-
-    isExternal(id)
-    {
+    isExternal(id) {
       var baseName = `./${path.basename(id)}`
       return baseName in externalIds
     },
@@ -135,12 +133,11 @@ export default function rebase(options = {})
             }
 
             return processStyle(fileContent, fileSource, fileDest).then(() =>
-            {
               resolve({
                 code: `import _${fileHash} from "${importId}"; export default _${fileHash};`,
                 map: { mappings: "" }
               })
-            })
+            )
           }
           else
           {
@@ -149,12 +146,11 @@ export default function rebase(options = {})
             }
 
             return copyAsync(fileSource, fileDest).then(() =>
-            {
               resolve({
                 code: `import _${fileHash} from "${importId}"; export default _${fileHash};`,
                 map: { mappings: "" }
               })
-            })
+            )
           }
         })
       })
