@@ -41,8 +41,8 @@ function processStyle(code, id, dest)
     .then((result) =>
        writeAsync(dest, result)
     )
-    .catch((err) => {
-      console.error(err)
+    .catch((error) => {
+      console.error(error)
     })
 }
 
@@ -119,12 +119,13 @@ export default function rebase(options = {})
 
           // Adjust destId so that it points to the root folder - from any
           // depth we detected inside the original project structure.
+          var importId
           if (relativeToRoot.charAt(0) === ".") {
-            var importId = `${relativeToRoot}/${destId}`
+            importId = `${relativeToRoot}/${destId}`
           } else if (relativeToRoot === "") {
-            var importId = `./${destId}`
+            importId = `./${destId}`
           } else {
-            var importId = `./${relativeToRoot}/${destId}`
+            importId = `./${relativeToRoot}/${destId}`
           }
 
           if (fileExt in styleExtensions)

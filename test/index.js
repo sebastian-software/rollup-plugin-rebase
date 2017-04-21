@@ -32,7 +32,7 @@ function run(entry, output)
 function fileExists(name)
 {
   return stat(name)
-    .then((stat) => true, (err) => false)
+    .then((stat) => true, (error) => false)
 }
 
 test((t) => {
