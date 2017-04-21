@@ -8,18 +8,18 @@ import { createFilter } from "rollup-pluginutils"
 import postcss from "postcss"
 import postcssSmartImport from "postcss-smart-import"
 import postcssSimpleUrl from "postcss-simple-url"
-import postcssParserSugarss from "sugarss"
-import postcssParserScss from "postcss-scss"
-import postcssParserSass from "postcss-sass"
+import postcssSugarSS from "sugarss"
+import postcssScss from "postcss-scss"
+import postcssSass from "postcss-sass"
 
 var copyAsync = denodeify(fs.copy)
 var writeAsync = denodeify(fs.outputFile)
 
 const styleExtensions = {
   ".css": null,
-  ".sss": postcssParserSugarss,
-  ".scss": postcssParserScss,
-  ".sass": postcssParserSass
+  ".sss": { parser: postcssSugarSS },
+  ".scss": { syntax: postcssScss },
+  ".sass": { syntax: postcssSass }
 }
 
 const postcssPlugins = [
@@ -29,14 +29,14 @@ const postcssPlugins = [
 
 function processStyle(code, id, dest)
 {
-  var parser = styleExtensions[path.extname(id)]
+  var styleConfig = styleExtensions[path.extname(id)]
   return postcss(postcssPlugins)
     .process(code,
     {
       from: id,
       to: dest,
-      parser,
-      extensions: [ ".css", ".sss", ".scss", ".sass" ]
+      extensions: [ ".css", ".sss", ".scss", ".sass" ],
+      ...styleConfig
     })
     .then((result) =>
        writeAsync(dest, result)
