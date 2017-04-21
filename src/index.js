@@ -36,7 +36,7 @@ function processStyle(code, id, dest)
       from: id,
       to: dest,
       parser,
-      extensions: [ ".css", ".sss", ".scss" ]
+      extensions: [ ".css", ".sss", ".scss", ".sass" ]
     })
     .then((result) =>
        writeAsync(dest, result)
@@ -68,7 +68,9 @@ export default function rebase(options = {})
 
   return {
     name: "rollup-plugin-rebase",
-    isExternal(id) {
+
+    isExternal(id)
+    {
       var baseName = `./${path.basename(id)}`
       return baseName in externalIds
     },
