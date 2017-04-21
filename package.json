@@ -10,7 +10,11 @@
   "engines": {
     "node": ">=4.0.0"
   },
-  "author": "Sebastian Werner",
+  "author": {
+    "name": "Sebastian Werner",
+    "email": "s.werner@sebastian-software.de",
+    "url": "http://sebastian-software.de/werner"
+  },
   "license": "MIT",
   "main": "lib/node.commonjs.js",
   "jsnext:main": "lib/node.esmodule.js",
