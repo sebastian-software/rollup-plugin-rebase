@@ -5,13 +5,11 @@ clone_depth: 10
 environment:
   matrix:
     - nodejs_version: 6
-      platform: x64
-    - nodejs_version: 6
-      platform: x86
     - nodejs_version: 7
-      platform: x64
-    - nodejs_version: 7
-      platform: x86
+
+platform:
+  - x86
+  - x64
 
 version: "{build}"
 build: off
@@ -19,11 +17,15 @@ deploy: off
 
 install:
   - ps: Install-Product node $env:nodejs_version $env:platform
-  - yarn install
+  - npm -g install npm@5
+  - npm install
 
 test_script:
   - npm test
 
 cache:
-  - node_modules
+  # global npm cache
+  - '%APPDATA%\npm-cache'
+
+  # global Yarn cache
   - "%LOCALAPPDATA%\\Yarn"
