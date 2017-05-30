@@ -58,7 +58,7 @@
     "postcss-sass": "^0.1.0",
     "postcss-scss": "^1.0.0",
     "postcss-simple-url": "^0.1.6",
-    "postcss-smart-import": "^0.7.1",
+    "postcss-smart-import": "^0.7.4",
     "rollup-pluginutils": "^2.0.1",
     "sugarss": "^1.0.0"
   },
@@ -66,9 +66,9 @@
     "ava": "^0.19.1",
     "babel-core": "^6.24.1",
     "babel-preset-latest": "^6.24.1",
-    "flow-bin": "^0.46.0",
+    "flow-bin": "^0.47.0",
     "prepublish": "^0.16.1",
-    "readable-code": "^2.2.0",
+    "readable-code": "^2.3.1",
     "rollup": "^0.41.6",
     "shortid": "^2.2.8"
   }
