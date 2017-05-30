@@ -5,6 +5,9 @@ node_js:
 - 8
 matrix:
   fast_finish: true
+install:
+  - npm -g install npm@5
+  - npm install
 cache:
   - ~/.npm
 notifications:
