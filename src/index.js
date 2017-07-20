@@ -16,6 +16,7 @@ var copyAsync = denodeify(fs.copy)
 var writeAsync = denodeify(fs.outputFile)
 
 const styleParser = {
+  ".pcss": null,
   ".css": null,
   ".sss": postcssSugarSS,
   ".scss": postcssScss,
