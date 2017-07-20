@@ -32,21 +32,15 @@
     "type": "git",
     "url": "git+https://github.com/sebastian-software/rollup-plugin-rebase.git"
   },
-  "ava": {
-    "files": [
-      "test/*.js"
-    ],
-    "require": [
-      "babel-core/register"
-    ]
-  },
   "babel": {
     "presets": [
       "latest"
-    ],
-    "plugins": [
-      "espower",
-      "transform-runtime"
+    ]
+  },
+  "jest": {
+    "testPathIgnorePatterns": [
+      "fixtures",
+      "output"
     ]
   },
   "dependencies": {

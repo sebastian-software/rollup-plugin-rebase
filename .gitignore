@@ -1,4 +1,4 @@
 .DS_Store
 node_modules/
 lib
-test/output
+__tests__/output
