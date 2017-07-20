@@ -35,7 +35,7 @@ function processStyle(code, id, dest)
     {
       from: id,
       to: dest,
-      extensions: [ ".css", ".sss", ".scss", ".sass" ],
+      extensions: [ ".pcss", ".css", ".sss", ".scss", ".sass" ],
 
       // Always uses parser... even for scss as we like to offer "normal" CSS in deployed files.
       parser
@@ -56,6 +56,7 @@ const externalIds = {}
 
 const defaultExclude = [
   "**/*.json",
+  "**/*.mjs",
   "**/*.js",
   "**/*.jsx",
   "**/*.ts",
