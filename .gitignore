@@ -1,5 +1,5 @@
 .DS_Store
 node_modules/
 lib
+coverage
 __tests__/output
-__tests__/coverage

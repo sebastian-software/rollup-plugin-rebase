@@ -9,9 +9,7 @@ const stat = denodeify(fs.stat)
 const rimraf = denodeify(fs.remove)
 const readFile = denodeify(fs.readFile)
 
-const outputFolder = "./output/"
-
-process.chdir(__dirname)
+const outputFolder = "./__tests__/output/"
 
 function bundle(entry, output) {
   var plugin = rebasePlugin({ outputFolder, entry, verbose: true })
@@ -34,7 +32,7 @@ function fileExists(name) {
 
 test("Plain", () => {
   var outputFile = `${outputFolder}${shortid()}.js`
-  return bundle("./fixtures/plain.js", outputFile)
+  return bundle("./__tests__/fixtures/plain.js", outputFile)
     .then(() => Promise.all([
       expect(fileExists(outputFile)).resolves.toBeTruthy()
     ]))
@@ -49,7 +47,7 @@ test("Assets", () => {
   var fontFile = `${outputFolder}font-VrPi9W49.woff`
   var deepFile = `${outputFolder}blank-hk4Yl7Ly.gif`
 
-  return bundle("./fixtures/assets.js", outputFile)
+  return bundle("./__tests__/fixtures/assets.js", outputFile)
     .then(() =>
       Promise.all([
         expect(fileExists(outputFile)).resolves.toBeTruthy(),
@@ -75,7 +73,7 @@ test("Outside Assets", () => {
   var fontFile = `${outputFolder}font-VrPi9W49.woff`
   var deepFile = `${outputFolder}blank-hk4Yl7Ly.gif`
 
-  return bundle("./fixtures/deep/assets-outside.js", outputFile)
+  return bundle("./__tests__/fixtures/deep/assets-outside.js", outputFile)
     .then(() =>
       Promise.all([
         expect(fileExists(outputFile)).resolves.toBeTruthy(),
@@ -101,7 +99,7 @@ test("Mixed Assets", () => {
   var svgFile = `${outputFolder}cappuccino-YauiPPOt.svg`
   var deepFile = `${outputFolder}blank-hk4Yl7Ly.gif`
 
-  return bundle("./fixtures/deep/assets-mixed.js", outputFile)
+  return bundle("./__tests__/fixtures/deep/assets-mixed.js", outputFile)
     .then(() =>
       Promise.all([
         expect(fileExists(outputFile)).resolves.toBeTruthy(),
