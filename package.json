@@ -55,10 +55,10 @@
     "fs-extra": "^4.0.0",
     "loader-utils": "^1.1.0",
     "postcss": "^6.0.8",
+    "postcss-import": "^10.0.0",
     "postcss-sass": "^0.2.0",
     "postcss-scss": "^1.0.2",
-    "postcss-simple-url": "^0.1.6",
-    "postcss-smart-import": "^0.7.5",
+    "postcss-smart-asset": "^0.2.0",
     "rollup-pluginutils": "^2.0.1",
     "sugarss": "^1.0.0"
   },
