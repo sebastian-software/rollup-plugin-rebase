@@ -52,9 +52,7 @@ test("Assets", () => {
   return bundle("./fixtures/assets.js", outputFile).then(() => Promise.all([
     expect(fileExists(outputFile)).resolves.toBeTruthy(),
     readFile(outputFile, "utf-8").then((content) => {
-      /* eslint-disable no-template-curly-in-string */
-      var expectedContent = "import _VrPi9W49 from './font-VrPi9W49.woff';\nimport _l1JhGTH9 from './image-l1JhGTH9.png';\nimport _hk4Yl7Ly from './blank-hk4Yl7Ly.gif';\n\nvar assets = `${_VrPi9W49}|${_l1JhGTH9}|${_hk4Yl7Ly}`;\n\nexport default assets;\n"
-      expect(content).toBe(expectedContent)
+      expect(content).toMatchSnapshot()
     }),
     expect(fileExists(imageFile)).resolves.toBeTruthy(),
     expect(fileExists(fontFile)).resolves.toBeTruthy(),
@@ -76,9 +74,7 @@ test("Outside Assets", () => {
   return bundle("./fixtures/deep/assets-outside.js", outputFile).then(() => Promise.all([
     expect(fileExists(outputFile)).resolves.toBeTruthy(),
     readFile(outputFile, "utf-8").then((content) => {
-      /* eslint-disable no-template-curly-in-string */
-      var expectedContent = "import _VrPi9W49 from './font-VrPi9W49.woff';\nimport _l1JhGTH9 from './image-l1JhGTH9.png';\nimport _hk4Yl7Ly from './blank-hk4Yl7Ly.gif';\n\n/* eslint-disable filenames/match-regex */\nvar assetsOutside = `${_VrPi9W49}|${_l1JhGTH9}|${_hk4Yl7Ly}`;\n\nexport default assetsOutside;\n"
-      expect(content).toBe(expectedContent)
+      expect(content).toMatchSnapshot()
     }),
     expect(fileExists(imageFile)).resolves.toBeTruthy(),
     expect(fileExists(fontFile)).resolves.toBeTruthy(),
@@ -100,9 +96,7 @@ test("Mixed Assets", () => {
   return bundle("./fixtures/deep/assets-mixed.js", outputFile).then(() => Promise.all([
     expect(fileExists(outputFile)).resolves.toBeTruthy(),
     readFile(outputFile, "utf-8").then((content) => {
-      /* eslint-disable no-template-curly-in-string */
-      var expectedContent = "import _VrPi9W49 from './font-VrPi9W49.woff';\nimport _YauiPPOt from './cappuccino-YauiPPOt.svg';\nimport _hk4Yl7Ly from './blank-hk4Yl7Ly.gif';\n\n/* eslint-disable filenames/match-regex */\nvar assetsMixed = `${_VrPi9W49}|${_YauiPPOt}|${_hk4Yl7Ly}`;\n\nexport default assetsMixed;\n"
-      expect(content).toBe(expectedContent)
+      expect(content).toMatchSnapshot()
     }),
     expect(fileExists(fontFile)).resolves.toBeTruthy(),
     expect(fileExists(svgFile)).resolves.toBeTruthy(),

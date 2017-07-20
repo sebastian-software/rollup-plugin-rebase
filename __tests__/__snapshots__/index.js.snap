@@ -1,0 +1,36 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Assets 1`] = `
+"import _VrPi9W49 from './font-VrPi9W49.woff';
+import _l1JhGTH9 from './image-l1JhGTH9.png';
+import _hk4Yl7Ly from './blank-hk4Yl7Ly.gif';
+
+var assets = \`\${_VrPi9W49}|\${_l1JhGTH9}|\${_hk4Yl7Ly}\`;
+
+export default assets;
+"
+`;
+
+exports[`Mixed Assets 1`] = `
+"import _VrPi9W49 from './font-VrPi9W49.woff';
+import _YauiPPOt from './cappuccino-YauiPPOt.svg';
+import _hk4Yl7Ly from './blank-hk4Yl7Ly.gif';
+
+/* eslint-disable filenames/match-regex */
+var assetsMixed = \`\${_VrPi9W49}|\${_YauiPPOt}|\${_hk4Yl7Ly}\`;
+
+export default assetsMixed;
+"
+`;
+
+exports[`Outside Assets 1`] = `
+"import _VrPi9W49 from './font-VrPi9W49.woff';
+import _l1JhGTH9 from './image-l1JhGTH9.png';
+import _hk4Yl7Ly from './blank-hk4Yl7Ly.gif';
+
+/* eslint-disable filenames/match-regex */
+var assetsOutside = \`\${_VrPi9W49}|\${_l1JhGTH9}|\${_hk4Yl7Ly}\`;
+
+export default assetsOutside;
+"
+`;
