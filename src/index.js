@@ -6,8 +6,10 @@ import { getHashDigest } from "loader-utils"
 import { createFilter } from "rollup-pluginutils"
 
 import postcss from "postcss"
-import postcssSmartImport from "postcss-smart-import"
-import postcssSimpleUrl from "postcss-simple-url"
+
+import postcssImport from "postcss-import"
+import postcssSmartAsset from "postcss-smart-asset"
+
 import postcssSugarSS from "sugarss"
 import postcssScss from "postcss-scss"
 import postcssSass from "postcss-sass"
@@ -24,8 +26,8 @@ const styleParser = {
 }
 
 const postcssPlugins = [
-  postcssSmartImport(),
-  postcssSimpleUrl()
+  postcssImport(),
+  postcssSmartAsset()
 ]
 
 function processStyle(code, id, dest)
