@@ -25,17 +25,12 @@ const styleParser = {
   ".sass": postcssSass
 }
 
-const postcssPlugins = [
-  postcssImport(),
-  postcssSmartAsset()
-]
+const postcssPlugins = [ postcssImport(), postcssSmartAsset() ]
 
-function processStyle(code, id, dest)
-{
+function processStyle(code, id, dest) {
   var parser = styleParser[path.extname(id)]
   return postcss(postcssPlugins)
-    .process(code.toString(),
-    {
+    .process(code.toString(), {
       from: id,
       to: dest,
       extensions: [ ".pcss", ".css", ".sss", ".scss", ".sass" ],
@@ -43,9 +38,7 @@ function processStyle(code, id, dest)
       // Always uses parser... even for scss as we like to offer "normal" CSS in deployed files.
       parser
     })
-    .then((result) =>
-       writeAsync(dest, result)
-    )
+    .then((result) => writeAsync(dest, result))
     .catch((error) => {
       console.error(error)
     })
@@ -57,34 +50,22 @@ const digestLength = 8
 
 const externalIds = {}
 
-const defaultExclude = [
-  "**/*.json",
-  "**/*.mjs",
-  "**/*.js",
-  "**/*.jsx",
-  "**/*.ts",
-  "**/*.tsx",
-  "**/*.vue"
-]
+const defaultExclude = [ "**/*.json", "**/*.mjs", "**/*.js", "**/*.jsx", "**/*.ts", "**/*.tsx", "**/*.vue" ]
 
-export default function rebase(options = {})
-{
+export default function rebase(options = {}) {
   const { include, exclude = defaultExclude, entry, outputFolder, verbose } = options
   const filter = createFilter(include, exclude)
 
   return {
     name: "rollup-plugin-rebase",
 
-    isExternal(id)
-    {
+    isExternal(id) {
       var baseName = `./${path.basename(id)}`
       return baseName in externalIds
     },
 
-    resolveId(importee)
-    {
-      if (importee in externalIds)
-      {
+    resolveId(importee) {
+      if (importee in externalIds) {
         // This does not yet seem to work!
         // See also: https://github.com/rollup/rollup/issues/861
         // "returning any other falsy value signals that importee should be treated as an external module
@@ -95,18 +76,15 @@ export default function rebase(options = {})
       return null
     },
 
-    load(id)
-    {
+    load(id) {
       if (!filter(id)) {
         return null
       }
 
       const input = fs.createReadStream(id)
 
-      return new Promise((resolve, reject) =>
-      {
-        input.on("readable", () =>
-        {
+      return new Promise((resolve, reject) => {
+        input.on("readable", () => {
           var fileSource = id
           var fileContent = fs.readFileSync(fileSource)
           var fileExt = path.extname(id)
@@ -134,8 +112,7 @@ export default function rebase(options = {})
             importId = `./${relativeToRoot}/${destId}`
           }
 
-          if (fileExt in styleParser)
-          {
+          if (fileExt in styleParser) {
             if (verbose) {
               console.log(`Processing ${fileSource} => ${fileDest}...`)
             }
@@ -146,9 +123,7 @@ export default function rebase(options = {})
                 map: { mappings: "" }
               })
             )
-          }
-          else
-          {
+          } else {
             if (verbose) {
               console.log(`Copying ${fileSource} => ${fileDest}...`)
             }
