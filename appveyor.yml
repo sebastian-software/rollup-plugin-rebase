@@ -17,6 +17,7 @@ deploy: off
 
 install:
   - ps: Install-Product node $env:nodejs_version $env:platform
+  - npm -g install npm@latest
   - npm install
 
 test_script:
@@ -25,3 +26,8 @@ test_script:
 cache:
   # global npm cache
   - '%APPDATA%\npm-cache'
+
+notifications:
+  - provider: Slack
+    incoming_webhook:
+      secure: 42qYgf76P/QjYb5QJ18gFFJ67iTlXc1QzEva9BFofwh5KzpF/QJ/pvRark1i3aux6uwL53zdDKTjXfy8Ozpqqk9DhnU5M1oA96bQYWOnmZU=
