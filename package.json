@@ -19,12 +19,11 @@
   "main": "lib/node.commonjs.js",
   "module": "lib/node.esmodule.js",
   "scripts": {
-    "lint": "eslint --quiet src/ test/ || true",
     "release": "release-it --github.release --npm.publish --non-interactive",
     "release:minor": "release-it --github.release --npm.publish --non-interactive --increment minor",
     "release:major": "release-it --github.release --npm.publish --non-interactive --increment major",
-    "test": "npm run prepublish && ava --serial",
-    "prepublish": "prepublish"
+    "test": "npm run prepublish && jest",
+    "prepare": "prepublish"
   },
   "repository": {
     "type": "git",
