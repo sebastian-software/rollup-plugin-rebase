@@ -50,7 +50,7 @@
     "postcss-import": "^10.0.0",
     "postcss-sass": "^0.2.0",
     "postcss-scss": "^1.0.2",
-    "postcss-smart-asset": "^0.2.0",
+    "postcss-smart-asset": "^0.2.1",
     "rollup-pluginutils": "^2.0.1",
     "sugarss": "^1.0.0"
   },
@@ -59,7 +59,7 @@
     "babel-preset-latest": "^6.24.1",
     "flow-bin": "^0.51.1",
     "jest": "^20.0.4",
-    "prepublish": "^1.1.1",
+    "prepublish": "^1.1.2",
     "readable-code": "^3.4.3",
     "rollup": "^0.45.2",
     "shortid": "^2.2.8"
