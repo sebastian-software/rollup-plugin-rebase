@@ -59,8 +59,8 @@
     "babel-preset-latest": "^6.24.1",
     "flow-bin": "^0.51.1",
     "jest": "^20.0.4",
-    "prepublish": "^1.1.0",
-    "readable-code": "^3.4.2",
+    "prepublish": "^1.1.1",
+    "readable-code": "^3.4.3",
     "rollup": "^0.45.2",
     "shortid": "^2.2.8"
   }
