@@ -58,7 +58,7 @@
     "babel-preset-latest": "^6.24.1",
     "jest": "^20.0.4",
     "prepublish": "^1.2.6",
-    "readable-code": "^3.4.8",
+    "readable-code": "^3.4.9",
     "rollup": "^0.45.2",
     "shortid": "^2.2.8"
   }
