@@ -34,6 +34,7 @@ function processStyle(code, id, dest) {
       from: id,
       to: dest,
       extensions: [ ".pcss", ".css", ".sss", ".scss", ".sass" ],
+      map: { inline: true },
 
       // Always uses parser... even for scss as we like to offer "normal" CSS in deployed files.
       parser
