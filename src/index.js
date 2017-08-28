@@ -27,6 +27,7 @@ const styleParser = {
 
 const postcssPlugins = [ postcssImport(), postcssSmartAsset() ]
 
+/* eslint-disable max-params */
 function processStyle(code, id, dest) {
   var parser = styleParser[path.extname(id)]
   return postcss(postcssPlugins)
@@ -54,7 +55,7 @@ const externalIds = {}
 const defaultExclude = [ "**/*.json", "**/*.mjs", "**/*.js", "**/*.jsx", "**/*.ts", "**/*.tsx", "**/*.vue" ]
 
 export default function rebase(options = {}) {
-  const { include, exclude = defaultExclude, entry, outputFolder, verbose } = options
+  const { include, exclude = defaultExclude, input, outputFolder, verbose } = options
   const filter = createFilter(include, exclude)
 
   return {
@@ -82,10 +83,10 @@ export default function rebase(options = {}) {
         return null
       }
 
-      const input = fs.createReadStream(id)
+      const inputStream = fs.createReadStream(id)
 
       return new Promise((resolve, reject) => {
-        input.on("readable", () => {
+        inputStream.on("readable", () => {
           var fileSource = id
           var fileContent = fs.readFileSync(fileSource)
           var fileExt = path.extname(id)
@@ -99,8 +100,8 @@ export default function rebase(options = {}) {
           // Mark new file location as external to prevent further processing.
           externalIds[`./${destId}`] = true
 
-          var entryFolder = path.dirname(path.resolve(entry))
-          var relativeToRoot = path.relative(path.dirname(fileSource), entryFolder).replace(/\\/g, "/")
+          var inputFolder = path.dirname(path.resolve(input))
+          var relativeToRoot = path.relative(path.dirname(fileSource), inputFolder).replace(/\\/g, "/")
 
           // Adjust destId so that it points to the root folder - from any
           // depth we detected inside the original project structure.

@@ -11,17 +11,17 @@ const readFile = denodeify(fs.readFile)
 
 const outputFolder = "./__tests__/output/"
 
-function bundle(entry, output) {
-  var plugin = rebasePlugin({ outputFolder, entry, verbose: true })
+function bundle(input, outputFile) {
+  var plugin = rebasePlugin({ outputFolder, input, verbose: true })
 
   return rollup({
-    entry,
+    input,
     external: plugin.isExternal,
     plugins: [ plugin ]
   }).then((result) =>
     result.write({
       format: "es",
-      dest: output
+      file: outputFile
     })
   )
 }
