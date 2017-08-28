@@ -15,7 +15,7 @@
     "email": "s.werner@sebastian-software.de",
     "url": "http://sebastian-software.de/werner"
   },
-  "license": "MIT",
+  "license": "Apache-2.0",
   "main": "lib/node.commonjs.js",
   "module": "lib/node.esmodule.js",
   "scripts": {
