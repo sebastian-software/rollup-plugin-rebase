@@ -38,6 +38,7 @@ beforeAll(() => {
 
 test("Plain", () => {
   var outputFile = `${outputFolder}/plain/index.js`
+
   return bundle("./__tests__/fixtures/plain.js", outputFile)
     .then(() => Promise.all([
       expect(fileExists(outputFile)).resolves.toBeTruthy()
@@ -49,9 +50,11 @@ test("Plain", () => {
 
 test("Assets", () => {
   var outputFile = `${outputFolder}/assets/index.js`
+
   var imageFile = `${outputFolder}/assets/XDOPW.png`
   var fontFile = `${outputFolder}/assets/fXQovA.woff`
   var deepFile = `${outputFolder}/assets/dnIKKh.gif`
+  var cssFile = `${outputFolder}/assets/iQCqkl.css`
 
   return bundle("./__tests__/fixtures/assets.js", outputFile)
     .then(() =>
@@ -62,22 +65,26 @@ test("Assets", () => {
         }),
         expect(fileExists(imageFile)).resolves.toBeTruthy(),
         expect(fileExists(fontFile)).resolves.toBeTruthy(),
-        expect(fileExists(deepFile)).resolves.toBeTruthy()
+        expect(fileExists(deepFile)).resolves.toBeTruthy(),
+        expect(fileExists(cssFile)).resolves.toBeTruthy()
       ])
     )
     .then(Promise.all([
       rimrafp(outputFile),
       rimrafp(imageFile),
       rimrafp(fontFile),
-      rimrafp(deepFile)
+      rimrafp(deepFile),
+      rimrafp(cssFile)
     ]))
 })
 
 test("Outside Assets", () => {
   var outputFile = `${outputFolder}/outside/index.js`
+
   var imageFile = `${outputFolder}/outside/XDOPW.png`
   var fontFile = `${outputFolder}/outside/fXQovA.woff`
   var deepFile = `${outputFolder}/outside/dnIKKh.gif`
+  var cssFile = `${outputFolder}/outside/iQCqkl.css`
 
   return bundle("./__tests__/fixtures/deep/assets-outside.js", outputFile)
     .then(() =>
@@ -88,22 +95,26 @@ test("Outside Assets", () => {
         }),
         expect(fileExists(imageFile)).resolves.toBeTruthy(),
         expect(fileExists(fontFile)).resolves.toBeTruthy(),
-        expect(fileExists(deepFile)).resolves.toBeTruthy()
+        expect(fileExists(deepFile)).resolves.toBeTruthy(),
+        expect(fileExists(cssFile)).resolves.toBeTruthy()
       ])
     )
     .then(Promise.all([
       rimrafp(outputFile),
       rimrafp(imageFile),
       rimrafp(fontFile),
-      rimrafp(deepFile)
+      rimrafp(deepFile),
+      rimrafp(cssFile)
     ]))
 })
 
 test("Mixed Assets", () => {
   var outputFile = `${outputFolder}/mixed/index.js`
+
   var fontFile = `${outputFolder}/mixed/fXQovA.woff`
   var svgFile = `${outputFolder}/mixed/dBNImC.svg`
   var deepFile = `${outputFolder}/mixed/dnIKKh.gif`
+  var cssFile = `${outputFolder}/mixed/iQCqkl.css`
 
   return bundle("./__tests__/fixtures/deep/assets-mixed.js", outputFile)
     .then(() =>
@@ -114,13 +125,15 @@ test("Mixed Assets", () => {
         }),
         expect(fileExists(fontFile)).resolves.toBeTruthy(),
         expect(fileExists(svgFile)).resolves.toBeTruthy(),
-        expect(fileExists(deepFile)).resolves.toBeTruthy()
+        expect(fileExists(deepFile)).resolves.toBeTruthy(),
+        expect(fileExists(cssFile)).resolves.toBeTruthy()
       ])
     )
     .then(Promise.all([
       rimrafp(outputFile),
       rimrafp(fontFile),
       rimrafp(svgFile),
-      rimrafp(deepFile)
+      rimrafp(deepFile),
+      rimrafp(cssFile)
     ]))
 })
