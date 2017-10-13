@@ -2,11 +2,12 @@ import fs from "fs-extra"
 import { rollup } from "rollup"
 import denodeify from "denodeify"
 import shortid from "shortid"
+import rimraf from "rimraf"
 
 import rebasePlugin from "../src"
 
 const stat = denodeify(fs.stat)
-const rimraf = denodeify(fs.remove)
+const rimrafp = denodeify(rimraf)
 const readFile = denodeify(fs.readFile)
 
 const outputFolder = "./__tests__/output/"
@@ -30,6 +31,10 @@ function fileExists(name) {
   return stat(name).then((result) => true, (error) => false)
 }
 
+beforeAll(() => {
+  return rimrafp(outputFolder)
+})
+
 test("Plain", () => {
   var outputFile = `${outputFolder}${shortid()}.js`
   return bundle("./__tests__/fixtures/plain.js", outputFile)
@@ -37,7 +42,7 @@ test("Plain", () => {
       expect(fileExists(outputFile)).resolves.toBeTruthy()
     ]))
     .then(Promise.all([
-      rimraf(outputFile)
+      rimrafp(outputFile)
     ]))
 })
 
@@ -60,10 +65,10 @@ test("Assets", () => {
       ])
     )
     .then(Promise.all([
-      rimraf(outputFile),
-      rimraf(imageFile),
-      rimraf(fontFile),
-      rimraf(deepFile)
+      rimrafp(outputFile),
+      rimrafp(imageFile),
+      rimrafp(fontFile),
+      rimrafp(deepFile)
     ]))
 })
 
@@ -86,10 +91,10 @@ test("Outside Assets", () => {
       ])
     )
     .then(Promise.all([
-      rimraf(outputFile),
-      rimraf(imageFile),
-      rimraf(fontFile),
-      rimraf(deepFile)
+      rimrafp(outputFile),
+      rimrafp(imageFile),
+      rimrafp(fontFile),
+      rimrafp(deepFile)
     ]))
 })
 
@@ -112,9 +117,9 @@ test("Mixed Assets", () => {
       ])
     )
     .then(Promise.all([
-      rimraf(outputFile),
-      rimraf(fontFile),
-      rimraf(svgFile),
-      rimraf(deepFile)
+      rimrafp(outputFile),
+      rimrafp(fontFile),
+      rimrafp(svgFile),
+      rimrafp(deepFile)
     ]))
 })

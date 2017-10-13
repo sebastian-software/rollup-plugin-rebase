@@ -57,8 +57,9 @@
     "babel-core": "^6.26.0",
     "babel-preset-latest": "^6.24.1",
     "jest": "^21.2.1",
-    "prepublish": "^1.4.2",
+    "prepublish": "^1.4.3",
     "readable-code": "^3.4.14",
+    "rimraf": "^2.6.2",
     "rollup": "^0.50.0",
     "shortid": "^2.2.8"
   }
