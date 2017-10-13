@@ -1,38 +1,39 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`Assets 1`] = `
-"import _VrPi9W49 from './font-VrPi9W49.woff';
-import _l1JhGTH9 from './image-l1JhGTH9.png';
-import _hk4Yl7Ly from './blank-hk4Yl7Ly.gif';
-import _2b075Q0Y from './css-font-2b075Q0Y.css';
+"import _fXQovA from './fXQovA.woff';
+import _XDOPW from './XDOPW.png';
+import _dnIKKh from './dnIKKh.gif';
+import _iQCqkl from './iQCqkl.css';
 
-var assets = \`\${_VrPi9W49}|\${_l1JhGTH9}|\${_hk4Yl7Ly}|\${_2b075Q0Y}\`;
+var assets = \`\${_fXQovA}|\${_XDOPW}|\${_dnIKKh}|\${_iQCqkl}\`;
 
 export default assets;
 "
 `;
 
 exports[`Mixed Assets 1`] = `
-"import _VrPi9W49 from './VrPi9W49.woff';
-import _l1JhGTH9 from './l1JhGTH9.png';
-import _hk4Yl7Ly from './hk4Yl7Ly.gif';
-import _2b075Q0Y from './2b075Q0Y.css';
+"import _fXQovA from './fXQovA.woff';
+import _dBNImC from './dBNImC.svg';
+import _dnIKKh from './dnIKKh.gif';
+import _iQCqkl from './iQCqkl.css';
 
 /* eslint-disable filenames/match-regex */
-var assetsOutside = \`\${_VrPi9W49}|\${_l1JhGTH9}|\${_hk4Yl7Ly}|\${_2b075Q0Y}\`;
+var assetsMixed = \`\${_fXQovA}|\${_dBNImC}|\${_dnIKKh}|\${_iQCqkl}\`;
 
-export default assetsOutside;
+export default assetsMixed;
 "
 `;
 
 exports[`Outside Assets 1`] = `
-"import _VrPi9W49 from './VrPi9W49.woff';
-import _l1JhGTH9 from './l1JhGTH9.png';
-import _hk4Yl7Ly from './hk4Yl7Ly.gif';
-import _2b075Q0Y from './2b075Q0Y.css';
+"import _fXQovA from './fXQovA.woff';
+import _XDOPW from './XDOPW.png';
+import _dnIKKh from './dnIKKh.gif';
+import _iQCqkl from './iQCqkl.css';
 
-var assets = \`\${_VrPi9W49}|\${_l1JhGTH9}|\${_hk4Yl7Ly}|\${_2b075Q0Y}\`;
+/* eslint-disable filenames/match-regex */
+var assetsOutside = \`\${_fXQovA}|\${_XDOPW}|\${_dnIKKh}|\${_iQCqkl}\`;
 
-export default assets;
+export default assetsOutside;
 "
 `;

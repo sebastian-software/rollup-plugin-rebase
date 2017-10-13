@@ -2,8 +2,8 @@
 import path from "path"
 import denodeify from "denodeify"
 import fs from "fs-extra"
-import { getHashDigest } from "loader-utils"
 import { createFilter } from "rollup-pluginutils"
+import { getHashedName } from "asset-hash"
 
 import postcss from "postcss"
 
@@ -49,10 +49,6 @@ function processStyle(code, id, dest) {
     })
 }
 
-const hashType = "sha256"
-const digestType = "base62"
-const digestLength = 8
-
 const externalIds = {}
 
 const defaultExclude = [ "**/*.json", "**/*.mjs", "**/*.js", "**/*.jsx", "**/*.ts", "**/*.tsx", "**/*.vue" ]
@@ -89,15 +85,12 @@ export default function rebase(options = {}) {
       const inputStream = fs.createReadStream(id)
 
       return new Promise((resolve, reject) => {
-        inputStream.on("readable", () => {
+        inputStream.on("readable", async () => {
           var fileSource = id
-          var fileContent = fs.readFileSync(fileSource)
           var fileExt = path.extname(id)
-          var fileHash = getHashDigest(fileContent, hashType, digestType, digestLength)
+          var destId = await getHashedName(id)
 
-          var destExt = fileExt in styleParser ? ".css" : fileExt
-          var destId = `${fileHash}${destExt}`
-
+          var fileHash = destId.slice(0, -fileExt.length)
           var fileDest = path.resolve(outputFolder, destId)
 
           // Mark new file location as external to prevent further processing.
@@ -122,6 +115,7 @@ export default function rebase(options = {}) {
               console.log(`Processing ${fileSource} => ${fileDest}...`)
             }
 
+            var fileContent = fs.readFileSync(fileSource)
             return processStyle(fileContent, fileSource, fileDest).then(() =>
               resolve({
                 code: `import _${fileHash} from "${importId}"; export default _${fileHash};`,
