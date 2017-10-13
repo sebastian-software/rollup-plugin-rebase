@@ -26,7 +26,8 @@ const styleParser = {
 }
 
 const postcssPlugins = [ postcssImport(), postcssSmartAsset({
-  url: "copy"
+  url: "copy",
+  useHash: true
 }) ]
 
 /* eslint-disable max-params */
