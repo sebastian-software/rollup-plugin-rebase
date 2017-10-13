@@ -96,7 +96,7 @@ export default function rebase(options = {}) {
           var fileHash = getHashDigest(fileContent, hashType, digestType, digestLength)
 
           var destExt = fileExt in styleParser ? ".css" : fileExt
-          var destId = `${path.basename(id, fileExt)}-${fileHash}${destExt}`
+          var destId = `${fileHash}${destExt}`
 
           var fileDest = path.resolve(outputFolder, destId)
 
