@@ -25,7 +25,9 @@ const styleParser = {
   ".sass": postcssSass
 }
 
-const postcssPlugins = [ postcssImport(), postcssSmartAsset() ]
+const postcssPlugins = [ postcssImport(), postcssSmartAsset({
+  url: "copy"
+}) ]
 
 /* eslint-disable max-params */
 function processStyle(code, id, dest) {
@@ -34,7 +36,7 @@ function processStyle(code, id, dest) {
     .process(code.toString(), {
       from: id,
       to: dest,
-      extensions: [ ".pcss", ".css", ".sss", ".scss", ".sass" ],
+      extensions: Object.keys(styleParser),
       map: { inline: true },
 
       // Always uses parser... even for scss as we like to offer "normal" CSS in deployed files.
