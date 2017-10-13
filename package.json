@@ -31,7 +31,7 @@
   },
   "babel": {
     "presets": [
-      "latest"
+      "edge"
     ]
   },
   "jest": {
@@ -54,8 +54,7 @@
     "sugarss": "^1.0.0"
   },
   "devDependencies": {
-    "babel-core": "^6.26.0",
-    "babel-preset-latest": "^6.24.1",
+    "babel-preset-edge": "^1.3.5",
     "jest": "^21.2.1",
     "prepublish": "^1.4.3",
     "readable-code": "^3.4.14",
