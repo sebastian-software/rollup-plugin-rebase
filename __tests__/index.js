@@ -55,7 +55,7 @@ test("Assets", () => {
   var fontFile = `${outputFolder}/assets/fXQovA.woff`
   var deepFile = `${outputFolder}/assets/dnIKKh.gif`
   var cssFile = `${outputFolder}/assets/iQCqkl.css`
-  var cssFont = `${outputFolder}/assets/82b81ec6.woff`
+  var cssFont = `${outputFolder}/assets/gadyfD.woff`
 
   return bundle("./__tests__/fixtures/assets.js", outputFile)
     .then(() =>
@@ -88,7 +88,7 @@ test("Outside Assets", () => {
   var fontFile = `${outputFolder}/outside/fXQovA.woff`
   var deepFile = `${outputFolder}/outside/dnIKKh.gif`
   var cssFile = `${outputFolder}/outside/iQCqkl.css`
-  var cssFont = `${outputFolder}/outside/82b81ec6.woff`
+  var cssFont = `${outputFolder}/outside/gadyfD.woff`
 
   return bundle("./__tests__/fixtures/deep/assets-outside.js", outputFile)
     .then(() =>
@@ -121,7 +121,7 @@ test("Mixed Assets", () => {
   var svgFile = `${outputFolder}/mixed/dBNImC.svg`
   var deepFile = `${outputFolder}/mixed/dnIKKh.gif`
   var cssFile = `${outputFolder}/mixed/iQCqkl.css`
-  var cssFont = `${outputFolder}/mixed/82b81ec6.woff`
+  var cssFont = `${outputFolder}/mixed/gadyfD.woff`
 
   return bundle("./__tests__/fixtures/deep/assets-mixed.js", outputFile)
     .then(() =>
