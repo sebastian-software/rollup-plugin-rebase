@@ -45,6 +45,7 @@
     "asset-hash": "^0.1.1",
     "denodeify": "^1.2.1",
     "fs-extra": "^4.0.2",
+    "nodent-runtime": "^3.0.4",
     "postcss": "^6.0.13",
     "postcss-import": "^11.0.0",
     "postcss-sass": "^0.2.0",
