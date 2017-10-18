@@ -4,7 +4,6 @@
 
 The Rollup Rebase Plugin copies static assets as required from your JavaScript code to the destination folder and adjusts the references in there to point to the new location.
 
-The plugin is meant as a tool for preparing a library for being published. In this it differs from plugins like [Rollup URL Plugin](https://github.com/Swatinem/rollup-plugin-url) as it is designed for usage in *libraries* and not for *applications*. The output of this plugin can be used by tools like Webpacks [File Loader](https://github.com/webpack/file-loader), [URL Loader](https://github.com/webpack/url-loader) or the already mentioned [Rollup URL Plugin](https://github.com/Swatinem/rollup-plugin-url).
 
 [sponsor-img]: https://img.shields.io/badge/Sponsored%20by-Sebastian%20Software-692446.svg
 [sponsor]: https://www.sebastian-software.de
@@ -23,9 +22,16 @@ The plugin is meant as a tool for preparing a library for being published. In th
 - Copies over asset files references from JavaScript into the given output folder.
 - Adjust asset references in the output JavaScript files to map to the relative new location.
 - Transforms CSS files to inline all includes from `@import` via [PostCSS Import](https://github.com/postcss/postcss-import) into the origin files.
+- Detects and processes assets referenced from both, JavaScript and CSS.
 - Renames all assets based on their hash (XXHash + Base62) so that conflicts are automatically eliminated while producing a flat output structure.
 - Supports *normal* CSS, but also [SugarSS](https://github.com/postcss/sugarss), [SCSS](https://github.com/postcss/postcss-scss) and [Sass](https://github.com/aleshaoleg/postcss-sass) via the standard PostCSS parser plugins.
-- Processes all files which do not match this extension list: `.jsx`, `.js`, `.tsx`, `.ts`, `.json`.
+
+
+
+## Comparison
+
+The plugin is meant as a tool for preparing a library for being published. In this it differs from plugins like [Rollup URL Plugin](https://github.com/Swatinem/rollup-plugin-url) as it is designed for usage in *libraries* and not for *applications*. The output of this plugin can be used by tools like Webpacks [File Loader](https://github.com/webpack/file-loader), [URL Loader](https://github.com/webpack/url-loader) or the already mentioned [Rollup URL Plugin](https://github.com/Swatinem/rollup-plugin-url).
+
 
 
 ## Installation
@@ -43,8 +49,7 @@ $ yarn add --dev rollup-plugin-rebase
 
 ## Usage
 
-Rollup Rebase comes with a binary which can be called from within your `scripts` section
-in the `package.json` file.
+You can configure Rollup Rebase as part of your Rollup configuration. This can be either done in a `rollup.config.js` or by scripting the whole thing by using the Rollup API:
 
 ```js
 import { rollup } from "rollup"
