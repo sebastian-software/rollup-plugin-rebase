@@ -22,10 +22,10 @@ The plugin is meant as a tool for preparing a library for being published. In th
 
 - Copies over asset files references from JavaScript into the given output folder.
 - Adjust asset references in the output JavaScript files to map to the relative new location.
-- Transforms CSS files to inline all includes from `@import` via [PostCSS Smart Import](https://github.com/sebastian-software/postcss-smart-import) into the origin files.
-- Renames all assets based on their hash (SHA256 + Base62) so that conflicts are automatically eliminated while producing a flat zero depth output structure.
+- Transforms CSS files to inline all includes from `@import` via [PostCSS Import](https://github.com/postcss/postcss-import) into the origin files.
+- Renames all assets based on their hash (XXHash + Base62) so that conflicts are automatically eliminated while producing a flat output structure.
 - Supports *normal* CSS, but also [SugarSS](https://github.com/postcss/sugarss), [SCSS](https://github.com/postcss/postcss-scss) and [Sass](https://github.com/aleshaoleg/postcss-sass) via the standard PostCSS parser plugins.
-- Processes all files which do not match this extension list: `.jsx`, `.js`, `.tsx`, `.ts`, `.json`, `.vue`.
+- Processes all files which do not match this extension list: `.jsx`, `.js`, `.tsx`, `.ts`, `.json`.
 
 
 ## Installation
@@ -43,28 +43,26 @@ $ yarn add --dev rollup-plugin-rebase
 
 ## Usage
 
-Rollup rebase comes with a binary which can be called from within your `scripts` section
+Rollup Rebase comes with a binary which can be called from within your `scripts` section
 in the `package.json` file.
 
 ```js
+import { rollup } from "rollup"
 import rebasePlugin from "rollup-plugin-rebase"
 
+const input = "./src/index.js"
 const outputFolder = "./lib";
 const rebase = rebasePlugin({ outputFolder })
 
 rollup({
-  entry: entry,
-  ...
+  input: input,
   external: rebase.isExternal,
-  ...
   plugins: [
-    ...
     rebase
   ]
 })
 .then((bundle) =>
   bundle.write({
-    ...
     dest: `${outputFolder}/index.js`
   })
 )
