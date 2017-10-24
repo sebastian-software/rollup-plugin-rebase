@@ -57,7 +57,7 @@ import rebasePlugin from "rollup-plugin-rebase"
 
 const input = "./src/index.js"
 const outputFolder = "./lib";
-const rebase = rebasePlugin({ outputFolder })
+const rebase = rebasePlugin({ outputFolder, input })
 
 rollup({
   input: input,
@@ -73,6 +73,13 @@ rollup({
 )
 ```
 
+### Options
+* input (required): The location of your entry point for rollup
+* outputFolder (required): The location that assets will be written to
+* prependName: If true, generated filenames will be ORIGINALFILENAME_HASH instead of just HASH
+* verbose: If true, increases log level
+* include: Standard include option for rollup plugins. Supports a minimatch string.
+* exlude: Standard exclude option for rollup plugins. Supports a minimatch string.
 
 
 ## Copyright

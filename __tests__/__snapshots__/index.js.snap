@@ -12,6 +12,18 @@ export default assets;
 "
 `;
 
+exports[`Assets with hash appeneded 1`] = `
+"import _fXQovA from './font_fXQovA.woff';
+import _XDOPW from './image_XDOPW.png';
+import _dnIKKh from './blank_dnIKKh.gif';
+import _iQCqkl from './css-font_iQCqkl.css';
+
+var assets = \`\${_fXQovA}|\${_XDOPW}|\${_dnIKKh}|\${_iQCqkl}\`;
+
+export default assets;
+"
+`;
+
 exports[`Mixed Assets 1`] = `
 "import _fXQovA from './fXQovA.woff';
 import _dBNImC from './dBNImC.svg';
