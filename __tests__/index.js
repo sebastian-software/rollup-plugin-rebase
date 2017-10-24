@@ -12,9 +12,9 @@ const readFile = denodeify(fs.readFile)
 
 const outputFolder = "./__tests__/output/"
 
-function bundle(input, outputFile) {
+function bundle(input, outputFile, pluginOptions = {}) {
   var outputFolder = dirname(outputFile)
-  var plugin = rebasePlugin({ outputFolder, input })
+  var plugin = rebasePlugin({ outputFolder, input, ...pluginOptions })
 
   return rollup({
     input,
@@ -141,6 +141,39 @@ test("Mixed Assets", () => {
       rimrafp(outputFile),
       rimrafp(fontFile),
       rimrafp(svgFile),
+      rimrafp(deepFile),
+      rimrafp(cssFile),
+      rimrafp(cssFont)
+    ]))
+})
+
+test("Assets with hash appeneded", () => {
+  var outputFile = `${outputFolder}/assets-hash-appened/index.js`
+
+  var imageFile = `${outputFolder}/assets-hash-appened/image_XDOPW.png`
+  var fontFile = `${outputFolder}/assets-hash-appened/font_fXQovA.woff`
+  var deepFile = `${outputFolder}/assets-hash-appened/blank_dnIKKh.gif`
+  var cssFile = `${outputFolder}/assets-hash-appened/css-font_iQCqkl.css`
+  var cssFont = `${outputFolder}/assets-hash-appened/css-font_gadyfD.woff`
+
+  return bundle("./__tests__/fixtures/assets.js", outputFile, {prependName: true})
+    .then(() =>
+      Promise.all([
+        expect(fileExists(outputFile)).resolves.toBeTruthy(),
+        readFile(outputFile, "utf-8").then((content) => {
+          expect(content).toMatchSnapshot()
+        }),
+        expect(fileExists(imageFile)).resolves.toBeTruthy(),
+        expect(fileExists(fontFile)).resolves.toBeTruthy(),
+        expect(fileExists(deepFile)).resolves.toBeTruthy(),
+        expect(fileExists(cssFile)).resolves.toBeTruthy(),
+        expect(fileExists(cssFont)).resolves.toBeTruthy()
+      ])
+    )
+    .then(Promise.all([
+      rimrafp(outputFile),
+      rimrafp(imageFile),
+      rimrafp(fontFile),
       rimrafp(deepFile),
       rimrafp(cssFile),
       rimrafp(cssFont)

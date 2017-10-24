@@ -25,15 +25,18 @@ const styleParser = {
   ".sass": postcssSass
 }
 
-const postcssPlugins = [ postcssImport(), postcssSmartAsset({
-  url: "copy",
-  useHash: true
-}) ]
+function getPostCssPlugins(prependName){
+  return [ postcssImport(), postcssSmartAsset({
+    url: "copy",
+    useHash: true,
+    prependName
+  }) ]
+}
 
 /* eslint-disable max-params */
-function processStyle(code, id, dest) {
+function processStyle(code, id, dest, prependName) {
   var parser = styleParser[path.extname(id)]
-  return postcss(postcssPlugins)
+  return postcss(getPostCssPlugins(prependName))
     .process(code.toString(), {
       from: id,
       to: dest,
@@ -54,7 +57,7 @@ const externalIds = {}
 const defaultExclude = [ "**/*.json", "**/*.mjs", "**/*.js", "**/*.jsx", "**/*.ts", "**/*.tsx", "**/*.vue" ]
 
 export default function rebase(options = {}) {
-  const { include, exclude = defaultExclude, input, outputFolder, verbose } = options
+  const { include, exclude = defaultExclude, input, outputFolder, verbose, prependName } = options
   const filter = createFilter(include, exclude)
 
   return {
@@ -88,13 +91,16 @@ export default function rebase(options = {}) {
         inputStream.on("readable", async () => {
           var fileSource = id
           var fileExt = path.extname(id)
+          var fileName = path.basename(id).slice(0, -fileExt.length)
           var destId = await getHashedName(id)
 
+
           var fileHash = destId.slice(0, -fileExt.length)
-          var fileDest = path.resolve(outputFolder, destId)
+          var destFilename = prependName ? fileName + '_' + destId : destId;
+          var fileDest = path.resolve(outputFolder, destFilename)
 
           // Mark new file location as external to prevent further processing.
-          externalIds[`./${destId}`] = true
+          externalIds[`./${destFilename}`] = true
 
           var inputFolder = path.dirname(path.resolve(input))
           var relativeToRoot = path.relative(path.dirname(fileSource), inputFolder).replace(/\\/g, "/")
@@ -103,11 +109,11 @@ export default function rebase(options = {}) {
           // depth we detected inside the original project structure.
           var importId
           if (relativeToRoot.charAt(0) === ".") {
-            importId = `${relativeToRoot}/${destId}`
+            importId = `${relativeToRoot}/${destFilename}`
           } else if (relativeToRoot === "") {
-            importId = `./${destId}`
+            importId = `./${destFilename}`
           } else {
-            importId = `./${relativeToRoot}/${destId}`
+            importId = `./${relativeToRoot}/${destFilename}`
           }
 
           if (fileExt in styleParser) {
@@ -116,7 +122,7 @@ export default function rebase(options = {}) {
             }
 
             var fileContent = fs.readFileSync(fileSource)
-            return processStyle(fileContent, fileSource, fileDest).then(() =>
+            return processStyle(fileContent, fileSource, fileDest, prependName).then(() =>
               resolve({
                 code: `import _${fileHash} from "${importId}"; export default _${fileHash};`,
                 map: { mappings: "" }
