@@ -57,7 +57,7 @@ const externalIds = {}
 const defaultExclude = [ "**/*.json", "**/*.mjs", "**/*.js", "**/*.jsx", "**/*.ts", "**/*.tsx", "**/*.vue" ]
 
 export default function rebase(options = {}) {
-  const { include, exclude = defaultExclude, input, outputFolder, verbose, prependName } = options
+  const { include, exclude = defaultExclude, input, outputFolder, outputBase, verbose, prependName } = options
   const filter = createFilter(include, exclude)
 
   return {
@@ -104,16 +104,20 @@ export default function rebase(options = {}) {
 
           var inputFolder = path.dirname(path.resolve(input))
           var relativeToRoot = path.relative(path.dirname(fileSource), inputFolder).replace(/\\/g, "/")
+          var relativeOutputPath = path.relative(outputBase || outputFolder, outputFolder);
+          if(relativeOutputPath){
+            relativeOutputPath += '/';
+          }
 
           // Adjust destId so that it points to the root folder - from any
           // depth we detected inside the original project structure.
           var importId
           if (relativeToRoot.charAt(0) === ".") {
-            importId = `${relativeToRoot}/${destFilename}`
+            importId = `${relativeToRoot}/${relativeOutputPath}${destFilename}`
           } else if (relativeToRoot === "") {
-            importId = `./${destFilename}`
+            importId = `./${relativeOutputPath}${destFilename}`
           } else {
-            importId = `./${relativeToRoot}/${destFilename}`
+            importId = `./${relativeToRoot}/${relativeOutputPath}${destFilename}`
           }
 
           if (fileExt in styleParser) {

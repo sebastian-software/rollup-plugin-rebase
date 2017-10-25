@@ -76,6 +76,7 @@ rollup({
 ### Options
 * input (required): The location of your entry point for rollup
 * outputFolder (required): The location that assets will be written to
+* outputBase: The main rollup output folder. Defaults to outputFolder if not set.
 * prependName: If true, generated filenames will be ORIGINALFILENAME_HASH instead of just HASH
 * verbose: If true, increases log level
 * include: Standard include option for rollup plugins. Supports a minimatch string.

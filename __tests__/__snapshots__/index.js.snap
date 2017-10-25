@@ -24,6 +24,18 @@ export default assets;
 "
 `;
 
+exports[`Assets written to subfolder 1`] = `
+"import _fXQovA from './img/fXQovA.woff';
+import _XDOPW from './img/XDOPW.png';
+import _dnIKKh from './img/dnIKKh.gif';
+import _iQCqkl from './img/iQCqkl.css';
+
+var assets = \`\${_fXQovA}|\${_XDOPW}|\${_dnIKKh}|\${_iQCqkl}\`;
+
+export default assets;
+"
+`;
+
 exports[`Mixed Assets 1`] = `
 "import _fXQovA from './fXQovA.woff';
 import _dBNImC from './dBNImC.svg';
