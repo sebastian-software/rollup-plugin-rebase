@@ -7,9 +7,6 @@ node_js:
 matrix:
   fast_finish: true
 
-before_install:
-  - npm --version
-
 cache:
   directories:
   - $HOME/.npm
