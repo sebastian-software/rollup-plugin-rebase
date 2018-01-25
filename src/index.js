@@ -25,7 +25,7 @@ const styleParser = {
   ".sass": postcssSass
 }
 
-function getPostCssPlugins(prependName){
+function getPostCssPlugins(prependName) {
   return [ postcssImport(), postcssSmartAsset({
     url: "copy",
     useHash: true,
@@ -88,7 +88,7 @@ export default function rebase(options = {}) {
       const inputStream = fs.createReadStream(id)
 
       return new Promise((resolve, reject) => {
-        inputStream.on("readable", async () => {
+        inputStream.on("readable", async() => {
           var fileSource = id
           var fileExt = path.extname(id)
           var fileName = path.basename(id).slice(0, -fileExt.length)
@@ -96,7 +96,7 @@ export default function rebase(options = {}) {
 
 
           var fileHash = destId.slice(0, -fileExt.length)
-          var destFilename = prependName ? fileName + '_' + destId : destId;
+          var destFilename = prependName ? `${fileName}_${destId}` : destId
           var fileDest = path.resolve(outputFolder, destFilename)
 
           // Mark new file location as external to prevent further processing.
