@@ -6,7 +6,7 @@ import _XDOPW from './XDOPW.png';
 import _dnIKKh from './dnIKKh.gif';
 import _iQCqkl from './iQCqkl.css';
 
-var assets = \`\${_fXQovA}|\${_XDOPW}|\${_dnIKKh}|\${_iQCqkl}\`;
+var assets = \`\${_fXQovA}|\${_XDOPW}|\${_dnIKKh}|\${_iQCqkl}\`
 
 export default assets;
 "
@@ -18,7 +18,7 @@ import _XDOPW from './image_XDOPW.png';
 import _dnIKKh from './blank_dnIKKh.gif';
 import _iQCqkl from './css-font_iQCqkl.css';
 
-var assets = \`\${_fXQovA}|\${_XDOPW}|\${_dnIKKh}|\${_iQCqkl}\`;
+var assets = \`\${_fXQovA}|\${_XDOPW}|\${_dnIKKh}|\${_iQCqkl}\`
 
 export default assets;
 "
@@ -31,7 +31,7 @@ import _dnIKKh from './dnIKKh.gif';
 import _iQCqkl from './iQCqkl.css';
 
 /* eslint-disable filenames/match-regex */
-var assetsMixed = \`\${_fXQovA}|\${_dBNImC}|\${_dnIKKh}|\${_iQCqkl}\`;
+var assetsMixed = \`\${_fXQovA}|\${_dBNImC}|\${_dnIKKh}|\${_iQCqkl}\`
 
 export default assetsMixed;
 "
@@ -44,7 +44,7 @@ import _dnIKKh from './dnIKKh.gif';
 import _iQCqkl from './iQCqkl.css';
 
 /* eslint-disable filenames/match-regex */
-var assetsOutside = \`\${_fXQovA}|\${_XDOPW}|\${_dnIKKh}|\${_iQCqkl}\`;
+var assetsOutside = \`\${_fXQovA}|\${_XDOPW}|\${_dnIKKh}|\${_iQCqkl}\`
 
 export default assetsOutside;
 "
