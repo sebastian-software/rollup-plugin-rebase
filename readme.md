@@ -82,6 +82,6 @@ rollup({
 
 ## Copyright
 
-<img src="assets/sebastiansoftware.png" alt="Sebastian Software GmbH Logo" width="250" height="200"/>
+<img src="https://github.com/sebastian-software/sebastian-software-brand/blob/master/sebastiansoftware-en.svg" alt="Sebastian Software GmbH Logo" width="250" height="200"/>
 
-Copyright 2016-2017<br/>[Sebastian Software GmbH](http://www.sebastian-software.de)
+Copyright 2016-2018<br/>[Sebastian Software GmbH](http://www.sebastian-software.de)
