@@ -8,7 +8,9 @@
     "assets"
   ],
   "engines": {
-    "node": ">=6.0.0"
+    "node": ">=6.0.0",
+    "npm": ">=4.0.0",
+    "yarn": ">=1.0.0"
   },
   "author": {
     "name": "Sebastian Werner",
@@ -22,6 +24,9 @@
     "lib/"
   ],
   "scripts": {
+    "lint:js": "eslint --ignore-path .gitignore .",
+    "fix:js": "eslint --ignore-path .gitignore --fix .",
+    "format:js": "prettier --ignore-path .gitignore --write '**/*.{js,mjs}' && npm run fix:js",
     "release": "release-it --github.release --npm.publish --non-interactive",
     "release:minor": "release-it --github.release --npm.publish --non-interactive --increment minor",
     "release:major": "release-it --github.release --npm.publish --non-interactive --increment major",
@@ -45,7 +50,7 @@
     ]
   },
   "dependencies": {
-    "asset-hash": "^1.0.3",
+    "asset-hash": "^1.0.4",
     "denodeify": "^1.2.1",
     "fs-extra": "^5.0.0",
     "nodent-runtime": "^3.2.0",
@@ -53,15 +58,15 @@
     "postcss-import": "^11.0.0",
     "postcss-sass": "^0.3.0",
     "postcss-scss": "^1.0.3",
-    "postcss-smart-asset": "^0.5.1",
+    "postcss-smart-asset": "^0.5.4",
     "rollup-pluginutils": "^2.0.1",
     "sugarss": "^1.0.1"
   },
   "devDependencies": {
-    "babel-preset-edge": "^1.4.1",
-    "eslint-config-readable": "^1.4.1",
+    "babel-preset-edge": "^1.5.1",
+    "eslint-config-readable": "^1.8.2",
     "jest": "^22.1.4",
-    "prepublish": "^1.5.4",
+    "prepublish": "^1.6.0",
     "release-it": "^6.1.1",
     "rimraf": "^2.6.2",
     "rollup": "^0.55.1"
