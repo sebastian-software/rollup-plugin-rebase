@@ -58,13 +58,13 @@
     "postcss-import": "^11.0.0",
     "postcss-sass": "^0.3.0",
     "postcss-scss": "^1.0.3",
-    "postcss-smart-asset": "^0.5.4",
+    "postcss-smart-asset": "^0.5.5",
     "rollup-pluginutils": "^2.0.1",
     "sugarss": "^1.0.1"
   },
   "devDependencies": {
-    "babel-preset-edge": "^1.5.1",
-    "eslint-config-readable": "^1.9.0",
+    "babel-preset-edge": "^1.6.0",
+    "eslint-config-readable": "^1.10.1",
     "jest": "^22.1.4",
     "prepublish": "^1.6.0",
     "release-it": "^6.1.1",
