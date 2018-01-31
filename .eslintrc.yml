@@ -4,6 +4,3 @@ extends:
 rules:
   no-console:
     - off
-
-  no-empty-function:
-    - off

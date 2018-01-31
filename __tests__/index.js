@@ -40,9 +40,7 @@ test("Plain", () => {
   const outputFile = `${outputFolder}/plain/index.js`
 
   return bundle("./__tests__/fixtures/plain.js", outputFile)
-    .then(() =>
-      Promise.all([ expect(fileExists(outputFile)).resolves.toBeTruthy() ])
-    )
+    .then(() => Promise.all([ expect(fileExists(outputFile)).resolves.toBeTruthy() ]))
     .then(Promise.all([ rimrafp(outputFile) ]))
 })
 

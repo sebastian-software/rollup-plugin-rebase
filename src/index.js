@@ -124,10 +124,7 @@ export default function rebase(options = {}) {
           const relativeToRoot = path
             .relative(path.dirname(fileSource), inputFolder)
             .replace(/\\/g, "/")
-          let relativeOutputPath = path.relative(
-            outputBase || outputFolder,
-            outputFolder
-          )
+          let relativeOutputPath = path.relative(outputBase || outputFolder, outputFolder)
           if (relativeOutputPath) {
             relativeOutputPath += "/"
           }
@@ -149,12 +146,7 @@ export default function rebase(options = {}) {
             }
 
             const fileContent = fs.readFileSync(fileSource)
-            return processStyle(
-              fileContent,
-              fileSource,
-              fileDest,
-              prependName
-            ).then(() =>
+            return processStyle(fileContent, fileSource, fileDest, prependName).then(() =>
               resolve({
                 code: `import _${fileHash} from "${importId}"; export default _${fileHash};`,
                 map: { mappings: "" }
