@@ -14,8 +14,8 @@ import postcssSugarSS from "sugarss"
 import postcssScss from "postcss-scss"
 import postcssSass from "postcss-sass"
 
-var copyAsync = denodeify(fs.copy)
-var writeAsync = denodeify(fs.outputFile)
+const copyAsync = denodeify(fs.copy)
+const writeAsync = denodeify(fs.outputFile)
 
 const styleParser = {
   ".pcss": null,
@@ -26,16 +26,19 @@ const styleParser = {
 }
 
 function getPostCssPlugins(prependName) {
-  return [ postcssImport(), postcssSmartAsset({
-    url: "copy",
-    useHash: true,
-    prependName
-  }) ]
+  return [
+    postcssImport(),
+    postcssSmartAsset({
+      url: "copy",
+      useHash: true,
+      prependName
+    })
+  ]
 }
 
 /* eslint-disable max-params */
 function processStyle(code, id, dest, prependName) {
-  var parser = styleParser[path.extname(id)]
+  const parser = styleParser[path.extname(id)]
   return postcss(getPostCssPlugins(prependName))
     .process(code.toString(), {
       from: id,
@@ -54,17 +57,33 @@ function processStyle(code, id, dest, prependName) {
 
 const externalIds = {}
 
-const defaultExclude = [ "**/*.json", "**/*.mjs", "**/*.js", "**/*.jsx", "**/*.ts", "**/*.tsx", "**/*.vue" ]
+const defaultExclude = [
+  "**/*.json",
+  "**/*.mjs",
+  "**/*.js",
+  "**/*.jsx",
+  "**/*.ts",
+  "**/*.tsx",
+  "**/*.vue"
+]
 
 export default function rebase(options = {}) {
-  const { include, exclude = defaultExclude, input, outputFolder, outputBase, verbose, prependName } = options
+  const {
+    include,
+    exclude = defaultExclude,
+    input,
+    outputFolder,
+    outputBase,
+    verbose,
+    prependName
+  } = options
   const filter = createFilter(include, exclude)
 
   return {
     name: "rollup-plugin-rebase",
 
     isExternal(id) {
-      var baseName = `./${path.basename(id)}`
+      const baseName = `./${path.basename(id)}`
       return baseName in externalIds
     },
 
@@ -89,29 +108,33 @@ export default function rebase(options = {}) {
 
       return new Promise((resolve, reject) => {
         inputStream.on("readable", async() => {
-          var fileSource = id
-          var fileExt = path.extname(id)
-          var fileName = path.basename(id).slice(0, -fileExt.length)
-          var destId = await getHashedName(id)
+          const fileSource = id
+          const fileExt = path.extname(id)
+          const fileName = path.basename(id).slice(0, -fileExt.length)
+          const destId = await getHashedName(id)
 
-
-          var fileHash = destId.slice(0, -fileExt.length)
-          var destFilename = prependName ? `${fileName}_${destId}` : destId
-          var fileDest = path.resolve(outputFolder, destFilename)
+          const fileHash = destId.slice(0, -fileExt.length)
+          const destFilename = prependName ? `${fileName}_${destId}` : destId
+          const fileDest = path.resolve(outputFolder, destFilename)
 
           // Mark new file location as external to prevent further processing.
           externalIds[`./${destFilename}`] = true
 
-          var inputFolder = path.dirname(path.resolve(input))
-          var relativeToRoot = path.relative(path.dirname(fileSource), inputFolder).replace(/\\/g, "/")
-          var relativeOutputPath = path.relative(outputBase || outputFolder, outputFolder);
-          if(relativeOutputPath){
-            relativeOutputPath += '/';
+          const inputFolder = path.dirname(path.resolve(input))
+          const relativeToRoot = path
+            .relative(path.dirname(fileSource), inputFolder)
+            .replace(/\\/g, "/")
+          let relativeOutputPath = path.relative(
+            outputBase || outputFolder,
+            outputFolder
+          )
+          if (relativeOutputPath) {
+            relativeOutputPath += "/"
           }
 
           // Adjust destId so that it points to the root folder - from any
           // depth we detected inside the original project structure.
-          var importId
+          let importId
           if (relativeToRoot.charAt(0) === ".") {
             importId = `${relativeToRoot}/${relativeOutputPath}${destFilename}`
           } else if (relativeToRoot === "") {
@@ -125,8 +148,13 @@ export default function rebase(options = {}) {
               console.log(`Processing ${fileSource} => ${fileDest}...`)
             }
 
-            var fileContent = fs.readFileSync(fileSource)
-            return processStyle(fileContent, fileSource, fileDest, prependName).then(() =>
+            const fileContent = fs.readFileSync(fileSource)
+            return processStyle(
+              fileContent,
+              fileSource,
+              fileDest,
+              prependName
+            ).then(() =>
               resolve({
                 code: `import _${fileHash} from "${importId}"; export default _${fileHash};`,
                 map: { mappings: "" }
