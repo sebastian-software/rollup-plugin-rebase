@@ -64,7 +64,7 @@
   },
   "devDependencies": {
     "babel-preset-edge": "^1.5.1",
-    "eslint-config-readable": "^1.8.2",
+    "eslint-config-readable": "^1.9.0",
     "jest": "^22.1.4",
     "prepublish": "^1.6.0",
     "release-it": "^6.1.1",
