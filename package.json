@@ -50,7 +50,7 @@
     ]
   },
   "dependencies": {
-    "asset-hash": "^1.0.4",
+    "asset-hash": "^1.0.5",
     "denodeify": "^1.2.1",
     "fs-extra": "^5.0.0",
     "nodent-runtime": "^3.2.0",
@@ -64,11 +64,11 @@
   },
   "devDependencies": {
     "babel-preset-edge": "^1.6.0",
-    "eslint-config-readable": "^1.10.1",
+    "eslint-config-readable": "^1.10.2",
     "jest": "^22.1.4",
-    "prepublish": "^1.6.0",
+    "prepublish": "^1.6.1",
     "release-it": "^6.1.1",
     "rimraf": "^2.6.2",
-    "rollup": "^0.55.1"
+    "rollup": "^0.55.2"
   }
 }
