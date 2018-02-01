@@ -58,7 +58,7 @@
     "postcss-import": "^11.0.0",
     "postcss-sass": "^0.3.0",
     "postcss-scss": "^1.0.3",
-    "postcss-smart-asset": "^0.5.5",
+    "postcss-smart-asset": "^0.5.6",
     "rollup-pluginutils": "^2.0.1",
     "sugarss": "^1.0.1"
   },
