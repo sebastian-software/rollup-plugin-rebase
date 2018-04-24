@@ -43,6 +43,7 @@ import _dnIKKh from './dnIKKh.gif';
 import _iQCqkl from './iQCqkl.css';
 
 /* eslint-disable filenames/match-regex */
+
 var assetsMixed = \`\${_fXQovA}|\${_dBNImC}|\${_dnIKKh}|\${_iQCqkl}\`
 
 export default assetsMixed;
@@ -56,6 +57,7 @@ import _dnIKKh from './dnIKKh.gif';
 import _iQCqkl from './iQCqkl.css';
 
 /* eslint-disable filenames/match-regex */
+
 var assetsOutside = \`\${_fXQovA}|\${_XDOPW}|\${_dnIKKh}|\${_iQCqkl}\`
 
 export default assetsOutside;

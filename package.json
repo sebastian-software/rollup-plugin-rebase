@@ -69,6 +69,6 @@
     "prepublish": "^1.6.3",
     "release-it": "^7.4.1",
     "rimraf": "^2.6.2",
-    "rollup": "^0.55.3"
+    "rollup": "^0.56.5"
   }
 }
