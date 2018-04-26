@@ -31,16 +31,11 @@
     "release:minor": "release-it --github.release --npm.publish --non-interactive --increment minor",
     "release:major": "release-it --github.release --npm.publish --non-interactive --increment major",
     "test": "npm run prepare && jest",
-    "prepare": "rimraf lib && prepublish"
+    "prepare": "rimraf lib && preppy"
   },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/sebastian-software/rollup-plugin-rebase.git"
-  },
-  "babel": {
-    "presets": [
-      "edge"
-    ]
   },
   "jest": {
     "testPathIgnorePatterns": [
@@ -53,7 +48,6 @@
     "asset-hash": "^1.2.1",
     "denodeify": "^1.2.1",
     "fs-extra": "^5.0.0",
-    "lean-nodent-runtime": "^1.0.2",
     "postcss": "^6.0.21",
     "postcss-import": "^11.1.0",
     "postcss-sass": "^0.3.0",
@@ -66,7 +60,7 @@
     "babel-preset-edge": "^2.1.0",
     "eslint-config-readable": "^1.11.1",
     "jest": "^22.4.3",
-    "prepublish": "^1.7.0",
+    "preppy": "^4.0.1",
     "rimraf": "^2.6.2",
     "rollup": "^0.58.2"
   }
