@@ -63,12 +63,11 @@
     "sugarss": "^1.0.1"
   },
   "devDependencies": {
-    "babel-preset-edge": "^1.9.1",
-    "eslint-config-readable": "^1.10.2",
+    "babel-preset-edge": "^2.1.0",
+    "eslint-config-readable": "^1.11.1",
     "jest": "^22.4.3",
-    "prepublish": "^1.6.3",
-    "release-it": "^7.4.1",
+    "prepublish": "^1.7.0",
     "rimraf": "^2.6.2",
-    "rollup": "^0.57.1"
+    "rollup": "^0.58.2"
   }
 }
