@@ -47,21 +47,24 @@
   "dependencies": {
     "asset-hash": "^1.2.1",
     "denodeify": "^1.2.1",
-    "fs-extra": "^5.0.0",
-    "postcss": "^6.0.21",
+    "fs-extra": "^6.0.1",
+    "postcss": "^6.0.22",
     "postcss-import": "^11.1.0",
-    "postcss-sass": "^0.3.0",
+    "postcss-sass": "^0.3.2",
     "postcss-scss": "^1.0.5",
     "postcss-smart-asset": "^0.5.6",
-    "rollup-pluginutils": "^2.0.1",
+    "rollup-pluginutils": "^2.3.0",
     "sugarss": "^1.0.1"
   },
   "devDependencies": {
-    "babel-preset-edge": "^2.2.3",
-    "eslint-config-readable": "^1.11.1",
-    "jest": "^22.4.3",
-    "preppy": "^4.2.1",
+    "babel-preset-edge": "^4.3.1",
+    "eslint": "^4.19.1",
+    "eslint-config-readable": "^1.13.4",
+    "flow-bin": "^0.73.0",
+    "jest": "^23.1.0",
+    "preppy": "^4.2.2",
+    "prettier": "^1.13.4",
     "rimraf": "^2.6.2",
-    "rollup": "^0.58.2"
+    "rollup": "^0.60.1"
   }
 }
