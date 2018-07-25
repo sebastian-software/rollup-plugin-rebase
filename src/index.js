@@ -115,14 +115,14 @@ export default function rebase(options = {}) {
       }
 
       assets[assetId] = fileHash
-      wrappers[resolvedId] = assetId
+      wrappers[resolvedId] = assetId.replace(/\\/g, "/")
 
       return resolvedId
     },
 
     load(id) {
       if (wrappers[id] != null) {
-        const importee = wrappers[id].replace(/\\/g, "/")
+        const importee = wrappers[id]
         const code = `export { default } from "${importee}";`
         return code
       }
