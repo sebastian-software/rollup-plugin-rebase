@@ -121,7 +121,7 @@ export default function rebase(options = {}) {
 
       files[fileSource] = path.join(folder, destFilename)
 
-      const assetId = path.join(path.dirname(importer), folder, path.basename(destFilename))
+      const assetId = path.join(path.dirname(importer), folder, destFilename)
       const resolvedId = assetId + ".js"
 
       assets[assetId] = fileHash
