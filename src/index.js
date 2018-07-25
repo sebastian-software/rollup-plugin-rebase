@@ -133,25 +133,29 @@ export default function rebase(options = {}) {
     async generateBundle({ file }) {
       const outputFolder = path.dirname(file)
 
-      await Promise.all(
-        Object.keys(files).map(async (fileSource) => {
-          const fileDest = path.join(outputFolder, files[fileSource])
-          const fileExt = path.extname(fileSource)
+      try {
+        await Promise.all(
+          Object.keys(files).map(async (fileSource) => {
+            const fileDest = path.join(outputFolder, files[fileSource])
+            const fileExt = path.extname(fileSource)
 
-          if (fileExt in styleParser) {
-            if (verbose) {
-              console.log(`Processing ${fileSource} => ${fileDest}...`)
-            }
-            await processStyle(fileSource, fileDest, keepName)
-          } else {
-            if (verbose) {
-              console.log(`Copying ${fileSource} => ${fileDest}...`)
-            }
+            if (fileExt in styleParser) {
+              if (verbose) {
+                console.log(`Processing ${fileSource} => ${fileDest}...`)
+              }
+              await processStyle(fileSource, fileDest, keepName)
+            } else {
+              if (verbose) {
+                console.log(`Copying ${fileSource} => ${fileDest}...`)
+              }
 
-            await fs.copy(fileSource, fileDest)
-          }
-        })
-      )
+              await fs.copy(fileSource, fileDest)
+            }
+          })
+        )
+      } catch(error) {
+        throw new Error("Error while copying files:", error)
+      }
     }
   }
 }
