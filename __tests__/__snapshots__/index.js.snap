@@ -11,3 +11,15 @@ var assets = \`\${font}|\${image}|\${deep}|\${style}\`;
 export default assets;
 "
 `;
+
+exports[`Assets written to subfolder 1`] = `
+"import font from './img/cNxsXFOx.woff';
+import image from './img/fEGHuKIT.png';
+import deep from './img/ceBqZEDY.gif';
+import style from './img/gayDQjlm.css';
+
+var assets = \`\${font}|\${image}|\${deep}|\${style}\`;
+
+export default assets;
+"
+`;

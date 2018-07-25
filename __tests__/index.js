@@ -80,45 +80,45 @@ test("Assets", () => {
     )
 })
 
-// test("Assets written to subfolder", () => {
-//   const outputFile = `${outputFolder}/assets-subfolder/index.js`
+test("Assets written to subfolder", () => {
+  const outputFile = `${outputFolder}/assets-subfolder/index.js`
 
-//   const imageFile = `${outputFolder}/assets-subfolder/img/fEGHuKIT.png`
-//   const fontFile = `${outputFolder}/assets-subfolder/img/cNxsXFOx.woff`
-//   const deepFile = `${outputFolder}/assets-subfolder/img/ceBqZEDY.gif`
-//   const cssFile = `${outputFolder}/assets-subfolder/img/gayDQjlm.css`
-//   const cssFont = `${outputFolder}/assets-subfolder/img/gadyfD.woff`
+  const imageFile = `${outputFolder}/assets-subfolder/img/fEGHuKIT.png`
+  const fontFile = `${outputFolder}/assets-subfolder/img/cNxsXFOx.woff`
+  const deepFile = `${outputFolder}/assets-subfolder/img/ceBqZEDY.gif`
+  const cssFile = `${outputFolder}/assets-subfolder/img/gayDQjlm.css`
+  const cssFont = `${outputFolder}/assets-subfolder/img/gadyfD.woff`
 
-//   const options = {
-//     outputFolder: `${outputFolder}assets-subfolder/img/`,
-//     outputBase: dirname(outputFile)
-//   }
+  const options = {
+    outputFolder: `${outputFolder}assets-subfolder/img/`,
+    outputBase: dirname(outputFile)
+  }
 
-//   return bundle("./__tests__/fixtures/assets.js", outputFile, options)
-//     .then(() =>
-//       Promise.all([
-//         expect(fileExists(outputFile)).resolves.toBeTruthy(),
-//         readFile(outputFile, "utf-8").then((content) => {
-//           expect(content).toMatchSnapshot()
-//         }),
-//         expect(fileExists(imageFile)).resolves.toBeTruthy(),
-//         expect(fileExists(fontFile)).resolves.toBeTruthy(),
-//         expect(fileExists(deepFile)).resolves.toBeTruthy(),
-//         expect(fileExists(cssFile)).resolves.toBeTruthy(),
-//         expect(fileExists(cssFont)).resolves.toBeTruthy()
-//       ])
-//     )
-//     .then(
-//       Promise.all([
-//         rimrafp(outputFile),
-//         rimrafp(imageFile),
-//         rimrafp(fontFile),
-//         rimrafp(deepFile),
-//         rimrafp(cssFile),
-//         rimrafp(cssFont)
-//       ])
-//     )
-// })
+  return bundle("./__tests__/fixtures/assets.js", outputFile, options)
+    .then(() =>
+      Promise.all([
+        expect(fileExists(outputFile)).resolves.toBeTruthy(),
+        readFile(outputFile, "utf-8").then((content) => {
+          expect(content).toMatchSnapshot()
+        }),
+        expect(fileExists(imageFile)).resolves.toBeTruthy(),
+        expect(fileExists(fontFile)).resolves.toBeTruthy(),
+        expect(fileExists(deepFile)).resolves.toBeTruthy(),
+        expect(fileExists(cssFile)).resolves.toBeTruthy(),
+        expect(fileExists(cssFont)).resolves.toBeTruthy()
+      ])
+    )
+    .then(
+      Promise.all([
+        rimrafp(outputFile),
+        rimrafp(imageFile),
+        rimrafp(fontFile),
+        rimrafp(deepFile),
+        rimrafp(cssFile),
+        rimrafp(cssFont)
+      ])
+    )
+})
 
 // test("Outside Assets", () => {
 //   const outputFile = `${outputFolder}/outside/index.js`
