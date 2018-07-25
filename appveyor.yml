@@ -8,6 +8,9 @@ environment:
     - nodejs_version: 8
     - nodejs_version: 10
 
+platform:
+  - x86
+
 version: "{build}"
 build: off
 deploy: off
