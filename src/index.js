@@ -107,7 +107,7 @@ export default function rebase(options = {}) {
 
       files[fileSource] = path.join(folder, destFilename)
 
-      const assetId = path.join(path.dirname(importer), folder, destFilename)
+      const assetId = path.join(path.dirname(importer), folder, destFilename).replace(/\\/g, "/")
       const resolvedId = `${assetId}.js`
 
       if (verbose) {
@@ -115,7 +115,7 @@ export default function rebase(options = {}) {
       }
 
       assets[assetId] = fileHash
-      wrappers[resolvedId] = assetId.replace(/\\/g, "/")
+      wrappers[resolvedId] = assetId
 
       return resolvedId
     },
