@@ -24,6 +24,18 @@ export default assets;
 "
 `;
 
+exports[`Keep Name 1`] = `
+"import font from './font_cNxsXFOx.woff';
+import image from './image_fEGHuKIT.png';
+import deep from './blank_ceBqZEDY.gif';
+import style from './css-font_gayDQjlm.css';
+
+var assets = \`\${font}|\${image}|\${deep}|\${style}\`;
+
+export default assets;
+"
+`;
+
 exports[`Mixed Asset Source Locations 1`] = `
 "import font from './cNxsXFOx.woff';
 import svg from './foixBwnR.svg';

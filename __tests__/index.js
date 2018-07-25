@@ -44,13 +44,13 @@ test("Plain", () => {
 
 
 test("Assets", () => {
-  const outputFile = `${outputFolder}/assets/index.js`
+  const outputFile = `${outputFolder}/hashing-basics/index.js`
 
-  const imageFile = `${outputFolder}/assets/fEGHuKIT.png`
-  const fontFile = `${outputFolder}/assets/cNxsXFOx.woff`
-  const deepFile = `${outputFolder}/assets/ceBqZEDY.gif`
-  const cssFile = `${outputFolder}/assets/gayDQjlm.css`
-  const cssFont = `${outputFolder}/assets/gadyfD.woff`
+  const imageFile = `${outputFolder}/hashing-basics/fEGHuKIT.png`
+  const fontFile = `${outputFolder}/hashing-basics/cNxsXFOx.woff`
+  const deepFile = `${outputFolder}/hashing-basics/ceBqZEDY.gif`
+  const cssFile = `${outputFolder}/hashing-basics/gayDQjlm.css`
+  const cssFont = `${outputFolder}/hashing-basics/gadyfD.woff`
 
   return bundle("./__tests__/fixtures/assets.js", outputFile)
     .then(() =>
@@ -79,13 +79,13 @@ test("Assets", () => {
 })
 
 test("Assets written to subfolder", () => {
-  const outputFile = `${outputFolder}/assets-subfolder/index.js`
+  const outputFile = `${outputFolder}/output-subfolder/index.js`
 
-  const imageFile = `${outputFolder}/assets-subfolder/static/fEGHuKIT.png`
-  const fontFile = `${outputFolder}/assets-subfolder/static/cNxsXFOx.woff`
-  const deepFile = `${outputFolder}/assets-subfolder/static/ceBqZEDY.gif`
-  const cssFile = `${outputFolder}/assets-subfolder/static/gayDQjlm.css`
-  const cssFont = `${outputFolder}/assets-subfolder/static/gadyfD.woff`
+  const imageFile = `${outputFolder}/output-subfolder/static/fEGHuKIT.png`
+  const fontFile = `${outputFolder}/output-subfolder/static/cNxsXFOx.woff`
+  const deepFile = `${outputFolder}/output-subfolder/static/ceBqZEDY.gif`
+  const cssFile = `${outputFolder}/output-subfolder/static/gayDQjlm.css`
+  const cssFont = `${outputFolder}/output-subfolder/static/gadyfD.woff`
 
   const options = {
     folder: "static"
@@ -118,13 +118,13 @@ test("Assets written to subfolder", () => {
 })
 
 test("Outside Asset Source Location", () => {
-  const outputFile = `${outputFolder}/outside/index.js`
+  const outputFile = `${outputFolder}/sources-outside/index.js`
 
-  const imageFile = `${outputFolder}/outside/fEGHuKIT.png`
-  const fontFile = `${outputFolder}/outside/cNxsXFOx.woff`
-  const deepFile = `${outputFolder}/outside/ceBqZEDY.gif`
-  const cssFile = `${outputFolder}/outside/gayDQjlm.css`
-  const cssFont = `${outputFolder}/outside/gadyfD.woff`
+  const imageFile = `${outputFolder}/sources-outside/fEGHuKIT.png`
+  const fontFile = `${outputFolder}/sources-outside/cNxsXFOx.woff`
+  const deepFile = `${outputFolder}/sources-outside/ceBqZEDY.gif`
+  const cssFile = `${outputFolder}/sources-outside/gayDQjlm.css`
+  const cssFont = `${outputFolder}/sources-outside/gadyfD.woff`
 
   return bundle("./__tests__/fixtures/deep/assets-outside.js", outputFile)
     .then(() =>
@@ -153,13 +153,13 @@ test("Outside Asset Source Location", () => {
 })
 
 test("Mixed Asset Source Locations", () => {
-  const outputFile = `${outputFolder}/mixed/index.js`
+  const outputFile = `${outputFolder}/sources-mixed/index.js`
 
-  const fontFile = `${outputFolder}/mixed/cNxsXFOx.woff`
-  const svgFile = `${outputFolder}/mixed/foixBwnR.svg`
-  const deepFile = `${outputFolder}/mixed/ceBqZEDY.gif`
-  const cssFile = `${outputFolder}/mixed/gayDQjlm.css`
-  const cssFont = `${outputFolder}/mixed/gadyfD.woff`
+  const fontFile = `${outputFolder}/sources-mixed/cNxsXFOx.woff`
+  const svgFile = `${outputFolder}/sources-mixed/foixBwnR.svg`
+  const deepFile = `${outputFolder}/sources-mixed/ceBqZEDY.gif`
+  const cssFile = `${outputFolder}/sources-mixed/gayDQjlm.css`
+  const cssFont = `${outputFolder}/sources-mixed/gadyfD.woff`
 
   return bundle("./__tests__/fixtures/deep/assets-mixed.js", outputFile)
     .then(() =>
@@ -187,39 +187,39 @@ test("Mixed Asset Source Locations", () => {
     )
 })
 
-// test("Keep Name", () => {
-//   const outputFile = `${outputFolder}/assets-hash-appened/index.js`
+test("Keep Name", () => {
+  const outputFile = `${outputFolder}/keep-name/index.js`
 
-//   const imageFile = `${outputFolder}/assets-hash-appened/image_fEGHuKIT.png`
-//   const fontFile = `${outputFolder}/assets-hash-appened/font_cNxsXFOx.woff`
-//   const deepFile = `${outputFolder}/assets-hash-appened/blank_ceBqZEDY.gif`
-//   const cssFile = `${outputFolder}/assets-hash-appened/css-font_gayDQjlm.css`
-//   const cssFont = `${outputFolder}/assets-hash-appened/css-font_gadyfD.woff`
+  const imageFile = `${outputFolder}/keep-name/image_fEGHuKIT.png`
+  const fontFile = `${outputFolder}/keep-name/font_cNxsXFOx.woff`
+  const deepFile = `${outputFolder}/keep-name/blank_ceBqZEDY.gif`
+  const cssFile = `${outputFolder}/keep-name/css-font_gayDQjlm.css`
+  const cssFont = `${outputFolder}/keep-name/css-font_gadyfD.woff`
 
-//   return bundle("./__tests__/fixtures/assets.js", outputFile, {
-//     keepName: true
-//   })
-//     .then(() =>
-//       Promise.all([
-//         expect(fileExists(outputFile)).resolves.toBeTruthy(),
-//         readFile(outputFile, "utf-8").then((content) => {
-//           expect(content).toMatchSnapshot()
-//         }),
-//         expect(fileExists(imageFile)).resolves.toBeTruthy(),
-//         expect(fileExists(fontFile)).resolves.toBeTruthy(),
-//         expect(fileExists(deepFile)).resolves.toBeTruthy(),
-//         expect(fileExists(cssFile)).resolves.toBeTruthy(),
-//         expect(fileExists(cssFont)).resolves.toBeTruthy()
-//       ])
-//     )
-//     .then(
-//       Promise.all([
-//         rimrafp(outputFile),
-//         rimrafp(imageFile),
-//         rimrafp(fontFile),
-//         rimrafp(deepFile),
-//         rimrafp(cssFile),
-//         rimrafp(cssFont)
-//       ])
-//     )
-// })
+  return bundle("./__tests__/fixtures/assets.js", outputFile, {
+    keepName: true
+  })
+    .then(() =>
+      Promise.all([
+        expect(fileExists(outputFile)).resolves.toBeTruthy(),
+        readFile(outputFile, "utf-8").then((content) => {
+          expect(content).toMatchSnapshot()
+        }),
+        expect(fileExists(imageFile)).resolves.toBeTruthy(),
+        expect(fileExists(fontFile)).resolves.toBeTruthy(),
+        expect(fileExists(deepFile)).resolves.toBeTruthy(),
+        expect(fileExists(cssFile)).resolves.toBeTruthy(),
+        expect(fileExists(cssFont)).resolves.toBeTruthy()
+      ])
+    )
+    .then(
+      Promise.all([
+        rimrafp(outputFile),
+        rimrafp(imageFile),
+        rimrafp(fontFile),
+        rimrafp(deepFile),
+        rimrafp(cssFile),
+        rimrafp(cssFont)
+      ])
+    )
+})
