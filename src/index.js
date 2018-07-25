@@ -60,7 +60,7 @@ async function processStyle(id, dest, keepName) {
 }
 
 export default function rebase(options = {}) {
-  const { include, exclude = defaultExclude, verbose, keepName = false, folder = "" } = options
+  const { include, exclude = defaultExclude, verbose = true, keepName = false, folder = "" } = options
 
   const filter = createFilter(include, exclude)
   const wrappers = new Set()
@@ -93,8 +93,12 @@ export default function rebase(options = {}) {
         return null
       }
 
-      const fileSource = path.resolve(path.dirname(importer || ""), importee)
+      const fileSource = path.resolve(path.dirname(importer), importee)
       const fileName = path.basename(importee, fileExt)
+
+      if (verbose) {
+        console.log(`Analysing: ${fileSource}...`)
+      }
 
       const destId = await getHashedName(fileSource)
       const destFilename = keepName ? `${fileName}_${destId}` : destId
@@ -106,6 +110,10 @@ export default function rebase(options = {}) {
       const assetId = path.join(path.dirname(importer), folder, destFilename)
       const resolvedId = `${assetId}.js`
 
+      if (verbose) {
+        console.log(`Using Asset-ID: ${assetId}`)
+      }
+
       assets[assetId] = fileHash
       wrappers[resolvedId] = assetId
 
@@ -114,7 +122,8 @@ export default function rebase(options = {}) {
 
     load(id) {
       if (wrappers[id] != null) {
-        return `export { default } from "${wrappers[id]}";`
+        const code = `export { default } from "${wrappers[id]}";`
+        return code
       }
 
       return null
