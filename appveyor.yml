@@ -1,5 +1,3 @@
-# http://www.appveyor.com/docs/appveyor-yml
-
 clone_depth: 10
 
 environment:
@@ -7,6 +5,9 @@ environment:
     - nodejs_version: 6
     - nodejs_version: 8
     - nodejs_version: 10
+
+matrix:
+  fast_finish: true
 
 platform:
   - x64
@@ -16,7 +17,7 @@ build: off
 deploy: off
 
 install:
-  - ps: Install-Product node $env:nodejs_version $platform
+  - ps: Install-Product node $env:nodejs_version $env:platform
   - npm install
 
 test_script:
