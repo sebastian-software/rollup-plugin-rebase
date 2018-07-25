@@ -1,13 +1,7 @@
 import fs from "fs-extra"
 import { rollup } from "rollup"
-import denodeify from "denodeify"
-import rimraf from "rimraf"
 
 import rebasePlugin from "../src"
-
-const stat = denodeify(fs.stat)
-const rimrafp = denodeify(rimraf)
-const readFile = denodeify(fs.readFile)
 
 const outputFolder = "./__tests__/output/"
 
@@ -26,11 +20,11 @@ function bundle(input, outputFile, pluginOptions = {}) {
 }
 
 function fileExists(name) {
-  return stat(name).then((result) => true, (error) => false)
+  return fs.stat(name).then((result) => true, (error) => false)
 }
 
 beforeAll(() => {
-  return rimrafp(outputFolder)
+  return fs.remove(outputFolder)
 })
 
 test("Plain", () => {
@@ -38,7 +32,7 @@ test("Plain", () => {
 
   return bundle("./__tests__/fixtures/plain.js", outputFile)
     .then(() => Promise.all([ expect(fileExists(outputFile)).resolves.toBeTruthy() ]))
-    .then(Promise.all([ rimrafp(outputFile) ]))
+    .then(Promise.all([ fs.remove(outputFile) ]))
 })
 
 
@@ -56,7 +50,7 @@ test("Assets", () => {
     .then(() =>
       Promise.all([
         expect(fileExists(outputFile)).resolves.toBeTruthy(),
-        readFile(outputFile, "utf-8").then((content) => {
+        fs.readFile(outputFile, "utf-8").then((content) => {
           expect(content).toMatchSnapshot()
         }),
         expect(fileExists(imageFile)).resolves.toBeTruthy(),
@@ -68,12 +62,12 @@ test("Assets", () => {
     )
     .then(
       Promise.all([
-        rimrafp(outputFile),
-        rimrafp(imageFile),
-        rimrafp(fontFile),
-        rimrafp(deepFile),
-        rimrafp(cssFile),
-        rimrafp(cssFont)
+        fs.remove(outputFile),
+        fs.remove(imageFile),
+        fs.remove(fontFile),
+        fs.remove(deepFile),
+        fs.remove(cssFile),
+        fs.remove(cssFont)
       ])
     )
 })
@@ -95,7 +89,7 @@ test("Assets written to subfolder", () => {
     .then(() =>
       Promise.all([
         expect(fileExists(outputFile)).resolves.toBeTruthy(),
-        readFile(outputFile, "utf-8").then((content) => {
+        fs.readFile(outputFile, "utf-8").then((content) => {
           expect(content).toMatchSnapshot()
         }),
         expect(fileExists(imageFile)).resolves.toBeTruthy(),
@@ -107,12 +101,12 @@ test("Assets written to subfolder", () => {
     )
     .then(
       Promise.all([
-        rimrafp(outputFile),
-        rimrafp(imageFile),
-        rimrafp(fontFile),
-        rimrafp(deepFile),
-        rimrafp(cssFile),
-        rimrafp(cssFont)
+        fs.remove(outputFile),
+        fs.remove(imageFile),
+        fs.remove(fontFile),
+        fs.remove(deepFile),
+        fs.remove(cssFile),
+        fs.remove(cssFont)
       ])
     )
 })
@@ -130,7 +124,7 @@ test("Outside Asset Source Location", () => {
     .then(() =>
       Promise.all([
         expect(fileExists(outputFile)).resolves.toBeTruthy(),
-        readFile(outputFile, "utf-8").then((content) => {
+        fs.readFile(outputFile, "utf-8").then((content) => {
           expect(content).toMatchSnapshot()
         }),
         expect(fileExists(imageFile)).resolves.toBeTruthy(),
@@ -142,12 +136,12 @@ test("Outside Asset Source Location", () => {
     )
     .then(
       Promise.all([
-        rimrafp(outputFile),
-        rimrafp(imageFile),
-        rimrafp(fontFile),
-        rimrafp(deepFile),
-        rimrafp(cssFile),
-        rimrafp(cssFont)
+        fs.remove(outputFile),
+        fs.remove(imageFile),
+        fs.remove(fontFile),
+        fs.remove(deepFile),
+        fs.remove(cssFile),
+        fs.remove(cssFont)
       ])
     )
 })
@@ -165,7 +159,7 @@ test("Mixed Asset Source Locations", () => {
     .then(() =>
       Promise.all([
         expect(fileExists(outputFile)).resolves.toBeTruthy(),
-        readFile(outputFile, "utf-8").then((content) => {
+        fs.readFile(outputFile, "utf-8").then((content) => {
           expect(content).toMatchSnapshot()
         }),
         expect(fileExists(fontFile)).resolves.toBeTruthy(),
@@ -177,12 +171,12 @@ test("Mixed Asset Source Locations", () => {
     )
     .then(
       Promise.all([
-        rimrafp(outputFile),
-        rimrafp(fontFile),
-        rimrafp(svgFile),
-        rimrafp(deepFile),
-        rimrafp(cssFile),
-        rimrafp(cssFont)
+        fs.remove(outputFile),
+        fs.remove(fontFile),
+        fs.remove(svgFile),
+        fs.remove(deepFile),
+        fs.remove(cssFile),
+        fs.remove(cssFont)
       ])
     )
 })
@@ -202,7 +196,7 @@ test("Keep Name", () => {
     .then(() =>
       Promise.all([
         expect(fileExists(outputFile)).resolves.toBeTruthy(),
-        readFile(outputFile, "utf-8").then((content) => {
+        fs.readFile(outputFile, "utf-8").then((content) => {
           expect(content).toMatchSnapshot()
         }),
         expect(fileExists(imageFile)).resolves.toBeTruthy(),
@@ -214,12 +208,12 @@ test("Keep Name", () => {
     )
     .then(
       Promise.all([
-        rimrafp(outputFile),
-        rimrafp(imageFile),
-        rimrafp(fontFile),
-        rimrafp(deepFile),
-        rimrafp(cssFile),
-        rimrafp(cssFont)
+        fs.remove(outputFile),
+        fs.remove(imageFile),
+        fs.remove(fontFile),
+        fs.remove(deepFile),
+        fs.remove(cssFile),
+        fs.remove(cssFont)
       ])
     )
 })

@@ -24,9 +24,9 @@
     "lib/"
   ],
   "scripts": {
-    "lint:js": "eslint --ignore-path .gitignore .",
-    "fix:js": "eslint --ignore-path .gitignore --fix .",
-    "format:js": "prettier --ignore-path .gitignore --write '**/*.{js,mjs}' && npm run fix:js",
+    "lint:js": "eslint .",
+    "fix:js": "eslint --fix .",
+    "format:js": "prettier --write '**/*.js' && npm run fix:js",
     "release": "release-it --github.release --npm.publish --non-interactive",
     "release:minor": "release-it --github.release --npm.publish --non-interactive --increment minor",
     "release:major": "release-it --github.release --npm.publish --non-interactive --increment major",
@@ -48,7 +48,6 @@
     "@babel/runtime": "^7.0.0-beta.54",
     "asset-hash": "^2.1.2",
     "core-js": "^2.5.7",
-    "denodeify": "^1.2.1",
     "fs-extra": "^7.0.0",
     "postcss": "^7.0.1",
     "postcss-import": "^11.1.0",
