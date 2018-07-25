@@ -2,18 +2,18 @@
 
 The Rollup Rebase Plugin copies static assets as required from your JavaScript code to the destination folder and adjusts the references in there to point to the new location.
 
-
-[sponsor-img]: https://img.shields.io/badge/Sponsored%20by-Sebastian%20Software-692446.svg
 [sponsor]: https://www.sebastian-software.de
 [deps]: https://david-dm.org/sebastian-software/rollup-plugin-rebase
-[deps-img]: https://david-dm.org/sebastian-software/rollup-plugin-rebase.svg
 [npm]: https://www.npmjs.com/package/rollup-plugin-rebase
-[npm-downloads-img]: https://img.shields.io/npm/dm/rollup-plugin-rebase.svg
-[npm-version-img]: https://img.shields.io/npm/v/rollup-plugin-rebase.svg
-[travis-img]: https://img.shields.io/travis/sebastian-software/rollup-plugin-rebase/master.svg?branch=master&label=unix%20build
-[appveyor-img]: https://img.shields.io/appveyor/ci/swernerx/rollup-plugin-rebase/master.svg?label=windows%20build
 [travis]: https://travis-ci.org/sebastian-software/rollup-plugin-rebase
 [appveyor]: https://ci.appveyor.com/project/swernerx/rollup-plugin-rebase/branch/master
+
+[sponsor-img]: https://badgen.net/badge/Sponsored%20by-Sebastian%20Software-692446
+[deps-img]: https://badgen.net/david/dep/sebastian-software/rollup-plugin-rebase
+[npm-downloads-img]: https://badgen.net/npm/dm/rollup-plugin-rebase
+[npm-version-img]: https://badgen.net/npm/v/rollup-plugin-rebase
+[travis-img]: https://badgen.net/travis/sebastian-software/rollup-plugin-rebase?label=unix%20build
+[appveyor-img]: https://badgen.net/appveyor/ci/swernerx/rollup-plugin-rebase?label=windows%20build
 
 ## Features
 
