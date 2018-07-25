@@ -138,7 +138,7 @@ export default function rebase(options = {}) {
         await fs.copy(fileSource, fileDest)
       }
 
-      const assetId = "./" + path.basename(fileDest)
+      const assetId = path.dirname(importer) + "/" + path.basename(fileDest)
       const resolvedId = assetId + ".js"
 
       console.log("-> Registering asset:", assetId)

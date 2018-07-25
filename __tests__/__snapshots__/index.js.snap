@@ -1,10 +1,10 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`Assets 1`] = `
-"import font from '../../cNxsXFOx.woff';
-import image from '../../fEGHuKIT.png';
-import deep from '../../ceBqZEDY.gif';
-import style from '../../gayDQjlm.css';
+"import font from './cNxsXFOx.woff';
+import image from './fEGHuKIT.png';
+import deep from './ceBqZEDY.gif';
+import style from './gayDQjlm.css';
 
 var assets = \`\${font}|\${image}|\${deep}|\${style}\`;
 
