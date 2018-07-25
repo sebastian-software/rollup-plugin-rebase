@@ -18,8 +18,8 @@
     "url": "http://sebastian-software.de/werner"
   },
   "license": "Apache-2.0",
-  "main": "lib/node.commonjs.js",
-  "module": "lib/node.esmodule.js",
+  "main": "lib/index.cjs.js",
+  "module": "lib/index.esm.js",
   "files": [
     "lib/"
   ],
