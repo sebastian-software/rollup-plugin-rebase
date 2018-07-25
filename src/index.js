@@ -3,15 +3,25 @@ import path from "path"
 import fs from "fs-extra"
 import postcss from "postcss"
 import postcssImport from "postcss-import"
-
 import postcssSass from "postcss-sass"
-
 import postcssScss from "postcss-scss"
 import postcssSmartAsset from "postcss-smart-asset"
-
 import postcssSugarSS from "sugarss"
+
 import { createFilter } from "rollup-pluginutils"
 import { getHashedName } from "asset-hash"
+
+const defaultExclude = [
+  /\.json$/,
+  /\.mjs$/,
+  /\.js$/,
+  /\.jsx$/,
+  /\.es$/,
+  /\.esx$/,
+  /\.ts$/,
+  /\.tsx$/,
+  /\.vue$/
+]
 
 const styleParser = {
   ".pcss": null,
@@ -48,18 +58,6 @@ async function processStyle(id, dest, keepName) {
 
   await fs.outputFile(dest, result)
 }
-
-const defaultExclude = [
-  /\.json$/,
-  /\.mjs$/,
-  /\.js$/,
-  /\.jsx$/,
-  /\.es$/,
-  /\.esx$/,
-  /\.ts$/,
-  /\.tsx$/,
-  /\.vue$/
-]
 
 export default function rebase(options = {}) {
   const { include, exclude = defaultExclude, verbose, keepName, folder = "" } = options
@@ -110,7 +108,7 @@ export default function rebase(options = {}) {
       files[fileSource] = path.join(folder, destFilename)
 
       const assetId = path.join(path.dirname(importer), folder, destFilename)
-      const resolvedId = `${assetId  }.js`
+      const resolvedId = `${assetId}.js`
 
       assets[assetId] = fileHash
       wrappers[resolvedId] = assetId
