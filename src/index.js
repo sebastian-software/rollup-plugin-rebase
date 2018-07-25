@@ -80,14 +80,21 @@ export default function rebase(options = {}) {
         return null
       }
 
+      // Ignore root files which are typically script files. Delegate to other
+      // plugins or default behavior.
       if (!importer) {
         return null
       }
 
+      // If we process an import request of an already processed asset
+      // we deal with it to exclude it from any further bundling through Rollup.
       if (assets[importee] != null) {
         return false
       }
 
+      // We do not process files which do not have a file extensions,
+      // cause all assets typically have one. By returning `null` we delegate
+      // the resolver to other plugins.
       const fileExt = path.extname(importee)
       if (fileExt === "") {
         return null
@@ -107,14 +114,21 @@ export default function rebase(options = {}) {
 
       files[fileSource] = path.join(folder, destFilename)
 
+      // Replacing slashes for Windows, as we need to use POSIX style to be compat
+      // to Rollup imports / NodeJS resolve implementation.
       const assetId = path.join(path.dirname(importer), folder, destFilename).replace(/\\/g, "/")
       const resolvedId = `${assetId}.js`
 
-      if (verbose) {
-        console.log(`Using Asset-ID: ${assetId}`)
-      }
-
+      // Register asset for exclusion handling in this function.
+      // We need the additonal wrapping to be able to not just exclude the file
+      // but to combine it with tweaking the import location. This indirection
+      // makes this possible as we benefit from having a two-phase resolve.
       assets[assetId] = fileHash
+
+      // Store data for our dynamic wrapper generator in `load()`. This uses the
+      // `assetId` to refer to our asset in its virtual new location which is
+      // relative to the importer. This is enough to tweak the import statements
+      // and make them flat and relative as desired in our output scenario.
       wrappers[resolvedId] = assetId
 
       return resolvedId
@@ -122,9 +136,9 @@ export default function rebase(options = {}) {
 
     load(id) {
       if (wrappers[id] != null) {
+        // It's not really any loader bit
         const importee = wrappers[id]
-        const code = `export { default } from "${importee}";`
-        return code
+        return `export { default } from "${importee}";`
       }
 
       return null
