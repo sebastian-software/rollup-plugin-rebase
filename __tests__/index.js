@@ -5,18 +5,18 @@ import rebasePlugin from "../src"
 
 const outputFolder = "./__tests__/output/"
 
-function bundle(input, outputFile, pluginOptions = {}) {
+async function bundle(input, outputFile, pluginOptions = {}) {
   const plugin = rebasePlugin(pluginOptions)
 
-  return rollup({
+  const result = await rollup({
     input,
     plugins: [ plugin ]
-  }).then((result) =>
-    result.write({
-      format: "es",
-      file: outputFile
-    })
-  )
+  })
+
+  await result.write({
+    format: "es",
+    file: outputFile
+  })
 }
 
 function fileExists(name) {
@@ -40,8 +40,6 @@ test("Plain", async () => {
     fs.remove(outputFile)
   ])
 })
-
-
 
 test("Assets", async () => {
   const outputFile = `${outputFolder}/hashing-basics/index.js`
