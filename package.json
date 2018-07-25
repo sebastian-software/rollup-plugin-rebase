@@ -60,6 +60,7 @@
   "devDependencies": {
     "@babel/core": "^7.0.0-beta.54",
     "babel-core": "^7.0.0-bridge.0",
+    "babel-jest": "^23.4.0",
     "babel-preset-edge": "^4.9.3",
     "eslint": "^5.2.0",
     "eslint-config-readable": "^2.1.3",
