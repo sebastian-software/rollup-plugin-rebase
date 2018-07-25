@@ -94,12 +94,12 @@ export default function rebase(options = {}) {
         return null
       }
 
-      if (assets[importee] != null) {
-        return false
-      }
-
       if (!importer) {
         return null
+      }
+
+      if (assets[importee] != null) {
+        return false
       }
 
       const fileExt = path.extname(importee)
@@ -130,6 +130,14 @@ export default function rebase(options = {}) {
       return resolvedId
     },
 
+    load(id) {
+      if (wrappers[id] != null) {
+        return `export { default } from "${wrappers[id]}";`
+      }
+
+      return null
+    },
+
     async generateBundle({ file }) {
       const outputFolder = path.dirname(file)
 
@@ -150,14 +158,6 @@ export default function rebase(options = {}) {
           await fs.copy(fileSource, fileDest)
         }
       }))
-    },
-
-    load(id) {
-      if (wrappers[id] != null) {
-        return `export { default } from "${wrappers[id]}";`
-      }
-
-      return null
     }
   }
 }
