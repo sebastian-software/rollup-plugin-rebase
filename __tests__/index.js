@@ -2,7 +2,6 @@ import fs from "fs-extra"
 import { rollup } from "rollup"
 import denodeify from "denodeify"
 import rimraf from "rimraf"
-import { dirname } from "path"
 
 import rebasePlugin from "../src"
 
@@ -13,8 +12,7 @@ const readFile = denodeify(fs.readFile)
 const outputFolder = "./__tests__/output/"
 
 function bundle(input, outputFile, pluginOptions = {}) {
-  const outputFolder = dirname(outputFile)
-  const plugin = rebasePlugin({ outputFolder, input, verbose: true, ...pluginOptions })
+  const plugin = rebasePlugin(pluginOptions)
 
   return rollup({
     input,
@@ -83,15 +81,14 @@ test("Assets", () => {
 test("Assets written to subfolder", () => {
   const outputFile = `${outputFolder}/assets-subfolder/index.js`
 
-  const imageFile = `${outputFolder}/assets-subfolder/img/fEGHuKIT.png`
-  const fontFile = `${outputFolder}/assets-subfolder/img/cNxsXFOx.woff`
-  const deepFile = `${outputFolder}/assets-subfolder/img/ceBqZEDY.gif`
-  const cssFile = `${outputFolder}/assets-subfolder/img/gayDQjlm.css`
-  const cssFont = `${outputFolder}/assets-subfolder/img/gadyfD.woff`
+  const imageFile = `${outputFolder}/assets-subfolder/static/fEGHuKIT.png`
+  const fontFile = `${outputFolder}/assets-subfolder/static/cNxsXFOx.woff`
+  const deepFile = `${outputFolder}/assets-subfolder/static/ceBqZEDY.gif`
+  const cssFile = `${outputFolder}/assets-subfolder/static/gayDQjlm.css`
+  const cssFont = `${outputFolder}/assets-subfolder/static/gadyfD.woff`
 
   const options = {
-    outputFolder: `${outputFolder}assets-subfolder/img/`,
-    outputBase: dirname(outputFile)
+    folder: "static"
   }
 
   return bundle("./__tests__/fixtures/assets.js", outputFile, options)
@@ -120,77 +117,77 @@ test("Assets written to subfolder", () => {
     )
 })
 
-// test("Outside Assets", () => {
-//   const outputFile = `${outputFolder}/outside/index.js`
+test("Outside Asset Source Location", () => {
+  const outputFile = `${outputFolder}/outside/index.js`
 
-//   const imageFile = `${outputFolder}/outside/fEGHuKIT.png`
-//   const fontFile = `${outputFolder}/outside/cNxsXFOx.woff`
-//   const deepFile = `${outputFolder}/outside/ceBqZEDY.gif`
-//   const cssFile = `${outputFolder}/outside/gayDQjlm.css`
-//   const cssFont = `${outputFolder}/outside/gadyfD.woff`
+  const imageFile = `${outputFolder}/outside/fEGHuKIT.png`
+  const fontFile = `${outputFolder}/outside/cNxsXFOx.woff`
+  const deepFile = `${outputFolder}/outside/ceBqZEDY.gif`
+  const cssFile = `${outputFolder}/outside/gayDQjlm.css`
+  const cssFont = `${outputFolder}/outside/gadyfD.woff`
 
-//   return bundle("./__tests__/fixtures/deep/assets-outside.js", outputFile)
-//     .then(() =>
-//       Promise.all([
-//         expect(fileExists(outputFile)).resolves.toBeTruthy(),
-//         readFile(outputFile, "utf-8").then((content) => {
-//           expect(content).toMatchSnapshot()
-//         }),
-//         expect(fileExists(imageFile)).resolves.toBeTruthy(),
-//         expect(fileExists(fontFile)).resolves.toBeTruthy(),
-//         expect(fileExists(deepFile)).resolves.toBeTruthy(),
-//         expect(fileExists(cssFile)).resolves.toBeTruthy(),
-//         expect(fileExists(cssFont)).resolves.toBeTruthy()
-//       ])
-//     )
-//     .then(
-//       Promise.all([
-//         rimrafp(outputFile),
-//         rimrafp(imageFile),
-//         rimrafp(fontFile),
-//         rimrafp(deepFile),
-//         rimrafp(cssFile),
-//         rimrafp(cssFont)
-//       ])
-//     )
-// })
+  return bundle("./__tests__/fixtures/deep/assets-outside.js", outputFile)
+    .then(() =>
+      Promise.all([
+        expect(fileExists(outputFile)).resolves.toBeTruthy(),
+        readFile(outputFile, "utf-8").then((content) => {
+          expect(content).toMatchSnapshot()
+        }),
+        expect(fileExists(imageFile)).resolves.toBeTruthy(),
+        expect(fileExists(fontFile)).resolves.toBeTruthy(),
+        expect(fileExists(deepFile)).resolves.toBeTruthy(),
+        expect(fileExists(cssFile)).resolves.toBeTruthy(),
+        expect(fileExists(cssFont)).resolves.toBeTruthy()
+      ])
+    )
+    .then(
+      Promise.all([
+        rimrafp(outputFile),
+        rimrafp(imageFile),
+        rimrafp(fontFile),
+        rimrafp(deepFile),
+        rimrafp(cssFile),
+        rimrafp(cssFont)
+      ])
+    )
+})
 
-// test("Mixed Assets", () => {
-//   const outputFile = `${outputFolder}/mixed/index.js`
+test("Mixed Asset Source Locations", () => {
+  const outputFile = `${outputFolder}/mixed/index.js`
 
-//   const fontFile = `${outputFolder}/mixed/cNxsXFOx.woff`
-//   const svgFile = `${outputFolder}/mixed/dBNImC.svg`
-//   const deepFile = `${outputFolder}/mixed/ceBqZEDY.gif`
-//   const cssFile = `${outputFolder}/mixed/gayDQjlm.css`
-//   const cssFont = `${outputFolder}/mixed/gadyfD.woff`
+  const fontFile = `${outputFolder}/mixed/cNxsXFOx.woff`
+  const svgFile = `${outputFolder}/mixed/foixBwnR.svg`
+  const deepFile = `${outputFolder}/mixed/ceBqZEDY.gif`
+  const cssFile = `${outputFolder}/mixed/gayDQjlm.css`
+  const cssFont = `${outputFolder}/mixed/gadyfD.woff`
 
-//   return bundle("./__tests__/fixtures/deep/assets-mixed.js", outputFile)
-//     .then(() =>
-//       Promise.all([
-//         expect(fileExists(outputFile)).resolves.toBeTruthy(),
-//         readFile(outputFile, "utf-8").then((content) => {
-//           expect(content).toMatchSnapshot()
-//         }),
-//         expect(fileExists(fontFile)).resolves.toBeTruthy(),
-//         expect(fileExists(svgFile)).resolves.toBeTruthy(),
-//         expect(fileExists(deepFile)).resolves.toBeTruthy(),
-//         expect(fileExists(cssFile)).resolves.toBeTruthy(),
-//         expect(fileExists(cssFont)).resolves.toBeTruthy()
-//       ])
-//     )
-//     .then(
-//       Promise.all([
-//         rimrafp(outputFile),
-//         rimrafp(fontFile),
-//         rimrafp(svgFile),
-//         rimrafp(deepFile),
-//         rimrafp(cssFile),
-//         rimrafp(cssFont)
-//       ])
-//     )
-// })
+  return bundle("./__tests__/fixtures/deep/assets-mixed.js", outputFile)
+    .then(() =>
+      Promise.all([
+        expect(fileExists(outputFile)).resolves.toBeTruthy(),
+        readFile(outputFile, "utf-8").then((content) => {
+          expect(content).toMatchSnapshot()
+        }),
+        expect(fileExists(fontFile)).resolves.toBeTruthy(),
+        expect(fileExists(svgFile)).resolves.toBeTruthy(),
+        expect(fileExists(deepFile)).resolves.toBeTruthy(),
+        expect(fileExists(cssFile)).resolves.toBeTruthy(),
+        expect(fileExists(cssFont)).resolves.toBeTruthy()
+      ])
+    )
+    .then(
+      Promise.all([
+        rimrafp(outputFile),
+        rimrafp(fontFile),
+        rimrafp(svgFile),
+        rimrafp(deepFile),
+        rimrafp(cssFile),
+        rimrafp(cssFont)
+      ])
+    )
+})
 
-// test("Assets with hash appeneded", () => {
+// test("Keep Name", () => {
 //   const outputFile = `${outputFolder}/assets-hash-appened/index.js`
 
 //   const imageFile = `${outputFolder}/assets-hash-appened/image_fEGHuKIT.png`
@@ -200,7 +197,7 @@ test("Assets written to subfolder", () => {
 //   const cssFont = `${outputFolder}/assets-hash-appened/css-font_gadyfD.woff`
 
 //   return bundle("./__tests__/fixtures/assets.js", outputFile, {
-//     prependName: true
+//     keepName: true
 //   })
 //     .then(() =>
 //       Promise.all([

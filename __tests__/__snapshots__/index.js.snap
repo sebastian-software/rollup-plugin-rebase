@@ -13,13 +13,41 @@ export default assets;
 `;
 
 exports[`Assets written to subfolder 1`] = `
-"import font from './img/cNxsXFOx.woff';
-import image from './img/fEGHuKIT.png';
-import deep from './img/ceBqZEDY.gif';
-import style from './img/gayDQjlm.css';
+"import font from './static/cNxsXFOx.woff';
+import image from './static/fEGHuKIT.png';
+import deep from './static/ceBqZEDY.gif';
+import style from './static/gayDQjlm.css';
 
 var assets = \`\${font}|\${image}|\${deep}|\${style}\`;
 
 export default assets;
+"
+`;
+
+exports[`Mixed Asset Source Locations 1`] = `
+"import font from './cNxsXFOx.woff';
+import svg from './foixBwnR.svg';
+import deep from './ceBqZEDY.gif';
+import style from './gayDQjlm.css';
+
+/* eslint-disable filenames/match-regex */
+
+var assetsMixed = \`\${font}|\${svg}|\${deep}|\${style}\`;
+
+export default assetsMixed;
+"
+`;
+
+exports[`Outside Asset Source Location 1`] = `
+"import font from './cNxsXFOx.woff';
+import image from './fEGHuKIT.png';
+import deep from './ceBqZEDY.gif';
+import style from './gayDQjlm.css';
+
+/* eslint-disable filenames/match-regex */
+
+var assetsOutside = \`\${font}|\${image}|\${deep}|\${style}\`;
+
+export default assetsOutside;
 "
 `;
