@@ -60,7 +60,7 @@ async function processStyle(id, dest, keepName) {
 }
 
 export default function rebase(options = {}) {
-  const { include, exclude = defaultExclude, verbose, keepName, folder = "" } = options
+  const { include, exclude = defaultExclude, verbose, keepName = false, folder = "" } = options
 
   const filter = createFilter(include, exclude)
   const wrappers = new Set()
@@ -89,16 +89,12 @@ export default function rebase(options = {}) {
       }
 
       const fileExt = path.extname(importee)
-
       if (fileExt === "") {
         return null
       }
 
-      const sourceFilePath = path.resolve(path.dirname(importer || ""), importee)
-
-      const fileSource = sourceFilePath
-
-      const fileName = path.basename(fileSource, fileExt)
+      const fileSource = path.resolve(path.dirname(importer || ""), importee)
+      const fileName = path.basename(importee, fileExt)
 
       const destId = await getHashedName(fileSource)
       const destFilename = keepName ? `${fileName}_${destId}` : destId
