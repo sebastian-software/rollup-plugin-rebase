@@ -4,6 +4,7 @@ import denodeify from "denodeify"
 import fs from "fs-extra"
 import { createFilter } from "rollup-pluginutils"
 import { getHashedName } from "asset-hash"
+import { resolve, dirname } from "path"
 
 import postcss from "postcss"
 
@@ -37,10 +38,11 @@ function getPostCssPlugins(prependName) {
 }
 
 /* eslint-disable max-params */
-function processStyle(code, id, dest, prependName) {
+async function processStyle(id, dest, prependName) {
+  const content = await fs.readFile(id)
   const parser = styleParser[path.extname(id)]
-  return postcss(getPostCssPlugins(prependName))
-    .process(code.toString(), {
+  const result = await postcss(getPostCssPlugins(prependName))
+    .process(content.toString(), {
       from: id,
       to: dest,
       extensions: Object.keys(styleParser),
@@ -49,22 +51,20 @@ function processStyle(code, id, dest, prependName) {
       // Always uses parser... even for scss as we like to offer "normal" CSS in deployed files.
       parser
     })
-    .then((result) => writeAsync(dest, result))
-    .catch((error) => {
-      console.error(error)
-    })
+
+  await writeAsync(dest, result)
 }
 
 const externalIds = {}
 
 const defaultExclude = [
-  "**/*.json",
-  "**/*.mjs",
-  "**/*.js",
-  "**/*.jsx",
-  "**/*.ts",
-  "**/*.tsx",
-  "**/*.vue"
+  /\.json$/,
+  /\.mjs$/,
+  /\.js$/,
+  /\.jsx$/,
+  /\.ts$/,
+  /\.tsx$/,
+  /\.vue$/
 ]
 
 export default function rebase(options = {}) {
@@ -77,29 +77,96 @@ export default function rebase(options = {}) {
     verbose,
     prependName
   } = options
+
   const filter = createFilter(include, exclude)
+  const wrappers = new Set()
+  const assets = new Set()
 
   return {
     name: "rollup-plugin-rebase",
 
-    isExternal(id) {
-      const baseName = `./${path.basename(id)}`
-      return baseName in externalIds
-    },
+    /* eslint-disable complexity, max-statements */
+    async resolveId(importee, importer) {
+      console.log("resolveId(" + importee + "," + importer + ")")
 
-    resolveId(importee) {
-      if (importee in externalIds) {
-        // This does not yet seem to work!
-        // See also: https://github.com/rollup/rollup/issues/861
-        // "returning any other falsy value signals that importee should be treated as an external module
-        // and not included in the bundle." -- https://github.com/rollup/rollup/wiki/Plugins#creating-plugins
+      if (!filter(importee)) {
+        if (verbose) {
+          // console.log("Ignoring [resolve]:", importee)
+        }
+
+        return null
+      }
+
+      if (assets[importee] != null) {
+        console.log("-> External:", importee)
         return false
       }
 
-      return null
+      if (!importer) {
+        return null
+      }
+
+      const fileExt = path.extname(importee)
+
+      if (fileExt === "") {
+        return null
+      }
+
+      const sourceFilePath = resolve(dirname(importer || ""), importee)
+
+      const fileSource = sourceFilePath
+
+      const fileName = path.basename(fileSource, fileExt)
+
+      const destId = await getHashedName(fileSource)
+      const destFilename = prependName ? `${fileName}_${destId}` : destId
+
+      const fileDest = path.resolve(outputFolder, destFilename)
+      const fileHash = destId.slice(0, -fileExt.length)
+
+      if (fileExt in styleParser) {
+        if (verbose) {
+          // console.log(`Processing ${fileSource} => ${fileDest}...`)
+        }
+
+        await processStyle(fileSource, fileDest, prependName)
+      } else {
+        if (verbose) {
+          // console.log(`Copying ${fileSource} => ${fileDest}...`)
+        }
+
+        await fs.copy(fileSource, fileDest)
+      }
+
+      const assetId = "./" + path.basename(fileDest)
+      const resolvedId = assetId + ".js"
+
+      console.log("-> Registering asset:", assetId)
+      console.log("-> Resolved:", resolvedId)
+      assets[assetId] = fileHash
+      wrappers[resolvedId] = assetId
+
+      return resolvedId
     },
 
     load(id) {
+      console.log("Load:", id)
+      if (wrappers[id] != null) {
+        const asset = wrappers[id]
+
+        console.log("Return JS for asset:", id)
+        console.log("->", `export { default } from "${asset}";`)
+
+        return `export { default } from "${asset}";`
+      }
+    },
+
+
+
+
+
+
+    xxxload(id) {
       if (!filter(id)) {
         return null
       }

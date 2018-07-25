@@ -47,7 +47,7 @@ $ yarn add --dev rollup-plugin-rebase
 
 ## Usage
 
-You can configure Rollup Rebase as part of your Rollup configuration. This can be either done in a `rollup.config.js` or by scripting the whole thing by using the Rollup API:
+You can configure Rollup Rebase as part of your Rollup configuration. This can be either done in a `rollup.config.js` or by scripting using the Rollup API:
 
 ```js
 import { rollup } from "rollup"
