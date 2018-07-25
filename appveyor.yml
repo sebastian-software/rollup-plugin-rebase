@@ -16,7 +16,7 @@ build: off
 deploy: off
 
 install:
-  - ps: Install-Product node $env:nodejs_version
+  - ps: Install-Product node $env:nodejs_version $platform
   - npm install
 
 test_script:
