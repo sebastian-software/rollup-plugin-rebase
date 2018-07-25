@@ -8,7 +8,7 @@ The Rollup Rebase Plugin copies static assets as required from your JavaScript c
 [travis]: https://travis-ci.org/sebastian-software/rollup-plugin-rebase
 [appveyor]: https://ci.appveyor.com/project/swernerx/rollup-plugin-rebase/branch/master
 
-[sponsor-img]: https://badgen.net/badge/Sponsored%20by-Sebastian%20Software-692446
+[sponsor-img]: https://badgen.net/badge/Sponsored%20by/Sebastian%20Software/692446
 [deps-img]: https://badgen.net/david/dep/sebastian-software/rollup-plugin-rebase
 [npm-downloads-img]: https://badgen.net/npm/dm/rollup-plugin-rebase
 [npm-version-img]: https://badgen.net/npm/v/rollup-plugin-rebase
