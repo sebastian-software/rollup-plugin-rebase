@@ -1,6 +1,5 @@
 /* eslint-disable filenames/match-exported */
 import path from "path"
-import { dirname, resolve } from "path"
 import fs from "fs-extra"
 import postcss from "postcss"
 import postcssImport from "postcss-import"
@@ -97,7 +96,7 @@ export default function rebase(options = {}) {
         return null
       }
 
-      const sourceFilePath = resolve(dirname(importer || ""), importee)
+      const sourceFilePath = path.resolve(path.dirname(importer || ""), importee)
 
       const fileSource = sourceFilePath
 
