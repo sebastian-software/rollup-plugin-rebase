@@ -1,22 +1,18 @@
 /* eslint-disable filenames/match-exported */
 import path from "path"
-import denodeify from "denodeify"
+import { dirname, resolve } from "path"
 import fs from "fs-extra"
-import { createFilter } from "rollup-pluginutils"
-import { getHashedName } from "asset-hash"
-import { resolve, dirname } from "path"
-
 import postcss from "postcss"
-
 import postcssImport from "postcss-import"
+
+import postcssSass from "postcss-sass"
+
+import postcssScss from "postcss-scss"
 import postcssSmartAsset from "postcss-smart-asset"
 
 import postcssSugarSS from "sugarss"
-import postcssScss from "postcss-scss"
-import postcssSass from "postcss-sass"
-
-const copyAsync = denodeify(fs.copy)
-const writeAsync = denodeify(fs.outputFile)
+import { createFilter } from "rollup-pluginutils"
+import { getHashedName } from "asset-hash"
 
 const styleParser = {
   ".pcss": null,
@@ -41,18 +37,17 @@ function getPostCssPlugins(keepName) {
 async function processStyle(id, dest, keepName) {
   const content = await fs.readFile(id)
   const parser = styleParser[path.extname(id)]
-  const result = await postcss(getPostCssPlugins(keepName))
-    .process(content.toString(), {
-      from: id,
-      to: dest,
-      extensions: Object.keys(styleParser),
-      map: { inline: true },
+  const result = await postcss(getPostCssPlugins(keepName)).process(content.toString(), {
+    from: id,
+    to: dest,
+    extensions: Object.keys(styleParser),
+    map: { inline: true },
 
-      // Always uses parser... even for scss as we like to offer "normal" CSS in deployed files.
-      parser
-    })
+    // Always uses parser... even for scss as we like to offer "normal" CSS in deployed files.
+    parser
+  })
 
-  await writeAsync(dest, result)
+  await fs.outputFile(dest, result)
 }
 
 const defaultExclude = [
@@ -68,13 +63,7 @@ const defaultExclude = [
 ]
 
 export default function rebase(options = {}) {
-  const {
-    include,
-    exclude = defaultExclude,
-    verbose,
-    keepName,
-    folder = ""
-  } = options
+  const { include, exclude = defaultExclude, verbose, keepName, folder = "" } = options
 
   const filter = createFilter(include, exclude)
   const wrappers = new Set()
@@ -122,7 +111,7 @@ export default function rebase(options = {}) {
       files[fileSource] = path.join(folder, destFilename)
 
       const assetId = path.join(path.dirname(importer), folder, destFilename)
-      const resolvedId = assetId + ".js"
+      const resolvedId = `${assetId  }.js`
 
       assets[assetId] = fileHash
       wrappers[resolvedId] = assetId
@@ -141,23 +130,25 @@ export default function rebase(options = {}) {
     async generateBundle({ file }) {
       const outputFolder = path.dirname(file)
 
-      await Promise.all(Object.keys(files).map(async (fileSource) => {
-        const fileDest = path.join(outputFolder, files[fileSource])
-        const fileExt = path.extname(fileSource)
+      await Promise.all(
+        Object.keys(files).map(async (fileSource) => {
+          const fileDest = path.join(outputFolder, files[fileSource])
+          const fileExt = path.extname(fileSource)
 
-        if (fileExt in styleParser) {
-          if (verbose) {
-            console.log(`Processing ${fileSource} => ${fileDest}...`)
-          }
-          await processStyle(fileSource, fileDest, keepName)
-        } else {
-          if (verbose) {
-            console.log(`Copying ${fileSource} => ${fileDest}...`)
-          }
+          if (fileExt in styleParser) {
+            if (verbose) {
+              console.log(`Processing ${fileSource} => ${fileDest}...`)
+            }
+            await processStyle(fileSource, fileDest, keepName)
+          } else {
+            if (verbose) {
+              console.log(`Copying ${fileSource} => ${fileDest}...`)
+            }
 
-          await fs.copy(fileSource, fileDest)
-        }
-      }))
+            await fs.copy(fileSource, fileDest)
+          }
+        })
+      )
     }
   }
 }
