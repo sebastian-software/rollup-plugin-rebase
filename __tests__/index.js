@@ -27,17 +27,23 @@ beforeAll(() => {
   return fs.remove(outputFolder)
 })
 
-test("Plain", () => {
+test("Plain", async () => {
   const outputFile = `${outputFolder}/plain/index.js`
 
-  return bundle("./__tests__/fixtures/plain.js", outputFile)
-    .then(() => Promise.all([ expect(fileExists(outputFile)).resolves.toBeTruthy() ]))
-    .then(Promise.all([ fs.remove(outputFile) ]))
+  await bundle("./__tests__/fixtures/plain.js", outputFile)
+
+  await Promise.all([
+    expect(fileExists(outputFile)).resolves.toBeTruthy()
+  ])
+
+  await Promise.all([
+    fs.remove(outputFile)
+  ])
 })
 
 
 
-test("Assets", () => {
+test("Assets", async () => {
   const outputFile = `${outputFolder}/hashing-basics/index.js`
 
   const imageFile = `${outputFolder}/hashing-basics/fEGHuKIT.png`
@@ -46,33 +52,31 @@ test("Assets", () => {
   const cssFile = `${outputFolder}/hashing-basics/gayDQjlm.css`
   const cssFont = `${outputFolder}/hashing-basics/gadyfD.woff`
 
-  return bundle("./__tests__/fixtures/assets.js", outputFile)
-    .then(() =>
-      Promise.all([
-        expect(fileExists(outputFile)).resolves.toBeTruthy(),
-        fs.readFile(outputFile, "utf-8").then((content) => {
-          expect(content).toMatchSnapshot()
-        }),
-        expect(fileExists(imageFile)).resolves.toBeTruthy(),
-        expect(fileExists(fontFile)).resolves.toBeTruthy(),
-        expect(fileExists(deepFile)).resolves.toBeTruthy(),
-        expect(fileExists(cssFile)).resolves.toBeTruthy(),
-        expect(fileExists(cssFont)).resolves.toBeTruthy()
-      ])
-    )
-    .then(
-      Promise.all([
-        fs.remove(outputFile),
-        fs.remove(imageFile),
-        fs.remove(fontFile),
-        fs.remove(deepFile),
-        fs.remove(cssFile),
-        fs.remove(cssFont)
-      ])
-    )
+  await bundle("./__tests__/fixtures/assets.js", outputFile)
+
+  await Promise.all([
+    expect(fileExists(outputFile)).resolves.toBeTruthy(),
+    fs.readFile(outputFile, "utf-8").then((content) => {
+      expect(content).toMatchSnapshot()
+    }),
+    expect(fileExists(imageFile)).resolves.toBeTruthy(),
+    expect(fileExists(fontFile)).resolves.toBeTruthy(),
+    expect(fileExists(deepFile)).resolves.toBeTruthy(),
+    expect(fileExists(cssFile)).resolves.toBeTruthy(),
+    expect(fileExists(cssFont)).resolves.toBeTruthy()
+  ])
+
+  await Promise.all([
+    fs.remove(outputFile),
+    fs.remove(imageFile),
+    fs.remove(fontFile),
+    fs.remove(deepFile),
+    fs.remove(cssFile),
+    fs.remove(cssFont)
+  ])
 })
 
-test("Assets written to subfolder", () => {
+test("Assets written to subfolder", async () => {
   const outputFile = `${outputFolder}/output-subfolder/index.js`
 
   const imageFile = `${outputFolder}/output-subfolder/static/fEGHuKIT.png`
@@ -85,33 +89,31 @@ test("Assets written to subfolder", () => {
     folder: "static"
   }
 
-  return bundle("./__tests__/fixtures/assets.js", outputFile, options)
-    .then(() =>
-      Promise.all([
-        expect(fileExists(outputFile)).resolves.toBeTruthy(),
-        fs.readFile(outputFile, "utf-8").then((content) => {
-          expect(content).toMatchSnapshot()
-        }),
-        expect(fileExists(imageFile)).resolves.toBeTruthy(),
-        expect(fileExists(fontFile)).resolves.toBeTruthy(),
-        expect(fileExists(deepFile)).resolves.toBeTruthy(),
-        expect(fileExists(cssFile)).resolves.toBeTruthy(),
-        expect(fileExists(cssFont)).resolves.toBeTruthy()
-      ])
-    )
-    .then(
-      Promise.all([
-        fs.remove(outputFile),
-        fs.remove(imageFile),
-        fs.remove(fontFile),
-        fs.remove(deepFile),
-        fs.remove(cssFile),
-        fs.remove(cssFont)
-      ])
-    )
+  await bundle("./__tests__/fixtures/assets.js", outputFile, options)
+
+  await Promise.all([
+    expect(fileExists(outputFile)).resolves.toBeTruthy(),
+    fs.readFile(outputFile, "utf-8").then((content) => {
+      expect(content).toMatchSnapshot()
+    }),
+    expect(fileExists(imageFile)).resolves.toBeTruthy(),
+    expect(fileExists(fontFile)).resolves.toBeTruthy(),
+    expect(fileExists(deepFile)).resolves.toBeTruthy(),
+    expect(fileExists(cssFile)).resolves.toBeTruthy(),
+    expect(fileExists(cssFont)).resolves.toBeTruthy()
+  ])
+
+  await Promise.all([
+    fs.remove(outputFile),
+    fs.remove(imageFile),
+    fs.remove(fontFile),
+    fs.remove(deepFile),
+    fs.remove(cssFile),
+    fs.remove(cssFont)
+  ])
 })
 
-test("Outside Asset Source Location", () => {
+test("Outside Asset Source Location", async () => {
   const outputFile = `${outputFolder}/sources-outside/index.js`
 
   const imageFile = `${outputFolder}/sources-outside/fEGHuKIT.png`
@@ -120,33 +122,31 @@ test("Outside Asset Source Location", () => {
   const cssFile = `${outputFolder}/sources-outside/gayDQjlm.css`
   const cssFont = `${outputFolder}/sources-outside/gadyfD.woff`
 
-  return bundle("./__tests__/fixtures/deep/assets-outside.js", outputFile)
-    .then(() =>
-      Promise.all([
-        expect(fileExists(outputFile)).resolves.toBeTruthy(),
-        fs.readFile(outputFile, "utf-8").then((content) => {
-          expect(content).toMatchSnapshot()
-        }),
-        expect(fileExists(imageFile)).resolves.toBeTruthy(),
-        expect(fileExists(fontFile)).resolves.toBeTruthy(),
-        expect(fileExists(deepFile)).resolves.toBeTruthy(),
-        expect(fileExists(cssFile)).resolves.toBeTruthy(),
-        expect(fileExists(cssFont)).resolves.toBeTruthy()
-      ])
-    )
-    .then(
-      Promise.all([
-        fs.remove(outputFile),
-        fs.remove(imageFile),
-        fs.remove(fontFile),
-        fs.remove(deepFile),
-        fs.remove(cssFile),
-        fs.remove(cssFont)
-      ])
-    )
+  await bundle("./__tests__/fixtures/deep/assets-outside.js", outputFile)
+
+  await Promise.all([
+    expect(fileExists(outputFile)).resolves.toBeTruthy(),
+    fs.readFile(outputFile, "utf-8").then((content) => {
+      expect(content).toMatchSnapshot()
+    }),
+    expect(fileExists(imageFile)).resolves.toBeTruthy(),
+    expect(fileExists(fontFile)).resolves.toBeTruthy(),
+    expect(fileExists(deepFile)).resolves.toBeTruthy(),
+    expect(fileExists(cssFile)).resolves.toBeTruthy(),
+    expect(fileExists(cssFont)).resolves.toBeTruthy()
+  ])
+
+  await Promise.all([
+    fs.remove(outputFile),
+    fs.remove(imageFile),
+    fs.remove(fontFile),
+    fs.remove(deepFile),
+    fs.remove(cssFile),
+    fs.remove(cssFont)
+  ])
 })
 
-test("Mixed Asset Source Locations", () => {
+test("Mixed Asset Source Locations", async () => {
   const outputFile = `${outputFolder}/sources-mixed/index.js`
 
   const fontFile = `${outputFolder}/sources-mixed/cNxsXFOx.woff`
@@ -155,33 +155,31 @@ test("Mixed Asset Source Locations", () => {
   const cssFile = `${outputFolder}/sources-mixed/gayDQjlm.css`
   const cssFont = `${outputFolder}/sources-mixed/gadyfD.woff`
 
-  return bundle("./__tests__/fixtures/deep/assets-mixed.js", outputFile)
-    .then(() =>
-      Promise.all([
-        expect(fileExists(outputFile)).resolves.toBeTruthy(),
-        fs.readFile(outputFile, "utf-8").then((content) => {
-          expect(content).toMatchSnapshot()
-        }),
-        expect(fileExists(fontFile)).resolves.toBeTruthy(),
-        expect(fileExists(svgFile)).resolves.toBeTruthy(),
-        expect(fileExists(deepFile)).resolves.toBeTruthy(),
-        expect(fileExists(cssFile)).resolves.toBeTruthy(),
-        expect(fileExists(cssFont)).resolves.toBeTruthy()
-      ])
-    )
-    .then(
-      Promise.all([
-        fs.remove(outputFile),
-        fs.remove(fontFile),
-        fs.remove(svgFile),
-        fs.remove(deepFile),
-        fs.remove(cssFile),
-        fs.remove(cssFont)
-      ])
-    )
+  await bundle("./__tests__/fixtures/deep/assets-mixed.js", outputFile)
+
+  await Promise.all([
+    expect(fileExists(outputFile)).resolves.toBeTruthy(),
+    fs.readFile(outputFile, "utf-8").then((content) => {
+      expect(content).toMatchSnapshot()
+    }),
+    expect(fileExists(fontFile)).resolves.toBeTruthy(),
+    expect(fileExists(svgFile)).resolves.toBeTruthy(),
+    expect(fileExists(deepFile)).resolves.toBeTruthy(),
+    expect(fileExists(cssFile)).resolves.toBeTruthy(),
+    expect(fileExists(cssFont)).resolves.toBeTruthy()
+  ])
+
+  await Promise.all([
+    fs.remove(outputFile),
+    fs.remove(fontFile),
+    fs.remove(svgFile),
+    fs.remove(deepFile),
+    fs.remove(cssFile),
+    fs.remove(cssFont)
+  ])
 })
 
-test("Keep Name", () => {
+test("Keep Name", async () => {
   const outputFile = `${outputFolder}/keep-name/index.js`
 
   const imageFile = `${outputFolder}/keep-name/image_fEGHuKIT.png`
@@ -190,30 +188,28 @@ test("Keep Name", () => {
   const cssFile = `${outputFolder}/keep-name/css-font_gayDQjlm.css`
   const cssFont = `${outputFolder}/keep-name/css-font_gadyfD.woff`
 
-  return bundle("./__tests__/fixtures/assets.js", outputFile, {
+  await bundle("./__tests__/fixtures/assets.js", outputFile, {
     keepName: true
   })
-    .then(() =>
-      Promise.all([
-        expect(fileExists(outputFile)).resolves.toBeTruthy(),
-        fs.readFile(outputFile, "utf-8").then((content) => {
-          expect(content).toMatchSnapshot()
-        }),
-        expect(fileExists(imageFile)).resolves.toBeTruthy(),
-        expect(fileExists(fontFile)).resolves.toBeTruthy(),
-        expect(fileExists(deepFile)).resolves.toBeTruthy(),
-        expect(fileExists(cssFile)).resolves.toBeTruthy(),
-        expect(fileExists(cssFont)).resolves.toBeTruthy()
-      ])
-    )
-    .then(
-      Promise.all([
-        fs.remove(outputFile),
-        fs.remove(imageFile),
-        fs.remove(fontFile),
-        fs.remove(deepFile),
-        fs.remove(cssFile),
-        fs.remove(cssFont)
-      ])
-    )
+
+  await Promise.all([
+    expect(fileExists(outputFile)).resolves.toBeTruthy(),
+    fs.readFile(outputFile, "utf-8").then((content) => {
+      expect(content).toMatchSnapshot()
+    }),
+    expect(fileExists(imageFile)).resolves.toBeTruthy(),
+    expect(fileExists(fontFile)).resolves.toBeTruthy(),
+    expect(fileExists(deepFile)).resolves.toBeTruthy(),
+    expect(fileExists(cssFile)).resolves.toBeTruthy(),
+    expect(fileExists(cssFont)).resolves.toBeTruthy()
+  ])
+
+  await Promise.all([
+    fs.remove(outputFile),
+    fs.remove(imageFile),
+    fs.remove(fontFile),
+    fs.remove(deepFile),
+    fs.remove(cssFile),
+    fs.remove(cssFont)
+  ])
 })
