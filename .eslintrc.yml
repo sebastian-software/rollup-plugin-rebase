@@ -1,5 +1,5 @@
 extends:
-  - readable/node
+  - readable
 
 rules:
   no-console:
