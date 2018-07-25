@@ -9,7 +9,7 @@ import postcssSmartAsset from "postcss-smart-asset"
 import postcssSugarSS from "sugarss"
 
 import { createFilter } from "rollup-pluginutils"
-import { getHashedName } from "asset-hash"
+import { getHash } from "asset-hash"
 
 const defaultExclude = [
   /\.json$/,
@@ -63,8 +63,8 @@ export default function rebase(options = {}) {
   const { include, exclude = defaultExclude, verbose = true, keepName = false, folder = "" } = options
 
   const filter = createFilter(include, exclude)
-  const wrappers = new Set()
-  const assets = new Set()
+  const wrappers = {}
+  const assets = {}
   const files = {}
 
   return {
@@ -102,28 +102,23 @@ export default function rebase(options = {}) {
 
       const fileSource = path.resolve(path.dirname(importer), importee)
       const fileName = path.basename(importee, fileExt)
+      const fileHash = await getHash(fileSource)
+      const fileTarget = keepName ? `${fileName}_${fileHash}${fileExt}` : `${fileHash}${fileExt}`
 
-      if (verbose) {
-        console.log(`Analysing: ${fileSource}...`)
-      }
-
-      const destId = await getHashedName(fileSource)
-      const destFilename = keepName ? `${fileName}_${destId}` : destId
-
-      const fileHash = destId.slice(0, -fileExt.length)
-
-      files[fileSource] = path.join(folder, destFilename)
+      // Registering for our copying job when the bundle is created (kind of a job queue)
+      // and respect any sub folder given by the configuration options.
+      files[fileSource] = path.join(folder, fileTarget)
 
       // Replacing slashes for Windows, as we need to use POSIX style to be compat
       // to Rollup imports / NodeJS resolve implementation.
-      const assetId = path.join(path.dirname(importer), folder, destFilename).replace(/\\/g, "/")
+      const assetId = path.join(path.dirname(importer), folder, fileTarget).replace(/\\/g, "/")
       const resolvedId = `${assetId}.js`
 
       // Register asset for exclusion handling in this function.
       // We need the additonal wrapping to be able to not just exclude the file
       // but to combine it with tweaking the import location. This indirection
       // makes this possible as we benefit from having a two-phase resolve.
-      assets[assetId] = fileHash
+      assets[assetId] = true
 
       // Store data for our dynamic wrapper generator in `load()`. This uses the
       // `assetId` to refer to our asset in its virtual new location which is
@@ -136,7 +131,10 @@ export default function rebase(options = {}) {
 
     load(id) {
       if (wrappers[id] != null) {
-        // It's not really any loader bit
+        // It's not really any loader but kind of a dynamic code generator
+        // which is just referring back to the asset we are interested in.
+        // This is the magic behind the two-step-resolver and makes it possible
+        // to have both: tweaked import references and externals together.
         const importee = wrappers[id]
         return `export { default } from "${importee}";`
       }
@@ -148,11 +146,14 @@ export default function rebase(options = {}) {
       const outputFolder = path.dirname(file)
 
       try {
+        // Copy all assets in parallel and waiting for it to complete.
         await Promise.all(
           Object.keys(files).map(async (fileSource) => {
             const fileDest = path.join(outputFolder, files[fileSource])
             const fileExt = path.extname(fileSource)
 
+            // Style related files are processed, not just copied, so that
+            // we can handle internal references in CSS as well.
             if (fileExt in styleParser) {
               if (verbose) {
                 console.log(`Processing ${fileSource} => ${fileDest}...`)
