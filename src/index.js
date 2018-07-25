@@ -122,7 +122,8 @@ export default function rebase(options = {}) {
 
     load(id) {
       if (wrappers[id] != null) {
-        const code = `export { default } from "${wrappers[id]}";`
+        const importee = wrappers[id].replace(/\\/g, "/")
+        const code = `export { default } from "${importee}";`
         return code
       }
 
