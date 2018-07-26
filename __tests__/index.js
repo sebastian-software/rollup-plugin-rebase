@@ -44,6 +44,7 @@ test("Assets", async () => {
   const fontFile = `${outputFolder}/hashing-basics/cVoexIsj.woff`
   const deepFile = `${outputFolder}/hashing-basics/ceBqZEDY.gif`
   const cssFile = `${outputFolder}/hashing-basics/vAjnOYXZ.css`
+  const cssFileMap = `${outputFolder}/hashing-basics/vAjnOYXZ.css.map`
   const cssFont = `${outputFolder}/hashing-basics/dRqwXHnd.woff`
 
   await bundle("./__tests__/fixtures/assets.js", outputFile)
@@ -66,6 +67,7 @@ test("Assets", async () => {
     fs.remove(fontFile),
     fs.remove(deepFile),
     fs.remove(cssFile),
+    fs.remove(cssFileMap),
     fs.remove(cssFont)
   ])
 })
@@ -77,6 +79,7 @@ test("Assets written to subfolder", async () => {
   const fontFile = `${outputFolder}/output-subfolder/static/cVoexIsj.woff`
   const deepFile = `${outputFolder}/output-subfolder/static/ceBqZEDY.gif`
   const cssFile = `${outputFolder}/output-subfolder/static/vAjnOYXZ.css`
+  const cssFileMap = `${outputFolder}/output-subfolder/static/vAjnOYXZ.css.map`
   const cssFont = `${outputFolder}/output-subfolder/static/dRqwXHnd.woff`
 
   const options = {
@@ -103,6 +106,7 @@ test("Assets written to subfolder", async () => {
     fs.remove(fontFile),
     fs.remove(deepFile),
     fs.remove(cssFile),
+    fs.remove(cssFileMap),
     fs.remove(cssFont)
   ])
 })
@@ -114,6 +118,7 @@ test("Outside Asset Source Location", async () => {
   const fontFile = `${outputFolder}/sources-outside/cVoexIsj.woff`
   const deepFile = `${outputFolder}/sources-outside/ceBqZEDY.gif`
   const cssFile = `${outputFolder}/sources-outside/vAjnOYXZ.css`
+  const cssFileMap = `${outputFolder}/sources-outside/vAjnOYXZ.css.map`
   const cssFont = `${outputFolder}/sources-outside/dRqwXHnd.woff`
 
   await bundle("./__tests__/fixtures/deep/assets-outside.js", outputFile)
@@ -136,6 +141,7 @@ test("Outside Asset Source Location", async () => {
     fs.remove(fontFile),
     fs.remove(deepFile),
     fs.remove(cssFile),
+    fs.remove(cssFileMap),
     fs.remove(cssFont)
   ])
 })
@@ -147,6 +153,7 @@ test("Mixed Asset Source Locations", async () => {
   const svgFile = `${outputFolder}/sources-mixed/foixBwnR.svg`
   const deepFile = `${outputFolder}/sources-mixed/ceBqZEDY.gif`
   const cssFile = `${outputFolder}/sources-mixed/vAjnOYXZ.css`
+  const cssFileMap = `${outputFolder}/sources-mixed/vAjnOYXZ.css.map`
   const cssFont = `${outputFolder}/sources-mixed/dRqwXHnd.woff`
 
   await bundle("./__tests__/fixtures/deep/assets-mixed.js", outputFile)
@@ -169,6 +176,7 @@ test("Mixed Asset Source Locations", async () => {
     fs.remove(svgFile),
     fs.remove(deepFile),
     fs.remove(cssFile),
+    fs.remove(cssFileMap),
     fs.remove(cssFont)
   ])
 })
@@ -180,6 +188,7 @@ test("Keep Name", async () => {
   const fontFile = `${outputFolder}/keep-name/SourceSerifPro-Bold.ttf_cVoexIsj.woff`
   const deepFile = `${outputFolder}/keep-name/blank_ceBqZEDY.gif`
   const cssFile = `${outputFolder}/keep-name/css-font_vAjnOYXZ.css`
+  const cssFileMap = `${outputFolder}/keep-name/css-font_vAjnOYXZ.css.map`
   const cssFont = `${outputFolder}/keep-name/SourceSerifPro-Light.ttf_dRqwXHnd.woff`
 
   await bundle("./__tests__/fixtures/assets.js", outputFile, {
@@ -204,6 +213,7 @@ test("Keep Name", async () => {
     fs.remove(fontFile),
     fs.remove(deepFile),
     fs.remove(cssFile),
+    fs.remove(cssFileMap),
     fs.remove(cssFont)
   ])
 })

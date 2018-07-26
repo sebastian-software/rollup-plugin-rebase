@@ -53,13 +53,14 @@ async function processStyle(id, fileDest, keepName) {
     from: id,
     to: fileDest,
     extensions: Object.keys(styleParser),
-    map: { inline: true },
+    map: { inline: false },
 
     // Always uses parser... even for scss as we like to offer "normal" CSS in deployed files.
     parser
   })
 
-  await fs.outputFile(fileDest, result)
+  await fs.outputFile(fileDest, result.css)
+  await fs.outputFile(fileDest + ".map", result.map)
 }
 
 export default function rebase(options = {}) {
