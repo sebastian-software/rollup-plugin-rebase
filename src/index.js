@@ -64,7 +64,7 @@ async function processStyle(id, fileDest, keepName) {
 }
 
 export default function rebase(options = {}) {
-  const { include, exclude = defaultExclude, verbose = true, keepName = false, folder = "" } = options
+  const { include, exclude = defaultExclude, verbose = false, keepName = false, folder = "" } = options
 
   const filter = createFilter(include, exclude)
   const wrappers = {}
@@ -77,10 +77,6 @@ export default function rebase(options = {}) {
     /* eslint-disable complexity, max-statements */
     async resolveId(importee, importer) {
       if (!filter(importee)) {
-        if (verbose) {
-          console.log("Ignoring [resolve]:", importee)
-        }
-
         return null
       }
 
