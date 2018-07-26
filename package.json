@@ -46,14 +46,14 @@
   },
   "dependencies": {
     "@babel/runtime": "^7.0.0-beta.54",
-    "asset-hash": "^2.1.5",
+    "asset-hash": "^2.2.0",
     "core-js": "^2.5.7",
     "fs-extra": "^7.0.0",
     "postcss": "^7.0.1",
     "postcss-import": "^11.1.0",
     "postcss-sass": "^0.3.2",
     "postcss-scss": "^2.0.0",
-    "postcss-smart-asset": "^0.7.0",
+    "postcss-smart-asset": "^0.7.1",
     "rollup-pluginutils": "^2.3.0",
     "sugarss": "^1.0.1"
   },
