@@ -43,12 +43,15 @@ function getPostCssPlugins(keepName) {
 }
 
 /* eslint-disable max-params */
-async function processStyle(id, dest, keepName) {
+async function processStyle(id, fileDest, keepName) {
   const content = await fs.readFile(id)
   const parser = styleParser[path.extname(id)]
-  const result = await postcss(getPostCssPlugins(keepName)).process(content.toString(), {
+  const processor = postcss(getPostCssPlugins(keepName))
+  const text = content.toString()
+
+  const result = await processor.process(text, {
     from: id,
-    to: dest,
+    to: fileDest,
     extensions: Object.keys(styleParser),
     map: { inline: true },
 
@@ -56,7 +59,7 @@ async function processStyle(id, dest, keepName) {
     parser
   })
 
-  await fs.outputFile(dest, result)
+  await fs.outputFile(fileDest, result)
 }
 
 export default function rebase(options = {}) {
@@ -158,6 +161,7 @@ export default function rebase(options = {}) {
               if (verbose) {
                 console.log(`Processing ${fileSource} => ${fileDest}...`)
               }
+
               await processStyle(fileSource, fileDest, keepName)
             } else {
               if (verbose) {
