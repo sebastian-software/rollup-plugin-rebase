@@ -53,26 +53,24 @@ You can configure Rollup Rebase as part of your Rollup configuration. This can b
 import { rollup } from "rollup"
 import rebasePlugin from "rollup-plugin-rebase"
 
-const input = "./src/index.js"
-const outputFolder = "./lib";
-const rebase = rebasePlugin({ outputFolder, input })
-
-rollup({
-  input: input,
-  plugins: [
-    rebase
-  ]
-})
-.then((bundle) =>
-  bundle.write({
-    dest: `${outputFolder}/index.js`
+async function config() {
+  const bundle = await rollup({
+    input: "./src/index.js",
+    plugins: [
+      rebasePlugin()
+    ]
   })
-)
+
+  await bundle.write({
+    dest: "./lib/index.js"
+  })
+}
+
+config()
 ```
 
-### Options
+### Options (all optional)
 
-* input (required): The location of your entry point for rollup
 * folder: When set assets are placed inside a sub folder with that name.
 * keepName: If `true`, generated filenames will be `${filename}_${hash}.${ext}` instead of just `${hash}.${ext}`
 * verbose: If `true`, increases log level
