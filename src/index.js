@@ -37,7 +37,7 @@ function getPostCssPlugins(keepName) {
     postcssSmartAsset({
       url: "copy",
       useHash: true,
-      prependName: keepName
+      keepName
     })
   ]
 }
