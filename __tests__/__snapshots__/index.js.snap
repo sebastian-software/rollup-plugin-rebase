@@ -1,10 +1,10 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`Assets 1`] = `
-"import font from './cNxsXFOx.woff';
-import image from './fEGHuKIT.png';
+"import font from './cVoexIsj.woff';
+import image from './bAFTozQS.png';
 import deep from './ceBqZEDY.gif';
-import style from './gayDQjlm.css';
+import style from './vAjnOYXZ.css';
 
 var assets = \`\${font}|\${image}|\${deep}|\${style}\`;
 
@@ -13,10 +13,10 @@ export default assets;
 `;
 
 exports[`Assets written to subfolder 1`] = `
-"import font from './static/cNxsXFOx.woff';
-import image from './static/fEGHuKIT.png';
+"import font from './static/cVoexIsj.woff';
+import image from './static/bAFTozQS.png';
 import deep from './static/ceBqZEDY.gif';
-import style from './static/gayDQjlm.css';
+import style from './static/vAjnOYXZ.css';
 
 var assets = \`\${font}|\${image}|\${deep}|\${style}\`;
 
@@ -25,10 +25,10 @@ export default assets;
 `;
 
 exports[`Keep Name 1`] = `
-"import font from './font_cNxsXFOx.woff';
-import image from './image_fEGHuKIT.png';
+"import font from './SourceSerifPro-Bold.ttf_cVoexIsj.woff';
+import image from './image_bAFTozQS.png';
 import deep from './blank_ceBqZEDY.gif';
-import style from './css-font_gayDQjlm.css';
+import style from './css-font_vAjnOYXZ.css';
 
 var assets = \`\${font}|\${image}|\${deep}|\${style}\`;
 
@@ -37,10 +37,10 @@ export default assets;
 `;
 
 exports[`Mixed Asset Source Locations 1`] = `
-"import font from './cNxsXFOx.woff';
+"import font from './cVoexIsj.woff';
 import svg from './foixBwnR.svg';
 import deep from './ceBqZEDY.gif';
-import style from './gayDQjlm.css';
+import style from './vAjnOYXZ.css';
 
 /* eslint-disable filenames/match-regex */
 
@@ -51,10 +51,10 @@ export default assetsMixed;
 `;
 
 exports[`Outside Asset Source Location 1`] = `
-"import font from './cNxsXFOx.woff';
-import image from './fEGHuKIT.png';
+"import font from './cVoexIsj.woff';
+import image from './bAFTozQS.png';
 import deep from './ceBqZEDY.gif';
-import style from './gayDQjlm.css';
+import style from './vAjnOYXZ.css';
 
 /* eslint-disable filenames/match-regex */
 
