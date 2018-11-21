@@ -217,3 +217,23 @@ test("Keep Name", async () => {
     fs.remove(cssFont)
   ])
 })
+
+test("Asset source location when importer is deep", async () => {
+  const outputFile = `${outputFolder}/importer-within/index.js`
+  const imageFile = `${outputFolder}/importer-within/ceBqZEDY.gif`
+  const imageFileImport = `import blankUrl from './ceBqZEDY.gif'`
+
+  await bundle("./__tests__/fixtures/deep/assets-importer-within.js", outputFile)
+
+  await Promise.all([
+    expect(fs.pathExists(imageFile)).resolves.toBeTruthy(),
+    fs.readFile(outputFile, "utf-8").then((content) => {
+      expect(content).toEqual(expect.stringContaining(imageFileImport))
+    })
+  ])
+
+  await Promise.all([
+    fs.remove(outputFile),
+    fs.remove(imageFile)
+  ])
+})
