@@ -142,8 +142,8 @@ export default function rebase(options = {}) {
       return null
     },
 
-    async generateBundle({ file }) {
-      const outputFolder = path.dirname(file)
+    async generateBundle({ file, dir }) {
+      const outputFolder = dir || path.dirname(file)
 
       try {
         // Copy all assets in parallel and waiting for it to complete.
