@@ -3,8 +3,8 @@ import { bundle, clean, exists } from "../util"
 
 const root = __dirname
 
-test("Flat", async () => {
-  await bundle(root, "flat.js", "output/index.js")
+test("One Level", async () => {
+  await bundle(root, "index.js", "output/index.js")
 
   expect(exists(root,
     [
