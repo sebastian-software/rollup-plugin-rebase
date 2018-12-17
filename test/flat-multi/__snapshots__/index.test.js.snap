@@ -5,3 +5,15 @@ exports[`Flat Multi 1`] = `
 bsdudxaF.md
 index.js"
 `;
+
+exports[`Flat Multi 2`] = `
+"import content from './bsdudxaF.md';
+import image from './bXipeBrs.png';
+
+function index() {
+  return content + image
+}
+
+export default index;
+"
+`;

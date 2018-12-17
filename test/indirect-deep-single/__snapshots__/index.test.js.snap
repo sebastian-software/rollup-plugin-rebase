@@ -4,3 +4,14 @@ exports[`Indirect Single 1`] = `
 "bsdudxaF.md
 index.js"
 `;
+
+exports[`Indirect Single 2`] = `
+"import content from './sub/folder/bsdudxaF.md';
+
+function index() {
+  return content
+}
+
+export default index;
+"
+`;

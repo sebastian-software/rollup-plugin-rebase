@@ -1,6 +1,9 @@
 extends:
   - readable
 
+globals:
+  __dirname: true
+
 rules:
   no-console:
     - off

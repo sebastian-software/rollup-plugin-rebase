@@ -46,3 +46,9 @@ export async function list(root, folder) {
     })
   })
 }
+
+export async function read(root, file, options = {}) {
+  const content = await fs.readFile(join(root, file), { encoding: options.encoding || "utf-8" })
+  console.log(content)
+  return content
+}

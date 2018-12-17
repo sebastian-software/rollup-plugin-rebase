@@ -4,3 +4,14 @@ exports[`Flat Single 1`] = `
 "bsdudxaF.md
 index.js"
 `;
+
+exports[`Flat Single 2`] = `
+"import content from './bsdudxaF.md';
+
+function index() {
+  return content
+}
+
+export default index;
+"
+`;

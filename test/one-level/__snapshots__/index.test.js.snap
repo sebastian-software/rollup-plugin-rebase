@@ -4,3 +4,14 @@ exports[`One Level 1`] = `
 "bsdudxaF.md
 index.js"
 `;
+
+exports[`One Level 2`] = `
+"import content from './bsdudxaF.md';
+
+function index() {
+  return content
+}
+
+export default index;
+"
+`;
