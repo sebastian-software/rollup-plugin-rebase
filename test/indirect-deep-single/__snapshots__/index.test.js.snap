@@ -6,7 +6,7 @@ index.js"
 `;
 
 exports[`Indirect Single 2`] = `
-"import content from './sub/folder/bsdudxaF.md';
+"import content from './bsdudxaF.md';
 
 function index() {
   return content
