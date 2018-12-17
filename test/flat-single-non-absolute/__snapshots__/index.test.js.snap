@@ -1,0 +1,17 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Flat Single Non Absolute 1`] = `
+"bsdudxaF.md
+index.js"
+`;
+
+exports[`Flat Single Non Absolute 2`] = `
+"import content from './bsdudxaF.md';
+
+function index() {
+  return content
+}
+
+export default index;
+"
+`;
