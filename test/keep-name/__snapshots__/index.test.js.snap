@@ -2,7 +2,7 @@
 
 exports[`Keep Name 1`] = `
 "content~bsdudxaF.md
-image_bXipeBrs.png
+image~bXipeBrs.png
 index.js
 index~gToHHcDx.css
 index~gToHHcDx.css.map"
@@ -23,7 +23,7 @@ export default index;
 exports[`Keep Name 3`] = `
 "body {
   font-size: 20px;
-  background: url(./image_bXipeBrs.png) top left repeat;
+  background: url(./image~bXipeBrs.png) top left repeat;
 }
 
 /*# sourceMappingURL=index~gToHHcDx.css.map */"
