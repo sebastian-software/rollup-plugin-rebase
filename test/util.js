@@ -1,19 +1,21 @@
+import { join } from "path"
+
 import fs from "fs-extra"
 import { rollup } from "rollup"
 
 import rebasePlugin from "../src"
 
-export async function bundle(input, outputFile, pluginOptions = {}) {
+export async function bundle(root, input, output, pluginOptions = {}) {
   const plugin = rebasePlugin(pluginOptions)
 
   const result = await rollup({
-    input,
+    input: join(root, input),
     plugins: [ plugin ]
   })
 
   await result.write({
     format: "es",
-    file: outputFile
+    file: join(root, output)
   })
 }
 
