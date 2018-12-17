@@ -81,6 +81,10 @@ export default function rebase(options = {}) {
 
   let root = null
 
+  function rootRelative(file) {
+    return path.relative(root, file)
+  }
+
   return {
     name: "rollup-plugin-rebase",
 
@@ -177,13 +181,13 @@ export default function rebase(options = {}) {
             // we can handle internal references in CSS as well.
             if (fileExt in styleParser) {
               if (verbose) {
-                console.log(`Processing ${fileSource} => ${fileDest}...`)
+                console.log(`Processing ${rootRelative(fileSource)} => ${rootRelative(fileDest)}...`)
               }
 
               await processStyle(fileSource, fileDest, keepName)
             } else {
               if (verbose) {
-                console.log(`Copying ${fileSource} => ${fileDest}...`)
+                console.log(`Copying ${rootRelative(fileSource)} => ${rootRelative(fileDest)}...`)
               }
 
               await fs.copy(fileSource, fileDest)

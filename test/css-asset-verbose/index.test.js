@@ -2,10 +2,16 @@ import { bundle, clean, list, read } from "../util"
 
 const root = __dirname
 
+function formatConsoleMock(fn) {
+  return fn.mock.calls.map((entry) => {
+    return entry.join(" ")
+  }).join("\n")
+}
+
 test("CSS Asset Verbose", async () => {
   console.log = jest.fn()
   await bundle(root, "index.js", "output/index.js", { verbose: true })
-  expect(console.log.mock.calls).toMatchSnapshot()
+  expect(formatConsoleMock(console.log)).toMatchSnapshot()
 
   expect(await list(root, "output")).toMatchSnapshot()
   expect(await read(root, "output/index.js")).toMatchSnapshot()

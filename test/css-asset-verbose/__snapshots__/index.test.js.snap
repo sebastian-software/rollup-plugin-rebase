@@ -1,14 +1,8 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`CSS Asset Verbose 1`] = `
-Array [
-  Array [
-    "Copying /Users/swerner/Workspace/open-source/rollup-plugin-rebase/test/css-asset-verbose/content.md => /Users/swerner/Workspace/open-source/rollup-plugin-rebase/test/css-asset-verbose/output/bsdudxaF.md...",
-  ],
-  Array [
-    "Processing /Users/swerner/Workspace/open-source/rollup-plugin-rebase/test/css-asset-verbose/index.css => /Users/swerner/Workspace/open-source/rollup-plugin-rebase/test/css-asset-verbose/output/gToHHcDx.css...",
-  ],
-]
+"Copying content.md => output/bsdudxaF.md...
+Processing index.css => output/gToHHcDx.css..."
 `;
 
 exports[`CSS Asset Verbose 2`] = `
