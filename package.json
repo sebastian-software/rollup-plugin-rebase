@@ -30,7 +30,7 @@
     "release": "release-it --github.release --npm.publish --non-interactive",
     "release:minor": "release-it --github.release --npm.publish --non-interactive --increment minor",
     "release:major": "release-it --github.release --npm.publish --non-interactive --increment major",
-    "test": "npm run prepare && jest",
+    "test": "jest --coverage",
     "prepare": "rimraf lib && preppy"
   },
   "repository": {
