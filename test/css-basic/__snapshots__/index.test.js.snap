@@ -1,0 +1,28 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Flat Single 1`] = `
+"KKaZlCcl.css
+KKaZlCcl.css.map
+bsdudxaF.md
+index.js"
+`;
+
+exports[`Flat Single 2`] = `
+"import content from './bsdudxaF.md';
+import css from './KKaZlCcl.css';
+
+function index() {
+  return content + css
+}
+
+export default index;
+"
+`;
+
+exports[`Flat Single 3`] = `
+"body {
+  font-size: 20px;
+}
+
+/*# sourceMappingURL=KKaZlCcl.css.map */"
+`;
