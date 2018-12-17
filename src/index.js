@@ -11,16 +11,7 @@ import postcssSugarSS from "sugarss"
 import { createFilter } from "rollup-pluginutils"
 import { getHash } from "asset-hash"
 
-const defaultExclude = [
-  /\.json$/,
-  /\.mjs$/,
-  /\.js$/,
-  /\.jsx$/,
-  /\.es$/,
-  /\.esx$/,
-  /\.ts$/,
-  /\.tsx$/
-]
+const scriptExtensions = /^\.(json|mjs|js|jsx|es|esx|ts|tsx)$/
 
 const styleParser = {
   ".pcss": null,
@@ -67,7 +58,7 @@ async function processStyle(id, fileDest, keepName) {
 export default function rebase(options = {}) {
   const {
     include,
-    exclude = defaultExclude,
+    exclude,
     verbose = false,
     keepName = false,
     folder: assetFolder = ""
@@ -89,15 +80,14 @@ export default function rebase(options = {}) {
 
     /* eslint-disable complexity, max-statements */
     async resolveId(importee, importer) {
-      // console.log("Resolve:", importee)
       if (!filter(importee)) {
-        root = path.dirname(importee)
         return null
       }
 
       // Ignore root files which are typically script files. Delegate to other
       // plugins or default behavior.
       if (!importer) {
+        root = path.dirname(importee)
         return null
       }
 
@@ -111,7 +101,7 @@ export default function rebase(options = {}) {
       // cause all assets typically have one. By returning `null` we delegate
       // the resolver to other plugins.
       const fileExt = path.extname(importee)
-      if (fileExt === "") {
+      if (fileExt === "" || scriptExtensions.test(fileExt)) {
         return null
       }
 
