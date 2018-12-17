@@ -19,8 +19,7 @@ const defaultExclude = [
   /\.es$/,
   /\.esx$/,
   /\.ts$/,
-  /\.tsx$/,
-  /\.vue$/
+  /\.tsx$/
 ]
 
 const styleParser = {
