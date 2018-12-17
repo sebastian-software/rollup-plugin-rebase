@@ -1,10 +1,12 @@
 /* global __dirname */
-import { bundle, clean, exists } from "../util"
+import { bundle, clean, exists, list } from "../util"
 
 const root = __dirname
 
 test("Flat", async () => {
   await bundle(root, "index.js", "output/index.js")
+
+  expect(list(root, "output")).resolves.toMatchSnapshot()
 
   expect(exists(root,
     [
