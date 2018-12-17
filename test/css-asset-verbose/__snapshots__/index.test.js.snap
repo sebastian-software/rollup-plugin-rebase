@@ -1,6 +1,17 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`CSS Asset 1`] = `
+exports[`CSS Asset Verbose 1`] = `
+Array [
+  Array [
+    "Copying /Users/swerner/Workspace/open-source/rollup-plugin-rebase/test/css-asset-verbose/content.md => /Users/swerner/Workspace/open-source/rollup-plugin-rebase/test/css-asset-verbose/output/bsdudxaF.md...",
+  ],
+  Array [
+    "Processing /Users/swerner/Workspace/open-source/rollup-plugin-rebase/test/css-asset-verbose/index.css => /Users/swerner/Workspace/open-source/rollup-plugin-rebase/test/css-asset-verbose/output/gToHHcDx.css...",
+  ],
+]
+`;
+
+exports[`CSS Asset Verbose 2`] = `
 "bXipeBrs.png
 bsdudxaF.md
 gToHHcDx.css
@@ -8,7 +19,7 @@ gToHHcDx.css.map
 index.js"
 `;
 
-exports[`CSS Asset 2`] = `
+exports[`CSS Asset Verbose 3`] = `
 "import content from './bsdudxaF.md';
 import css from './gToHHcDx.css';
 
@@ -20,7 +31,7 @@ export default index;
 "
 `;
 
-exports[`CSS Asset 3`] = `
+exports[`CSS Asset Verbose 4`] = `
 "body {
   font-size: 20px;
   background: url(./bXipeBrs.png) top left repeat;
