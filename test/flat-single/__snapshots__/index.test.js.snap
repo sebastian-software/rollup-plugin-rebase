@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Flat 1`] = `
+exports[`Flat Single 1`] = `
 "bsdudxaF.md
 index.js"
 `;
