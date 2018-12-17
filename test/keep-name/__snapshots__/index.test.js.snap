@@ -1,0 +1,30 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Keep Name 1`] = `
+"content~bsdudxaF.md
+image_bXipeBrs.png
+index.js
+index~gToHHcDx.css
+index~gToHHcDx.css.map"
+`;
+
+exports[`Keep Name 2`] = `
+"import content from './content~bsdudxaF.md';
+import css from './index~gToHHcDx.css';
+
+function index() {
+  return content + css
+}
+
+export default index;
+"
+`;
+
+exports[`Keep Name 3`] = `
+"body {
+  font-size: 20px;
+  background: url(./image_bXipeBrs.png) top left repeat;
+}
+
+/*# sourceMappingURL=index~gToHHcDx.css.map */"
+`;

@@ -120,7 +120,7 @@ export default function rebase(options = {}) {
       const fileName = path.basename(importee, fileExt)
       const fileHash = await getHash(fileSource)
       const fileTarget = keepName ?
-        `${fileName}_${fileHash}${fileExt}` :
+        `${fileName}~${fileHash}${fileExt}` :
         `${fileHash}${fileExt}`
 
       // Registering for our copying job when the bundle is created (kind of a job queue)
