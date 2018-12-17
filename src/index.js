@@ -60,11 +60,17 @@ async function processStyle(id, fileDest, keepName) {
   })
 
   await fs.outputFile(fileDest, result.css)
-  await fs.outputFile(fileDest + ".map", result.map)
+  await fs.outputFile(`${fileDest}.map`, result.map)
 }
 
 export default function rebase(options = {}) {
-  const { include, exclude = defaultExclude, verbose = false, keepName = false, folder = "" } = options
+  const {
+    include,
+    exclude = defaultExclude,
+    verbose = false,
+    keepName = false,
+    folder = ""
+  } = options
 
   const filter = createFilter(include, exclude)
   const wrappers = {}
@@ -103,7 +109,9 @@ export default function rebase(options = {}) {
       const fileSource = path.resolve(path.dirname(importer), importee)
       const fileName = path.basename(importee, fileExt)
       const fileHash = await getHash(fileSource)
-      const fileTarget = keepName ? `${fileName}_${fileHash}${fileExt}` : `${fileHash}${fileExt}`
+      const fileTarget = keepName ?
+        `${fileName}_${fileHash}${fileExt}` :
+        `${fileHash}${fileExt}`
 
       // Registering for our copying job when the bundle is created (kind of a job queue)
       // and respect any sub folder given by the configuration options.
@@ -111,7 +119,9 @@ export default function rebase(options = {}) {
 
       // Replacing slashes for Windows, as we need to use POSIX style to be compat
       // to Rollup imports / NodeJS resolve implementation.
-      const assetId = path.join(path.dirname(importer), folder, fileTarget).replace(/\\/g, "/")
+      const assetId = path
+        .join(path.dirname(importer), folder, fileTarget)
+        .replace(/\\/g, "/")
       const resolvedId = `${assetId}.js`
 
       // Register asset for exclusion handling in this function.
@@ -169,7 +179,7 @@ export default function rebase(options = {}) {
             }
           })
         )
-      } catch(error) {
+      } catch (error) {
         throw new Error("Error while copying files:", error)
       }
     }
