@@ -1,0 +1,19 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Indirect Single 1`] = `
+"bXipeBrs.png
+bsdudxaF.md
+index.js"
+`;
+
+exports[`Indirect Single 2`] = `
+"import image from './bXipeBrs.png';
+import content from './bsdudxaF.md';
+
+function index() {
+  return content + image
+}
+
+export default index;
+"
+`;
