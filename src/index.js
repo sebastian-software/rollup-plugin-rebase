@@ -87,7 +87,7 @@ export default function rebase(options = {}) {
       // Ignore root files which are typically script files. Delegate to other
       // plugins or default behavior.
       if (!importer) {
-        root = path.dirname(importee)
+        root = path.dirname(path.resolve(importee))
         return null
       }
 
