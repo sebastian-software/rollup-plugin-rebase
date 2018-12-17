@@ -19,7 +19,15 @@ export async function bundle(root, input, output, pluginOptions = {}) {
   })
 }
 
-export async function clean(files) {
-  const tasks = files.map((file) => fs.remove(file))
+export async function clean(root, files) {
+  const input = files instanceof Array ? files : [ files ]
+  const tasks = input.map((file) => fs.remove(join(root, file)))
   return Promise.all(tasks)
+}
+
+export async function exists(root, files) {
+  const input = files instanceof Array ? files : [ files ]
+  const tasks = input.map((file) => fs.pathExists(join(root, file)))
+  const result = await Promise.all(tasks)
+  return !result.some((value) => value === false)
 }

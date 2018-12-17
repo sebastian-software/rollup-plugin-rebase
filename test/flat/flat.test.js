@@ -1,13 +1,18 @@
-import { bundle, clean } from "../util"
+/* global __dirname */
+import { bundle, clean, exists } from "../util"
+
+const root = __dirname
 
 test("Flat", async () => {
-  const outputFile = `./output/index.js`
+  const output = "output/index.js"
 
-  await bundle(__dirname, "flat.js", outputFile)
+  await bundle(root, "flat.js", output)
 
-  // await Promise.all([
-  //   expect(fs.pathExists(outputFile)).resolves.toBeTruthy()
-  // ])
+  expect(exists(root,
+    [
+      output,
+      "output/bsdudxaF.md"
+    ])).resolves.toBeTruthy()
 
-  // await clean(outputFile)
+  await clean(root, output)
 })
