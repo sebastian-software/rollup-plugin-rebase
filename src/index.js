@@ -69,7 +69,7 @@ export default function rebase(options = {}) {
     exclude = defaultExclude,
     verbose = false,
     keepName = false,
-    folder = ""
+    folder: assetFolder = ""
   } = options
 
   const filter = createFilter(include, exclude)
@@ -77,12 +77,16 @@ export default function rebase(options = {}) {
   const assets = {}
   const files = {}
 
+  let root = null
+
   return {
     name: "rollup-plugin-rebase",
 
     /* eslint-disable complexity, max-statements */
     async resolveId(importee, importer) {
+      // console.log("Resolve:", importee)
       if (!filter(importee)) {
+        root = path.dirname(importee)
         return null
       }
 
@@ -115,13 +119,17 @@ export default function rebase(options = {}) {
 
       // Registering for our copying job when the bundle is created (kind of a job queue)
       // and respect any sub folder given by the configuration options.
-      files[fileSource] = path.join(folder, fileTarget)
+      files[fileSource] = path.join(assetFolder, fileTarget)
 
       // Replacing slashes for Windows, as we need to use POSIX style to be compat
       // to Rollup imports / NodeJS resolve implementation.
       const assetId = path
-        .join(path.dirname(importer), folder, fileTarget)
+        .join(root, assetFolder, fileTarget)
         .replace(/\\/g, "/")
+
+      // console.log("Importer:", importer)
+      // console.log("Asset-ID:", assetId)
+      // console.log("Root-Dir:", root)
       const resolvedId = `${assetId}.js`
 
       // Register asset for exclusion handling in this function.
@@ -146,6 +154,7 @@ export default function rebase(options = {}) {
         // This is the magic behind the two-step-resolver and makes it possible
         // to have both: tweaked import references and externals together.
         const importee = wrappers[id]
+        // console.log("Load:", importee)
         return `export { default } from "${importee}";`
       }
 
