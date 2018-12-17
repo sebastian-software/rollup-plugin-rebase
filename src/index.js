@@ -59,8 +59,10 @@ async function processStyle(id, fileDest, keepName) {
     parser
   })
 
-  await fs.outputFile(fileDest, result.css)
-  await fs.outputFile(`${fileDest}.map`, result.map)
+  await Promise.all([
+    fs.outputFile(fileDest, result.css),
+    fs.outputFile(`${fileDest}.map`, result.map)
+  ])
 }
 
 export default function rebase(options = {}) {
