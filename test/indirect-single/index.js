@@ -1,2 +1,2 @@
-import child from "./child"
-export default child
+import index from "./child"
+export default index
