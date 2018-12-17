@@ -1,12 +1,12 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Indirect Single 1`] = `
+exports[`Indirect Deep Multi 1`] = `
 "bXipeBrs.png
 bsdudxaF.md
 index.js"
 `;
 
-exports[`Indirect Single 2`] = `
+exports[`Indirect Deep Multi 2`] = `
 "import image from './bXipeBrs.png';
 import content from './bsdudxaF.md';
 

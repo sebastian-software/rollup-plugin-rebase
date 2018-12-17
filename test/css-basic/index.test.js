@@ -2,7 +2,7 @@ import { bundle, clean, list, read } from "../util"
 
 const root = __dirname
 
-test("Flat Single", async () => {
+test("CSS Basic", async () => {
   await bundle(root, "index.js", "output/index.js")
 
   expect(list(root, "output")).resolves.toMatchSnapshot()

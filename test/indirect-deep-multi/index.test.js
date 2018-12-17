@@ -2,7 +2,7 @@ import { bundle, clean, list, read } from "../util"
 
 const root = __dirname
 
-test("Indirect Single", async () => {
+test("Indirect Deep Multi", async () => {
   await bundle(root, "index.js", "output/index.js")
 
   expect(list(root, "output")).resolves.toMatchSnapshot()

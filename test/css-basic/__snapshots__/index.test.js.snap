@@ -1,13 +1,13 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Flat Single 1`] = `
+exports[`CSS Basic 1`] = `
 "KKaZlCcl.css
 KKaZlCcl.css.map
 bsdudxaF.md
 index.js"
 `;
 
-exports[`Flat Single 2`] = `
+exports[`CSS Basic 2`] = `
 "import content from './bsdudxaF.md';
 import css from './KKaZlCcl.css';
 
@@ -19,7 +19,7 @@ export default index;
 "
 `;
 
-exports[`Flat Single 3`] = `
+exports[`CSS Basic 3`] = `
 "body {
   font-size: 20px;
 }

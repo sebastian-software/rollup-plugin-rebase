@@ -2,11 +2,12 @@ import { bundle, clean, list, read } from "../util"
 
 const root = __dirname
 
-test("Indirect Deep Single", async () => {
+test("CSS Asset", async () => {
   await bundle(root, "index.js", "output/index.js")
 
   expect(list(root, "output")).resolves.toMatchSnapshot()
   expect(read(root, "output/index.js")).resolves.toMatchSnapshot()
+  expect(read(root, "output/gToHHcDx.css")).resolves.toMatchSnapshot()
 
   await clean(root, "output")
 })

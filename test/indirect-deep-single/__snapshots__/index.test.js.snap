@@ -1,11 +1,11 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Indirect Single 1`] = `
+exports[`Indirect Deep Single 1`] = `
 "bsdudxaF.md
 index.js"
 `;
 
-exports[`Indirect Single 2`] = `
+exports[`Indirect Deep Single 2`] = `
 "import content from './bsdudxaF.md';
 
 function index() {
