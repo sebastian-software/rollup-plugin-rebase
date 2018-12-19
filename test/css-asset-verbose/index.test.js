@@ -3,9 +3,13 @@ import { bundle, clean, list, read } from "../util"
 const root = __dirname
 
 function formatConsoleMock(fn) {
-  return fn.mock.calls.map((entry) => {
-    return entry.join(" ")
-  }).join("\n")
+  return fn.mock.calls
+    .map((entry) => {
+      return entry.join(" ")
+    })
+    .join("\n")
+    // Windows support
+    .replace("\\\\", "/")
 }
 
 test("CSS Asset Verbose", async () => {
