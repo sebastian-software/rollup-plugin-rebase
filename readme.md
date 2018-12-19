@@ -1,6 +1,6 @@
 # Rollup Rebase <br/>[![Sponsored by][sponsor-img]][sponsor] [![Version][npm-version-img]][npm] [![Downloads][npm-downloads-img]][npm] [![Build Status Unix][travis-img]][travis] [![Build Status Windows][appveyor-img]][appveyor] [![Dependencies][deps-img]][deps]
 
-The Rollup Rebase Plugin copies static assets as required from your JavaScript code to the destination folder and adjusts the references in there to point to the new location.
+The Rollup Rebase Plugin copies static assets as required from your JavaScript code to the destination folder and adjusts the references in there to point to the new location. It also respects assets referenced from your CSS/SCSS files.
 
 [sponsor]: https://www.sebastian-software.de
 [deps]: https://david-dm.org/sebastian-software/rollup-plugin-rebase
@@ -71,11 +71,11 @@ config()
 
 ### Options (all optional)
 
-* folder: When set assets are placed inside a sub folder with that name.
-* keepName: If `true`, generated filenames will be `${filename}_${hash}.${ext}` instead of just `${hash}.${ext}`
-* verbose: If `true`, increases log level
-* include: Standard include option for rollup plugins.
-* exlude: Standard exclude option for rollup plugins.
+* `assetFolder`: When set assets are placed inside a sub folder with that name.
+* `keepName`: If `true`, generated filenames will be `${filename}~${hash}.${ext}` instead of just `${hash}.${ext}`
+* `verbose`: If `true`, increases log level
+* `include`: Standard include option for rollup plugins.
+* `exlude`: Standard exclude option for rollup plugins.
 
 
 ## Copyright

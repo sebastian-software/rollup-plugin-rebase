@@ -61,7 +61,7 @@ export default function rebase(options = {}) {
     exclude,
     verbose = false,
     keepName = false,
-    folder: assetFolder = ""
+    assetFolder = ""
   } = options
 
   const filter = createFilter(include, exclude)
