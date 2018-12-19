@@ -38,9 +38,12 @@
     "url": "git+https://github.com/sebastian-software/rollup-plugin-rebase.git"
   },
   "jest": {
+    "coveragePathIgnorePatterns": [
+      "test",
+      "node_modules"
+    ],
     "testEnvironment": "node",
     "testPathIgnorePatterns": [
-      "fixtures",
       "output",
       "coverage"
     ]
