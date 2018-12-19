@@ -8,8 +8,6 @@ function formatConsoleMock(fn) {
       return entry.join(" ")
     })
     .join("\n")
-    // Windows support
-    .replace("\\\\", "/")
 }
 
 test("CSS Asset Verbose", async () => {

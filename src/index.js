@@ -72,7 +72,8 @@ export default function rebase(options = {}) {
   let root = null
 
   function rootRelative(file) {
-    return path.relative(root, file)
+    // Last sequence is for Windows support
+    return path.relative(root, file).replace("\\", "/")
   }
 
   return {
