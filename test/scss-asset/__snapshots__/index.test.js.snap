@@ -1,16 +1,16 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`SCSS Asset 1`] = `
-"bXipeBrs.png
+"YXxXCosc.scss
+YXxXCosc.scss.map
+bXipeBrs.png
 bsdudxaF.md
-gToHHcDx.scss
-gToHHcDx.scss.map
 index.js"
 `;
 
 exports[`SCSS Asset 2`] = `
 "import content from './bsdudxaF.md';
-import scss from './gToHHcDx.scss';
+import scss from './YXxXCosc.scss';
 
 function index() {
   return content + scss
@@ -24,7 +24,11 @@ exports[`SCSS Asset 3`] = `
 "body {
   font-size: 20px;
   background: url(./bXipeBrs.png) top left repeat;
+
+  h1 {
+    font-weight: bold;
+  }
 }
 
-/*# sourceMappingURL=gToHHcDx.scss.map */"
+/*# sourceMappingURL=YXxXCosc.scss.map */"
 `;
