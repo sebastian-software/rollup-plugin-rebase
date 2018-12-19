@@ -1,0 +1,30 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`SCSS Asset 1`] = `
+"bXipeBrs.png
+bsdudxaF.md
+gToHHcDx.scss
+gToHHcDx.scss.map
+index.js"
+`;
+
+exports[`SCSS Asset 2`] = `
+"import content from './bsdudxaF.md';
+import scss from './gToHHcDx.scss';
+
+function index() {
+  return content + scss
+}
+
+export default index;
+"
+`;
+
+exports[`SCSS Asset 3`] = `
+"body {
+  font-size: 20px;
+  background: url(./bXipeBrs.png) top left repeat;
+}
+
+/*# sourceMappingURL=gToHHcDx.scss.map */"
+`;
