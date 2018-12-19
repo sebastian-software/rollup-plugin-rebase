@@ -100,9 +100,14 @@ export default function rebase(options = {}) {
       // We do not process files which do not have a file extensions,
       // cause all assets typically have one. By returning `null` we delegate
       // the resolver to other plugins.
-      const fileExt = path.extname(importee)
+      let fileExt = path.extname(importee)
       if (fileExt === "" || scriptExtensions.test(fileExt)) {
         return null
+      }
+
+      // Handle style extension rename - outputting SugarSS is not possible.
+      if (fileExt === ".sss") {
+        fileExt = ".pcss"
       }
 
       const fileSource = path.resolve(path.dirname(importer), importee)
