@@ -190,7 +190,7 @@ export default function rebase(options = {}) {
           })
         )
       } catch (error) {
-        throw new Error("Error while copying files:", error)
+        throw new Error(`Error while copying files: ${error}`)
       }
     }
   }
