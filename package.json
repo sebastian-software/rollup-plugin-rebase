@@ -69,9 +69,10 @@
     "eslint": "^5.15.3",
     "eslint-config-readable": "^2.3.2",
     "jest": "^24.5.0",
-    "preppy": "^7.6.2",
+    "preppy": "^7.6.3",
     "prettier": "^1.16.4",
     "rimraf": "^2.6.3",
-    "rollup": "^1.7.0"
+    "rollup": "^1.7.0",
+    "semver": "^5.6.0"
   }
 }
