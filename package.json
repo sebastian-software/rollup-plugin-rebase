@@ -49,29 +49,29 @@
     ]
   },
   "dependencies": {
-    "@babel/runtime": "^7.3.1",
-    "asset-hash": "^2.2.9",
-    "core-js": "^2.6.3",
+    "@babel/runtime": "^7.4.2",
+    "asset-hash": "^2.3.0",
+    "core-js": "^3.0.0",
     "fs-extra": "^7.0.1",
     "postcss": "^7.0.14",
     "postcss-import": "^12.0.1",
     "postcss-sass": "^0.3.5",
     "postcss-scss": "^2.0.0",
     "postcss-smart-asset": "^0.8.2",
-    "rollup-pluginutils": "^2.3.3",
+    "rollup-pluginutils": "^2.5.0",
     "sugarss": "^2.0.0"
   },
   "devDependencies": {
-    "@babel/core": "^7.2.2",
+    "@babel/core": "^7.4.0",
     "babel-core": "^7.0.0-bridge.0",
-    "babel-jest": "^23.6.0",
-    "babel-preset-edge": "^4.14.5",
-    "eslint": "^5.12.1",
-    "eslint-config-readable": "^2.3.0",
-    "jest": "^23.6.0",
-    "preppy": "^7.4.2",
-    "prettier": "^1.16.1",
+    "babel-jest": "^24.5.0",
+    "babel-preset-edge": "^5.0.0",
+    "eslint": "^5.15.3",
+    "eslint-config-readable": "^2.3.2",
+    "jest": "^24.5.0",
+    "preppy": "^7.6.2",
+    "prettier": "^1.16.4",
     "rimraf": "^2.6.3",
-    "rollup": "^1.1.2"
+    "rollup": "^1.7.0"
   }
 }
