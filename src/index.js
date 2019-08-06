@@ -1,4 +1,4 @@
-/* eslint-disable filenames/match-exported */
+/* eslint-disable filenames/match-exported, require-atomic-updates */
 import path from "path"
 
 import fs from "fs-extra"

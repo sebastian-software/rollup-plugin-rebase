@@ -6,6 +6,7 @@ import { rollup } from "rollup"
 
 import rebasePlugin from "../src"
 
+// eslint-disable-next-line max-params
 export async function bundle(root, input, output, pluginOptions = {}) {
   const plugin = rebasePlugin(pluginOptions)
 
