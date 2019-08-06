@@ -9,7 +9,7 @@
   ],
   "engines": {
     "node": ">=8.0.0",
-    "npm": ">=4.0.0",
+    "npm": ">=6.0.0",
     "yarn": ">=1.0.0"
   },
   "author": {
@@ -24,9 +24,9 @@
     "lib/"
   ],
   "scripts": {
-    "lint:js": "eslint .",
-    "fix:js": "eslint --fix .",
-    "format:js": "prettier --write '**/*.js' && npm run fix:js",
+    "lint": "eslint '**/*.{js,jsx,ts,tsx}'",
+    "fix": "eslint --fix '**/*.{js,jsx,ts,tsx}'",
+    "format": "prettier --write '**/*.{js,jsx,ts,tsx,md,json}' && npm run fix",
     "release": "release-it --github.release --npm.publish --non-interactive",
     "release:minor": "release-it --github.release --npm.publish --non-interactive --increment minor",
     "release:major": "release-it --github.release --npm.publish --non-interactive --increment major",
@@ -49,30 +49,28 @@
     ]
   },
   "dependencies": {
-    "@babel/runtime": "^7.4.5",
-    "asset-hash": "^2.4.3",
+    "asset-hash": "^3.0.0",
     "core-js": "^3.1.4",
-    "fs-extra": "^7.0.1",
+    "fs-extra": "^8.1.0",
     "postcss": "^7.0.17",
     "postcss-import": "^12.0.1",
-    "postcss-sass": "^0.3.5",
+    "postcss-sass": "^0.4.1",
     "postcss-scss": "^2.0.0",
-    "postcss-smart-asset": "^0.9.3",
+    "postcss-smart-asset": "^1.0.0",
     "rollup-pluginutils": "^2.8.1",
     "sugarss": "^2.0.0"
   },
   "devDependencies": {
-    "@babel/core": "^7.4.5",
+    "@babel/core": "^7.5.5",
     "babel-core": "^7.0.0-bridge.0",
     "babel-jest": "^24.8.0",
     "babel-preset-edge": "^5.3.0",
-    "eslint": "^5.16.0",
-    "eslint-config-readable": "^2.3.2",
+    "eslint": "^6.1.0",
     "jest": "^24.8.0",
-    "preppy": "^8.1.4",
+    "preppy": "^8.3.0",
     "prettier": "^1.18.2",
     "rimraf": "^2.6.3",
-    "rollup": "^1.16.1",
-    "semver": "^6.1.1"
+    "rollup": "^1.19.3",
+    "semver": "^6.3.0"
   }
 }
