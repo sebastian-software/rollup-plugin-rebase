@@ -11,7 +11,7 @@ import postcssSugarSS from "sugarss"
 import { createFilter } from "rollup-pluginutils"
 import { getHash } from "asset-hash"
 
-const scriptExtensions = /^\.(json|mjs|js|jsx|es|esx|ts|tsx)$/
+const scriptExtensions = /^\.(json|mjs|js|jsx|ts|tsx)$/
 
 const styleParser = {
   ".pcss": null,
