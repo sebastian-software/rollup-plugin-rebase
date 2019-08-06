@@ -21,13 +21,13 @@ export async function bundle(root, input, output, pluginOptions = {}) {
 }
 
 export async function clean(root, files) {
-  const input = files instanceof Array ? files : [ files ]
+  const input = Array.isArray(files) ? files : [ files ]
   const tasks = input.map((file) => fs.remove(join(root, file)))
   return Promise.all(tasks)
 }
 
 export async function exists(root, files) {
-  const input = files instanceof Array ? files : [ files ]
+  const input = Array.isArray(files) ? files : [ files ]
   const tasks = input.map((file) => fs.pathExists(join(root, file)))
   const result = await Promise.all(tasks)
   return !result.some((value) => value === false)
@@ -48,7 +48,9 @@ export async function list(root, folder) {
 }
 
 export async function read(root, file, options = {}) {
-  const content = await fs.readFile(join(root, file), { encoding: options.encoding || "utf-8" })
+  const content = await fs.readFile(join(root, file), {
+    encoding: options.encoding || "utf-8"
+  })
   // console.log(content)
   return content
 }

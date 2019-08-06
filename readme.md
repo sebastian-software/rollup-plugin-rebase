@@ -7,7 +7,6 @@ The Rollup Rebase Plugin copies static assets as required from your JavaScript c
 [npm]: https://www.npmjs.com/package/rollup-plugin-rebase
 [travis]: https://travis-ci.org/sebastian-software/rollup-plugin-rebase
 [appveyor]: https://ci.appveyor.com/project/swernerx/rollup-plugin-rebase/branch/master
-
 [sponsor-img]: https://badgen.net/badge/Sponsored%20by/Sebastian%20Software/692446
 [deps-img]: https://badgen.net/david/dep/sebastian-software/rollup-plugin-rebase
 [npm-downloads-img]: https://badgen.net/npm/dm/rollup-plugin-rebase
@@ -22,15 +21,11 @@ The Rollup Rebase Plugin copies static assets as required from your JavaScript c
 - Transforms CSS files to inline all includes from `@import` via [PostCSS Import](https://github.com/postcss/postcss-import) into the origin files.
 - Detects and processes assets referenced from both, JavaScript and CSS.
 - Renames all assets based on their hash (XXHash + Base62) so that conflicts are automatically eliminated while producing a flat output structure.
-- Supports *normal* CSS, but also [SugarSS](https://github.com/postcss/sugarss), [SCSS](https://github.com/postcss/postcss-scss) and [Sass](https://github.com/aleshaoleg/postcss-sass) via the standard PostCSS parser plugins.
-
-
+- Supports _normal_ CSS, but also [SugarSS](https://github.com/postcss/sugarss), [SCSS](https://github.com/postcss/postcss-scss) and [Sass](https://github.com/aleshaoleg/postcss-sass) via the standard PostCSS parser plugins.
 
 ## Comparison
 
-The plugin is meant as a tool for preparing a library for being published. In this it differs from plugins like [Rollup URL Plugin](https://github.com/Swatinem/rollup-plugin-url) as it is designed for usage in *libraries* and not for *applications*. The output of this plugin can be used by tools like Webpacks [File Loader](https://github.com/webpack/file-loader), [URL Loader](https://github.com/webpack/url-loader) or the already mentioned [Rollup URL Plugin](https://github.com/Swatinem/rollup-plugin-url).
-
-
+The plugin is meant as a tool for preparing a library for being published. In this it differs from plugins like [Rollup URL Plugin](https://github.com/Swatinem/rollup-plugin-url) as it is designed for usage in _libraries_ and not for _applications_. The output of this plugin can be used by tools like Webpacks [File Loader](https://github.com/webpack/file-loader), [URL Loader](https://github.com/webpack/url-loader) or the already mentioned [Rollup URL Plugin](https://github.com/Swatinem/rollup-plugin-url).
 
 ## Installation
 
@@ -44,7 +39,6 @@ or
 $ yarn add --dev rollup-plugin-rebase
 ```
 
-
 ## Usage
 
 You can configure Rollup Rebase as part of your Rollup configuration. This can be either done in a `rollup.config.js` or by scripting using the Rollup API:
@@ -56,9 +50,7 @@ import rebasePlugin from "rollup-plugin-rebase"
 async function config() {
   const bundle = await rollup({
     input: "./src/index.js",
-    plugins: [
-      rebasePlugin()
-    ]
+    plugins: [rebasePlugin()]
   })
 
   await bundle.write({
@@ -71,12 +63,11 @@ config()
 
 ### Options (all optional)
 
-* `assetFolder`: When set assets are placed inside a sub folder with that name.
-* `keepName`: If `true`, generated filenames will be `${filename}~${hash}.${ext}` instead of just `${hash}.${ext}`
-* `verbose`: If `true`, increases log level
-* `include`: Standard include option for rollup plugins.
-* `exlude`: Standard exclude option for rollup plugins.
-
+- `assetFolder`: When set assets are placed inside a sub folder with that name.
+- `keepName`: If `true`, generated filenames will be `${filename}~${hash}.${ext}` instead of just `${hash}.${ext}`
+- `verbose`: If `true`, increases log level
+- `include`: Standard include option for rollup plugins.
+- `exlude`: Standard exclude option for rollup plugins.
 
 ## Copyright
 

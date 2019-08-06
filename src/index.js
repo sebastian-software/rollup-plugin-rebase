@@ -1,5 +1,6 @@
 /* eslint-disable filenames/match-exported */
 import path from "path"
+
 import fs from "fs-extra"
 import postcss from "postcss"
 import postcssImport from "postcss-import"
@@ -7,7 +8,6 @@ import postcssSass from "postcss-sass"
 import postcssScss from "postcss-scss"
 import postcssSmartAsset from "postcss-smart-asset"
 import postcssSugarSS from "sugarss"
-
 import { createFilter } from "rollup-pluginutils"
 import { getHash } from "asset-hash"
 
@@ -139,9 +139,7 @@ export default function rebase(options = {}) {
 
       // Replacing slashes for Windows, as we need to use POSIX style to be compat
       // to Rollup imports / NodeJS resolve implementation.
-      const assetId = path
-        .join(root, assetFolder, fileTarget)
-        .replace(/\\/g, "/")
+      const assetId = path.join(root, assetFolder, fileTarget).replace(/\\/g, "/")
 
       // console.log("Importer:", importer)
       // console.log("Asset-ID:", assetId)
@@ -191,13 +189,17 @@ export default function rebase(options = {}) {
             // we can handle internal references in CSS as well.
             if (fileExt in styleParser) {
               if (verbose) {
-                console.log(`Processing ${rootRelative(fileSource)} => ${rootRelative(fileDest)}...`)
+                console.log(
+                  `Processing ${rootRelative(fileSource)} => ${rootRelative(fileDest)}...`
+                )
               }
 
               await processStyle(fileSource, fileDest, keepName)
             } else {
               if (verbose) {
-                console.log(`Copying ${rootRelative(fileSource)} => ${rootRelative(fileDest)}...`)
+                console.log(
+                  `Copying ${rootRelative(fileSource)} => ${rootRelative(fileDest)}...`
+                )
               }
 
               await fs.copy(fileSource, fileDest)
