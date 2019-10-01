@@ -49,30 +49,30 @@
     ]
   },
   "dependencies": {
-    "asset-hash": "^3.0.0",
-    "core-js": "^3.1.4",
+    "asset-hash": "^3.0.1",
+    "core-js": "^3.2.1",
     "fs-extra": "^8.1.0",
-    "postcss": "^7.0.17",
+    "postcss": "^7.0.18",
     "postcss-import": "^12.0.1",
     "postcss-sass": "^0.4.1",
     "postcss-scss": "^2.0.0",
     "postcss-smart-asset": "^1.0.0",
-    "rollup-pluginutils": "^2.8.1",
+    "rollup-pluginutils": "^2.8.2",
     "sugarss": "^2.0.0"
   },
   "devDependencies": {
-    "@babel/core": "^7.5.5",
-    "@effective/eslint-config": "^0.8.2",
+    "@babel/core": "^7.6.2",
+    "@effective/eslint-config": "^1.1.1",
     "babel-core": "^7.0.0-bridge.0",
-    "babel-jest": "^24.8.0",
-    "babel-preset-edge": "^5.3.0",
-    "eslint": "^6.1.0",
-    "jest": "^24.8.0",
-    "preppy": "^8.3.0",
+    "babel-jest": "^24.9.0",
+    "babel-preset-edge": "^5.5.0",
+    "eslint": "^6.5.1",
+    "jest": "^24.9.0",
+    "preppy": "^8.3.1",
     "prettier": "^1.18.2",
-    "rimraf": "^2.6.3",
-    "rollup": "^1.19.3",
+    "rimraf": "^3.0.0",
+    "rollup": "^1.22.0",
     "semver": "^6.3.0",
-    "typescript": "^3.5.3"
+    "typescript": "^3.6.3"
   }
 }
