@@ -8,7 +8,7 @@ import postcssSass from "postcss-sass"
 import postcssScss from "postcss-scss"
 import postcssSmartAsset from "postcss-smart-asset"
 import postcssSugarSS from "sugarss"
-import { createFilter } from "rollup-pluginutils"
+import { createFilter } from "@rollup/pluginutils"
 import { getHash } from "asset-hash"
 
 const scriptExtensions = /^\.(json|mjs|js|jsx|ts|tsx)$/
@@ -96,10 +96,6 @@ export default function rebase(options = {}) {
 
     /* eslint-disable complexity, max-statements */
     async resolveId(importee, importer) {
-      if (!filter(importee)) {
-        return null
-      }
-
       // Ignore root files which are typically script files. Delegate to other
       // plugins or default behavior.
       if (!importer) {
@@ -140,6 +136,13 @@ export default function rebase(options = {}) {
       // Replacing slashes for Windows, as we need to use POSIX style to be compat
       // to Rollup imports / NodeJS resolve implementation.
       const assetId = path.join(root, assetFolder, fileTarget).replace(/\\/g, "/")
+
+      // filter out based on include / exclude options
+      // console.log(assetId)
+      // console.log(filter(assetId))
+      if (!filter(assetId)) {
+        return null
+      }
 
       // console.log("Importer:", importer)
       // console.log("Asset-ID:", assetId)

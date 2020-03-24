@@ -49,6 +49,7 @@
     ]
   },
   "dependencies": {
+    "@rollup/pluginutils": "^3.0.8",
     "asset-hash": "^3.0.3",
     "core-js": "^3.5.0",
     "fs-extra": "^8.1.0",
