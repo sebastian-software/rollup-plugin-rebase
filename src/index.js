@@ -122,16 +122,14 @@ export default function rebase(options = {}) {
         fileExt = ".pcss"
       }
 
+      // Resolve full file path and let this run against the
+      // Rollup filter mechanics.
       const fileSource = path.resolve(path.dirname(importer), importee)
-      const fileName = path.basename(importee, fileExt)
-
-      // filter out based on include / exclude options
-      // console.log(fileSource)
-      // console.log(filter(fileSource))
       if (!filter(fileSource)) {
         return null
       }
 
+      const fileName = path.basename(importee, fileExt)
       const fileHash = await getHash(fileSource)
       const fileTarget = keepName ?
         `${fileName}~${fileHash}${fileExt}` :
