@@ -1,0 +1,30 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Exclude 1`] = `
+"bsdudxaF.md
+cGxRTWKw.css
+cGxRTWKw.css.map
+index.js"
+`;
+
+exports[`Exclude 2`] = `
+"import content from './bsdudxaF.md';
+import css from './cGxRTWKw.css';
+
+function index() {
+  return content + css
+}
+
+export default index;
+"
+`;
+
+exports[`Exclude 3`] = `
+"body {
+  font-size: 20px;
+  background: blue;
+  color: white;
+}
+
+/*# sourceMappingURL=cGxRTWKw.css.map */"
+`;

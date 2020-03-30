@@ -8,7 +8,7 @@ import postcssSass from "postcss-sass"
 import postcssScss from "postcss-scss"
 import postcssSmartAsset from "postcss-smart-asset"
 import postcssSugarSS from "sugarss"
-import { createFilter } from "rollup-pluginutils"
+import { createFilter } from "@rollup/pluginutils"
 import { getHash } from "asset-hash"
 
 const scriptExtensions = /^\.(json|mjs|js|jsx|ts|tsx)$/
@@ -96,10 +96,6 @@ export default function rebase(options = {}) {
 
     /* eslint-disable complexity, max-statements */
     async resolveId(importee, importer) {
-      if (!filter(importee)) {
-        return null
-      }
-
       // Ignore root files which are typically script files. Delegate to other
       // plugins or default behavior.
       if (!importer) {
@@ -128,6 +124,14 @@ export default function rebase(options = {}) {
 
       const fileSource = path.resolve(path.dirname(importer), importee)
       const fileName = path.basename(importee, fileExt)
+
+      // filter out based on include / exclude options
+      // console.log(fileSource)
+      // console.log(filter(fileSource))
+      if (!filter(fileSource)) {
+        return null
+      }
+
       const fileHash = await getHash(fileSource)
       const fileTarget = keepName ?
         `${fileName}~${fileHash}${fileExt}` :
