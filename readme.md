@@ -67,7 +67,7 @@ config()
 - `keepName`: If `true`, generated filenames will be `${filename}~${hash}.${ext}` instead of just `${hash}.${ext}`
 - `verbose`: If `true`, increases log level
 - `include`: Standard include option for rollup plugins.
-- `exlude`: Standard exclude option for rollup plugins.
+- `exclude`: Standard exclude option for rollup plugins.
 
 ## Copyright
 
