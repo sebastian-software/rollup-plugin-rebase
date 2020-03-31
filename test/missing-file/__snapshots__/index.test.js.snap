@@ -1,0 +1,18 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Flat Single 1`] = `"index.js"`;
+
+exports[`Flat Single 2`] = `
+"var specialjs = {
+  helper: () => {
+    console.log(\\"helper\\");
+  }
+};
+
+function index() {
+  return specialjs.helper()
+}
+
+export default index;
+"
+`;

@@ -129,6 +129,18 @@ export default function rebase(options = {}) {
         return null
       }
 
+      // If we are unable to resolve the path to an existing path, we simply
+      // assume that we somehow got it wrong and delegate it over to other
+      // resolvers in the chain. This happens for example when the file uses
+      // a dot for seperating name segments like "core-js" does e.g. with
+      // `es.array.reduce.js` which is imported via `es.array.reduce`. Our code
+      // is this case might assume that `.reduce` is the file extension and is
+      // unable to resolve the file. When delegating it back to the normal
+      // Rollup resolvers it works correctly though.
+      if (!(await fs.pathExists(fileSource))) {
+        return null
+      }
+
       const fileName = path.basename(importee, fileExt)
       const fileHash = await getHash(fileSource)
       const fileTarget = keepName ?
