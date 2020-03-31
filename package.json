@@ -50,7 +50,7 @@
   },
   "dependencies": {
     "@rollup/pluginutils": "^3.0.8",
-    "asset-hash": "^3.0.3",
+    "asset-hash": "^3.0.4",
     "core-js": "^3.6.4",
     "fs-extra": "^9.0.0",
     "postcss": "^7.0.27",
@@ -69,7 +69,7 @@
     "babel-preset-edge": "^5.5.1",
     "eslint": "^6.8.0",
     "jest": "^25.2.4",
-    "preppy": "^10.0.1",
+    "preppy": "^10.1.0",
     "prettier": "^2.0.2",
     "rimraf": "^3.0.2",
     "rollup": "^2.3.1",
