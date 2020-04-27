@@ -25,8 +25,7 @@
   ],
   "scripts": {
     "lint": "eslint '**/*.{js,jsx,ts,tsx}'",
-    "fix": "eslint --fix '**/*.{js,jsx,ts,tsx}'",
-    "format": "prettier --write '**/*.{js,jsx,ts,tsx,md,json}' && npm run fix",
+    "format": "effective-prettier '**/*.{js,jsx,ts,tsx,md,json}'",
     "release": "release-it --github.release --npm.publish --non-interactive",
     "release:minor": "release-it --github.release --npm.publish --non-interactive --increment minor",
     "release:major": "release-it --github.release --npm.publish --non-interactive --increment major",
