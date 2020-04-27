@@ -63,7 +63,7 @@
   "devDependencies": {
     "@babel/core": "^7.9.0",
     "@effective/eslint-config": "^2.4.0",
-    "@effective/prettier": "^2.0.4",
+    "@effective/prettier": "^2.0.5",
     "babel-core": "^7.0.0-bridge.0",
     "babel-jest": "^25.4.0",
     "babel-preset-edge": "^5.5.1",
