@@ -137,15 +137,15 @@ export default function rebase(options = {}) {
       // is this case might assume that `.reduce` is the file extension and is
       // unable to resolve the file. When delegating it back to the normal
       // Rollup resolvers it works correctly though.
-      if (!(await fs.pathExists(fileSource))) {
+      if (!await fs.pathExists(fileSource)) {
         return null
       }
 
       const fileName = path.basename(importee, fileExt)
       const fileHash = await getHash(fileSource)
-      const fileTarget = keepName ?
-        `${fileName}~${fileHash}${fileExt}` :
-        `${fileHash}${fileExt}`
+      const fileTarget = keepName
+        ? `${fileName}~${fileHash}${fileExt}`
+        : `${fileHash}${fileExt}`
 
       // Registering for our copying job when the bundle is created (kind of a job queue)
       // and respect any sub folder given by the configuration options.
