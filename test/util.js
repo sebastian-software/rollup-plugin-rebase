@@ -40,7 +40,7 @@ export async function list(root, folder) {
       if (err) {
         reject(err)
       } else {
-        const content = files.join("\n")
+        const content = files.sort().join("\n")
         // console.log(content)
         resolve(content)
       }
