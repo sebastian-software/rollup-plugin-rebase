@@ -26,9 +26,9 @@
   "scripts": {
     "lint": "eslint '**/*.{js,jsx,ts,tsx}'",
     "format": "prettier --write '**/*.{md,json}' && effective-prettier '**/*.{js,jsx,ts,tsx}'",
-    "release": "release-it --github.release --npm.publish --non-interactive",
-    "release:minor": "release-it --github.release --npm.publish --non-interactive --increment minor",
-    "release:major": "release-it --github.release --npm.publish --non-interactive --increment major",
+    "release": "release-it patch",
+    "release:minor": "release-it minor",
+    "release:major": "release-it major",
     "test": "jest --coverage",
     "prepare": "rimraf lib && preppy"
   },
