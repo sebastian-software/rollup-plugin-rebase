@@ -26,9 +26,9 @@
   "scripts": {
     "lint": "eslint '**/*.{js,jsx,ts,tsx}'",
     "format": "effective-prettier '**/*.{md,json,js,jsx,ts,tsx}'",
-    "release": "release-it patch",
-    "release:minor": "release-it minor",
-    "release:major": "release-it major",
+    "release": "release-it patch --ci",
+    "release:minor": "release-it minor --ci",
+    "release:major": "release-it major --ci",
     "test": "jest --coverage",
     "prepare": "rimraf lib && preppy"
   },
