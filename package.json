@@ -49,14 +49,14 @@
   },
   "dependencies": {
     "@rollup/pluginutils": "^3.1.0",
-    "asset-hash": "^3.0.5",
+    "asset-hash": "^3.0.7",
     "core-js": "^3.6.5",
     "fs-extra": "^9.0.1",
     "postcss": "^7.0.32",
     "postcss-import": "^12.0.1",
     "postcss-sass": "^0.4.4",
     "postcss-scss": "^2.1.1",
-    "postcss-smart-asset": "^1.0.5",
+    "postcss-smart-asset": "^1.0.6",
     "sugarss": "^2.0.0"
   },
   "devDependencies": {
