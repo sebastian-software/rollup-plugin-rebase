@@ -8,9 +8,7 @@
     "assets"
   ],
   "engines": {
-    "node": ">=10.0.0",
-    "npm": ">=6.0.0",
-    "yarn": ">=1.0.0"
+    "node": ">=10.0.0"
   },
   "author": {
     "name": "Sebastian Werner",
