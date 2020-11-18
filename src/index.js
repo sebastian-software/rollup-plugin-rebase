@@ -51,7 +51,7 @@ async function processStyle(id, fileDest, keepName) {
 
   await Promise.all([
     fs.outputFile(fileDest, result.css),
-    fs.outputFile(`${fileDest}.map`, result.map)
+    fs.outputFile(`${fileDest}.map`, result.map.toString())
   ])
 }
 
