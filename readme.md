@@ -1,14 +1,12 @@
-# Rollup Rebase <br/>[![Sponsored by][sponsor-img]][sponsor] [![Version][npm-version-img]][npm] [![Downloads][npm-downloads-img]][npm] [![Build Status Unix][travis-img]][travis] [![Build Status Windows][appveyor-img]][appveyor] [![Dependencies][deps-img]][deps]
+# Rollup Rebase <br/>[![Sponsored by][sponsor-img]][sponsor] [![Version][npm-version-img]][npm] [![Downloads][npm-downloads-img]][npm] [![Build Status Unix][travis-img]][travis] [![Build Status Windows][appveyor-img]][appveyor]
 
 The Rollup Rebase Plugin copies static assets as required from your JavaScript code to the destination folder and adjusts the references in there to point to the new location. It also respects assets referenced from your CSS/SCSS files.
 
 [sponsor]: https://www.sebastian-software.de
-[deps]: https://david-dm.org/sebastian-software/rollup-plugin-rebase
 [npm]: https://www.npmjs.com/package/rollup-plugin-rebase
 [travis]: https://travis-ci.org/sebastian-software/rollup-plugin-rebase
 [appveyor]: https://ci.appveyor.com/project/swernerx/rollup-plugin-rebase/branch/master
 [sponsor-img]: https://badgen.net/badge/Sponsored%20by/Sebastian%20Software/692446
-[deps-img]: https://badgen.net/david/dep/sebastian-software/rollup-plugin-rebase
 [npm-downloads-img]: https://badgen.net/npm/dm/rollup-plugin-rebase
 [npm-version-img]: https://badgen.net/npm/v/rollup-plugin-rebase
 [travis-img]: https://badgen.net/travis/sebastian-software/rollup-plugin-rebase?label=unix%20build
