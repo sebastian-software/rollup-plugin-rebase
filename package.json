@@ -54,7 +54,7 @@
     "postcss-import": "^14.0.0",
     "postcss-sass": "^0.4.4",
     "postcss-scss": "^3.0.5",
-    "postcss-smart-asset": "^2.0.3",
+    "postcss-smart-asset": "^2.0.4",
     "sugarss": "^3.0.3"
   },
   "devDependencies": {
