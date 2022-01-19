@@ -13,6 +13,6 @@ function index() {
   return specialjs.helper()
 }
 
-export default index;
+export { index as default };
 "
 `;

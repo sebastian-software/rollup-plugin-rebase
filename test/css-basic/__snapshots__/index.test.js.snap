@@ -1,21 +1,21 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`CSS Basic 1`] = `
-"KKaZlCcl.css
-KKaZlCcl.css.map
-bsdudxaF.md
+"HDWIGpiP.md
+SDZkqFGT.css
+SDZkqFGT.css.map
 index.js"
 `;
 
 exports[`CSS Basic 2`] = `
-"import content from './bsdudxaF.md';
-import css from './KKaZlCcl.css';
+"import content from './HDWIGpiP.md';
+import css from './SDZkqFGT.css';
 
 function index() {
   return content + css
 }
 
-export default index;
+export { index as default };
 "
 `;
 
@@ -24,5 +24,5 @@ exports[`CSS Basic 3`] = `
   font-size: 20px;
 }
 
-/*# sourceMappingURL=KKaZlCcl.css.map */"
+/*# sourceMappingURL=SDZkqFGT.css.map */"
 `;

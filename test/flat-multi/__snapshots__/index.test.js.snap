@@ -1,19 +1,19 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`Flat Multi 1`] = `
-"bXipeBrs.png
-bsdudxaF.md
+"HDWIGpiP.md
+SmVOQyTt.png
 index.js"
 `;
 
 exports[`Flat Multi 2`] = `
-"import content from './bsdudxaF.md';
-import image from './bXipeBrs.png';
+"import content from './HDWIGpiP.md';
+import image from './SmVOQyTt.png';
 
 function index() {
   return content + image
 }
 
-export default index;
+export { index as default };
 "
 `;

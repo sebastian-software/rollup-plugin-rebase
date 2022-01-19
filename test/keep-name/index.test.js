@@ -7,7 +7,7 @@ test("Keep Name", async () => {
 
   expect(await list(root, "output")).toMatchSnapshot()
   expect(await read(root, "output/index.js")).toMatchSnapshot()
-  expect(await read(root, "output/index~gToHHcDx.css")).toMatchSnapshot()
+  expect(await read(root, "output/index~rfFBfmSa.css")).toMatchSnapshot()
 
   await clean(root, "output")
 })

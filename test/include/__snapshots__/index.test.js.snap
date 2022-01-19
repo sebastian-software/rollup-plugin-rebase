@@ -1,21 +1,21 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`Include 1`] = `
-"bsdudxaF.md
-cGxRTWKw.css
-cGxRTWKw.css.map
-index.js"
+"HDWIGpiP.md
+index.js
+vfhBOfeG.css
+vfhBOfeG.css.map"
 `;
 
 exports[`Include 2`] = `
-"import content from './bsdudxaF.md';
-import css from './cGxRTWKw.css';
+"import content from './HDWIGpiP.md';
+import css from './vfhBOfeG.css';
 
 function index() {
   return content + css
 }
 
-export default index;
+export { index as default };
 "
 `;
 
@@ -26,5 +26,5 @@ exports[`Include 3`] = `
   color: white;
 }
 
-/*# sourceMappingURL=cGxRTWKw.css.map */"
+/*# sourceMappingURL=vfhBOfeG.css.map */"
 `;

@@ -6,29 +6,29 @@ index.js"
 `;
 
 exports[`Asset Folder 2`] = `
-"bXipeBrs.png
-bsdudxaF.md
-gToHHcDx.css
-gToHHcDx.css.map"
+"HDWIGpiP.md
+SmVOQyTt.png
+rfFBfmSa.css
+rfFBfmSa.css.map"
 `;
 
 exports[`Asset Folder 3`] = `
-"import content from './bundled-assets/bsdudxaF.md';
-import css from './bundled-assets/gToHHcDx.css';
+"import content from './bundled-assets/HDWIGpiP.md';
+import css from './bundled-assets/rfFBfmSa.css';
 
 function index() {
   return content + css
 }
 
-export default index;
+export { index as default };
 "
 `;
 
 exports[`Asset Folder 4`] = `
 "body {
   font-size: 20px;
-  background: url(./bXipeBrs.png) top left repeat;
+  background: url(./SmVOQyTt.png) top left repeat;
 }
 
-/*# sourceMappingURL=gToHHcDx.css.map */"
+/*# sourceMappingURL=rfFBfmSa.css.map */"
 `;

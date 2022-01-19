@@ -8,7 +8,7 @@ test("Asset Folder", async () => {
   expect(await list(root, "output")).toMatchSnapshot()
   expect(await list(root, "output/bundled-assets")).toMatchSnapshot()
   expect(await read(root, "output/index.js")).toMatchSnapshot()
-  expect(await read(root, "output/bundled-assets/gToHHcDx.css")).toMatchSnapshot()
+  expect(await read(root, "output/bundled-assets/rfFBfmSa.css")).toMatchSnapshot()
 
   await clean(root, "output")
 })

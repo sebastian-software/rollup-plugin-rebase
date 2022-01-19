@@ -7,7 +7,7 @@ test("SCSS Asset", async () => {
 
   expect(await list(root, "output")).toMatchSnapshot()
   expect(await read(root, "output/index.js")).toMatchSnapshot()
-  expect(await read(root, "output/YXxXCosc.scss")).toMatchSnapshot()
+  expect(await read(root, "output/hdeAIjQB.scss")).toMatchSnapshot()
 
   await clean(root, "output")
 })

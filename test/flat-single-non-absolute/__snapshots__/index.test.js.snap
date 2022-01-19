@@ -1,17 +1,17 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`Flat Single Non Absolute 1`] = `
-"bsdudxaF.md
+"HDWIGpiP.md
 index.js"
 `;
 
 exports[`Flat Single Non Absolute 2`] = `
-"import content from './bsdudxaF.md';
+"import content from './HDWIGpiP.md';
 
 function index() {
   return content
 }
 
-export default index;
+export { index as default };
 "
 `;

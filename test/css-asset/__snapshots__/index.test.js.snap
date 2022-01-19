@@ -1,30 +1,30 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`CSS Asset 1`] = `
-"bXipeBrs.png
-bsdudxaF.md
-gToHHcDx.css
-gToHHcDx.css.map
-index.js"
+"HDWIGpiP.md
+SmVOQyTt.png
+index.js
+rfFBfmSa.css
+rfFBfmSa.css.map"
 `;
 
 exports[`CSS Asset 2`] = `
-"import content from './bsdudxaF.md';
-import css from './gToHHcDx.css';
+"import content from './HDWIGpiP.md';
+import css from './rfFBfmSa.css';
 
 function index() {
   return content + css
 }
 
-export default index;
+export { index as default };
 "
 `;
 
 exports[`CSS Asset 3`] = `
 "body {
   font-size: 20px;
-  background: url(./bXipeBrs.png) top left repeat;
+  background: url(./SmVOQyTt.png) top left repeat;
 }
 
-/*# sourceMappingURL=gToHHcDx.css.map */"
+/*# sourceMappingURL=rfFBfmSa.css.map */"
 `;
