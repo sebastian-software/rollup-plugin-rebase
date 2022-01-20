@@ -31,7 +31,7 @@ export async function exists(root, files) {
   const input = Array.isArray(files) ? files : [ files ]
   const tasks = input.map((file) => fs.pathExists(join(root, file)))
   const result = await Promise.all(tasks)
-  return !result.some((value) => value === false)
+  return !result.includes(false)
 }
 
 export async function list(root, folder) {
