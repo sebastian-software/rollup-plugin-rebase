@@ -1,5 +1,24 @@
 {
   "presets": [
-    "edge"
+    [
+      "@babel/preset-env",
+      {
+        "loose": true,
+        "useBuiltIns": "usage",
+        "corejs": "3.20",
+        "targets": {
+          "node": 16
+        }
+      }
+    ]
+  ],
+  "plugins": [
+    [
+      "@babel/plugin-transform-runtime",
+      {
+        "helpers": true,
+        "regenerator": false
+      }
+    ]
   ]
 }

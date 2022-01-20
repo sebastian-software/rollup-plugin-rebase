@@ -1,0 +1,11 @@
+{
+  "coveragePathIgnorePatterns": [
+    "test",
+    "node_modules"
+  ],
+  "testEnvironment": "node",
+  "testPathIgnorePatterns": [
+    "output",
+    "coverage"
+  ]
+}

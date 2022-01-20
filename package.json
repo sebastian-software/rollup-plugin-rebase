@@ -34,17 +34,6 @@
     "type": "git",
     "url": "git+https://github.com/sebastian-software/rollup-plugin-rebase.git"
   },
-  "jest": {
-    "coveragePathIgnorePatterns": [
-      "test",
-      "node_modules"
-    ],
-    "testEnvironment": "node",
-    "testPathIgnorePatterns": [
-      "output",
-      "coverage"
-    ]
-  },
   "dependencies": {
     "@rollup/pluginutils": "^4.1.2",
     "asset-hash": "^4.0.4",
@@ -59,11 +48,12 @@
   },
   "devDependencies": {
     "@babel/core": "^7.16.10",
+    "@babel/plugin-transform-runtime": "^7.16.10",
+    "@babel/preset-env": "^7.16.10",
     "@effective/eslint-config": "^4.0.1",
     "@effective/prettier": "^4.3.4",
     "babel-core": "^7.0.0-bridge.0",
     "babel-jest": "^27.4.6",
-    "babel-preset-edge": "^5.5.1",
     "eslint": "^8.7.0",
     "jest": "^27.4.7",
     "preppy": "^11.0.1",
