@@ -47,14 +47,14 @@
   },
   "dependencies": {
     "@rollup/pluginutils": "^4.1.2",
-    "asset-hash": "^4.0.2",
+    "asset-hash": "^4.0.4",
     "core-js": "^3.20.3",
     "fs-extra": "^10.0.0",
     "postcss": "^8.4.5",
     "postcss-import": "^14.0.2",
     "postcss-sass": "^0.5.0",
     "postcss-scss": "^4.0.3",
-    "postcss-smart-asset": "^3.0.0",
+    "postcss-smart-asset": "^3.0.1",
     "sugarss": "^4.0.1"
   },
   "devDependencies": {
@@ -66,7 +66,7 @@
     "babel-preset-edge": "^5.5.1",
     "eslint": "^8.7.0",
     "jest": "^27.4.7",
-    "preppy": "^10.10.2",
+    "preppy": "^11.0.1",
     "prettier": "^2.5.1",
     "release-it": "^14.12.3",
     "rimraf": "^3.0.2",
