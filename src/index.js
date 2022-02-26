@@ -11,6 +11,8 @@ import postcssSugarSS from "sugarss"
 import { createFilter } from "@rollup/pluginutils"
 import { getHash } from "asset-hash"
 
+const MULTI_INPUT_PLUGIN_NAME = 'rollup-plugin-multi-input';
+
 const scriptExtensions = /^\.(json|mjs|js|jsx|ts|tsx)$/
 
 const styleParser = {
@@ -21,22 +23,22 @@ const styleParser = {
   ".sass": postcssSass
 }
 
-function getPostCssPlugins(keepName) {
+function getPostCssPlugins(keepName, useHash) {
   return [
     postcssImport(),
     postcssSmartAsset({
       url: "copy",
-      useHash: true,
-      keepName
+      useHash,
+      keepName,
     })
   ]
 }
 
 /* eslint-disable max-params */
-async function processStyle(id, fileDest, keepName) {
+async function processStyle(id, fileDest, keepName, useHash) {
   const content = await fs.readFile(id)
   const parser = styleParser[path.extname(id)]
-  const processor = postcss(getPostCssPlugins(keepName))
+  const processor = postcss(getPostCssPlugins(keepName, useHash))
   const text = content.toString()
 
   const result = await processor.process(text, {
@@ -61,7 +63,8 @@ export default function rebase(options = {}) {
     exclude,
     verbose = false,
     keepName = false,
-    assetFolder = ""
+    useHash = true,
+    assetFolder = "",
   } = options
 
   const filter = createFilter(include, exclude)
@@ -70,6 +73,7 @@ export default function rebase(options = {}) {
   const files = {}
 
   let root = null
+  let hasMultiInput = false;
 
   function rootRelative(file) {
     // Last sequence is for Windows support
@@ -94,12 +98,20 @@ export default function rebase(options = {}) {
       return Boolean(files[fileSource])
     },
 
+    options({ plugins }) {
+      // Check whether we are using rollup-plugin-multi-input
+      hasMultiInput = !!plugins?.some(plugin => plugin != null && typeof plugin !== "boolean" && plugin.name === MULTI_INPUT_PLUGIN_NAME);
+    },
+
     /* eslint-disable complexity, max-statements */
     async resolveId(importee, importer) {
       // Ignore root files which are typically script files. Delegate to other
       // plugins or default behavior.
       if (!importer) {
-        root = path.dirname(path.resolve(importee))
+        // If multiInput is detected, set root once for proper paths
+        if (!hasMultiInput || (hasMultiInput && !root)) {
+          root = path.dirname(path.resolve(importee))
+        }
         return null
       }
 
@@ -142,10 +154,17 @@ export default function rebase(options = {}) {
       }
 
       const fileName = path.basename(importee, fileExt)
-      const fileHash = await getHash(fileSource)
-      const fileTarget = keepName
-        ? `${fileName}~${fileHash}${fileExt}`
-        : `${fileHash}${fileExt}`
+
+      // Set default file target name
+      let fileTarget = `${fileName}${fileExt}`;
+
+      if (useHash) {
+        // If using hash, decide whether we should keep name or hash only
+        const fileHash = await getHash(fileSource);
+        fileTarget = keepName
+          ? `${fileName}~${fileHash}${fileExt}`
+          : `${fileHash}${fileExt}`;
+      }
 
       // Registering for our copying job when the bundle is created (kind of a job queue)
       // and respect any sub folder given by the configuration options.
@@ -208,7 +227,7 @@ export default function rebase(options = {}) {
                 )
               }
 
-              await processStyle(fileSource, fileDest, keepName)
+              await processStyle(fileSource, fileDest, keepName, useHash)
             } else {
               if (verbose) {
                 console.log(
