@@ -11,6 +11,8 @@ import postcssSugarSS from "sugarss"
 import { createFilter } from "@rollup/pluginutils"
 import { getHash } from "asset-hash"
 
+const MULTI_INPUT_PLUGIN_NAME = 'rollup-plugin-multi-input'
+
 const scriptExtensions = /^\.(json|mjs|js|jsx|ts|tsx)$/
 
 const styleParser = {
@@ -27,7 +29,7 @@ function getPostCssPlugins(keepName) {
     postcssSmartAsset({
       url: "copy",
       useHash: true,
-      keepName
+      keepName,
     })
   ]
 }
@@ -61,7 +63,7 @@ export default function rebase(options = {}) {
     exclude,
     verbose = false,
     keepName = false,
-    assetFolder = ""
+    assetFolder = "",
   } = options
 
   const filter = createFilter(include, exclude)
@@ -70,6 +72,7 @@ export default function rebase(options = {}) {
   const files = {}
 
   let root = null
+  let hasMultiInput = false
 
   function rootRelative(file) {
     // Last sequence is for Windows support
@@ -94,12 +97,20 @@ export default function rebase(options = {}) {
       return Boolean(files[fileSource])
     },
 
+    options({ plugins }) {
+      // Check whether we are using rollup-plugin-multi-input
+      hasMultiInput = !!plugins?.some(plugin => plugin != null && typeof plugin !== "boolean" && plugin.name === MULTI_INPUT_PLUGIN_NAME)
+    },
+
     /* eslint-disable complexity, max-statements */
     async resolveId(importee, importer) {
       // Ignore root files which are typically script files. Delegate to other
       // plugins or default behavior.
       if (!importer) {
-        root = path.dirname(path.resolve(importee))
+        // If multiInput is detected, set root once for proper paths
+        if (!hasMultiInput || (hasMultiInput && !root)) {
+          root = path.dirname(path.resolve(importee))
+        }
         return null
       }
 
