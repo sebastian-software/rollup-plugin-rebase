@@ -2,9 +2,9 @@ import { bundle, clean, list, read } from "../util"
 
 const root = __dirname
 
-test("No use hash", async () => {
+test("Skip hash", async () => {
   await bundle(root, "index.js", "output/index.js", {
-    useHash: false,
+    skipHash: true,
   })
 
   expect(await list(root, "output")).toMatchSnapshot()

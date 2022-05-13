@@ -61,6 +61,7 @@ config()
 
 - `assetFolder`: When set assets are placed inside a sub folder with that name.
 - `keepName`: If `true`, generated filenames will be `${filename}~${hash}.${ext}` instead of just `${hash}.${ext}`
+- `skipHash`: If `true`, filenames will not include hash and will keep names
 - `verbose`: If `true`, increases log level
 - `include`: Standard include option for rollup plugins.
 - `exclude`: Standard exclude option for rollup plugins.

@@ -3,7 +3,6 @@ import { readdir } from "fs"
 
 import fs from "fs-extra"
 import { rollup } from "rollup"
-import multiInput from "rollup-plugin-multi-input";
 
 import rebasePlugin from "../src"
 
@@ -19,23 +18,6 @@ export async function bundle(root, input, output, pluginOptions = {}) {
   await result.write({
     format: "es",
     file: join(root, output)
-  })
-}
-
-export async function bundleWithMultiInput(root, input, output, pluginOptions = {}, multiInputOptions = {}) {
-  const plugins = [
-    multiInput(multiInputOptions),
-    rebasePlugin(pluginOptions)
-  ];
-
-  const result = await rollup({
-    input: input.map(i => join(root, i)),
-    plugins,
-  })
-
-  await result.write({
-    format: "es",
-    dir: join(root, output),
   })
 }
 

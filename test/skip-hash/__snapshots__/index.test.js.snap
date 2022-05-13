@@ -1,12 +1,12 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`No use hash 1`] = `
+exports[`Skip hash 1`] = `
 "content.md
 image.png
 index.js"
 `;
 
-exports[`No use hash 2`] = `
+exports[`Skip hash 2`] = `
 "import content from './content.md';
 import image from './image.png';
 
