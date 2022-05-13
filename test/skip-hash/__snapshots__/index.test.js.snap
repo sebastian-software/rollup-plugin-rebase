@@ -1,0 +1,19 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Skip hash 1`] = `
+"content.md
+image.png
+index.js"
+`;
+
+exports[`Skip hash 2`] = `
+"import content from './content.md';
+import image from './image.png';
+
+function index() {
+  return content + image
+}
+
+export { index as default };
+"
+`;

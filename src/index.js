@@ -21,22 +21,22 @@ const styleParser = {
   ".sass": postcssSass
 }
 
-function getPostCssPlugins(keepName) {
+function getPostCssPlugins(keepName, skipHash) {
   return [
     postcssImport(),
     postcssSmartAsset({
       url: "copy",
-      useHash: true,
-      keepName
+      useHash: !skipHash,
+      keepName,
     })
   ]
 }
 
 /* eslint-disable max-params */
-async function processStyle(id, fileDest, keepName) {
+async function processStyle(id, fileDest, keepName, skipHash) {
   const content = await fs.readFile(id)
   const parser = styleParser[path.extname(id)]
-  const processor = postcss(getPostCssPlugins(keepName))
+  const processor = postcss(getPostCssPlugins(keepName, skipHash))
   const text = content.toString()
 
   const result = await processor.process(text, {
@@ -61,7 +61,8 @@ export default function rebase(options = {}) {
     exclude,
     verbose = false,
     keepName = false,
-    assetFolder = ""
+    skipHash = false,
+    assetFolder = "",
   } = options
 
   const filter = createFilter(include, exclude)
@@ -142,10 +143,17 @@ export default function rebase(options = {}) {
       }
 
       const fileName = path.basename(importee, fileExt)
-      const fileHash = await getHash(fileSource)
-      const fileTarget = keepName
-        ? `${fileName}~${fileHash}${fileExt}`
-        : `${fileHash}${fileExt}`
+
+      // Set default file target name
+      let fileTarget = `${fileName}${fileExt}`
+
+      if (!skipHash) {
+        // If using hash, decide whether we should keep name or hash only
+        const fileHash = await getHash(fileSource);
+        fileTarget = keepName
+          ? `${fileName}~${fileHash}${fileExt}`
+          : `${fileHash}${fileExt}`
+      }
 
       // Registering for our copying job when the bundle is created (kind of a job queue)
       // and respect any sub folder given by the configuration options.
@@ -208,7 +216,7 @@ export default function rebase(options = {}) {
                 )
               }
 
-              await processStyle(fileSource, fileDest, keepName)
+              await processStyle(fileSource, fileDest, keepName, skipHash)
             } else {
               if (verbose) {
                 console.log(
